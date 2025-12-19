@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import Image from 'next/image'; // <--- Added Import
+import Image from 'next/image'; 
 import toast from 'react-hot-toast'; 
 
 import { 
@@ -102,38 +102,39 @@ export default function BusinessProposal() {
   ];
 
   return (
-    <section id="proposal" className="py-16 bg-gradient-to-br from-purple-900 via-purple-700 to-pink-600 relative overflow-hidden text-white">
+    // UPDATED: Changed py-16 to pt-8 pb-16 md:pt-12 to reduce top spacing
+    <section id="proposal" className="pt-8 pb-16 md:pt-12 md:pb-24 bg-gradient-to-br from-purple-900 via-purple-700 to-pink-600 relative overflow-hidden text-white">
       
       {/* --- ANIMATED BACKGROUND ELEMENTS --- */}
       <div className="absolute inset-0 pointer-events-none">
-         {/* Static Decoration */}
-         <div className="absolute top-0 right-0 w-96 h-96 bg-purple-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-pulse"></div>
-         <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-pulse"></div>
-         <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay"></div>
+          {/* Static Decoration */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-purple-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-pulse"></div>
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-pulse"></div>
+          <div className="absolute inset-0 bg-[url('/noise.png')] opacity-5 mix-blend-overlay"></div>
 
-         {/* Animated GIF 1 (Top Right) */}
-         <div className="absolute top-0 right-0 md:-right-20 opacity-20 animate-float-slow mix-blend-overlay">
-            <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-              <Image 
-                src="/bestofamravati.gif" 
-                alt="Background Animation" 
-                fill
-                className="object-contain"
-              />
-            </div>
-         </div>
+          {/* Animated GIF 1 (Top Right) */}
+          <div className="absolute top-0 right-0 md:-right-20 opacity-20 animate-float-slow mix-blend-overlay">
+             <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
+               <Image 
+                 src="/bestofamravati.gif" 
+                 alt="Background Animation" 
+                 fill
+                 className="object-contain"
+               />
+             </div>
+          </div>
 
-         {/* Animated GIF 2 (Bottom Left) */}
-         <div className="absolute bottom-0 left-0 md:-left-20 opacity-20 animate-float-slow animation-delay-1000 mix-blend-overlay">
-            <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-              <Image 
-                src="/bestofamravati.gif" 
-                alt="Background Animation" 
-                fill
-                className="object-contain"
-              />
-            </div>
-         </div>
+          {/* Animated GIF 2 (Bottom Left) */}
+          <div className="absolute bottom-0 left-0 md:-left-20 opacity-20 animate-float-slow animation-delay-1000 mix-blend-overlay">
+             <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
+               <Image 
+                 src="/bestofamravati.gif" 
+                 alt="Background Animation" 
+                 fill
+                 className="object-contain"
+               />
+             </div>
+          </div>
       </div>
       {/* ----------------------------------- */}
 
@@ -163,66 +164,66 @@ export default function BusinessProposal() {
             {/* Creative Reel Concept Card */}
             <div className="bg-white/95 backdrop-blur-sm text-black rounded-3xl shadow-2xl shadow-purple-900/40 overflow-hidden group relative transform transition-all duration-500 hover:scale-[1.01] hover:shadow-purple-500/30 animate-fade-up animation-delay-200">
               <div className="p-6 relative">
-                 <div className="absolute top-0 right-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-xl shadow-md animate-pulse">POPULAR</div>
-                 
-                 <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 text-black">
-                   <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shadow-inner group-hover:rotate-12 transition-transform duration-500">
-                     <FaVideo className="text-lg" />
-                   </div>
-                   Creative Reel Concept
-                 </h3>
-                 
-                 <p className="text-purple-950/80 mb-6 leading-relaxed text-base">
-                   We create professionally designed promotional reels that highlight your business story, ambiance, products, and exclusive offers using modern creative techniques to guarantee engagement.
-                 </p>
-                 
-                 {/* Deliverables Grid */}
-                 <div className="grid sm:grid-cols-2 gap-3">
-                   {[
-                     { icon: FaCamera, text: "Professional Shooting", sub: "30-60 sec content" },
-                     { icon: FaEdit, text: "Creative Editing", sub: "Enhanced visuals" },
-                     { icon: FaChartLine, text: "100k+ Reach", sub: "Guaranteed views" },
-                     { icon: FaShareAlt, text: "Multi-Platform", sub: "Insta, FB, YT" },
-                     { icon: FaCheckCircle, text: "Caption Strategy", sub: "Hashtags included" },
-                     { icon: FaFileDownload, text: "Raw File Delivery", sub: "For your own use" },
-                   
-                   ].map((item, idx) => (
-                     <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-white hover:bg-purple-50 transition-all duration-300 border-2 border-purple-100 group-hover:border-purple-200 hover:-translate-y-1 hover:shadow-lg">
-                       <item.icon className="text-purple-600 mt-1 flex-shrink-0 text-base" />
-                       <div>
-                         <div className="font-bold text-purple-950 text-sm">{item.text}</div>
-                         <div className="text-xs text-purple-700/70">{item.sub}</div>
-                       </div>
-                     </div>
-                   ))}
-                 </div>
+                  <div className="absolute top-0 right-0 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-bl-xl shadow-md animate-pulse">POPULAR</div>
+                  
+                  <h3 className="text-2xl font-bold mb-4 flex items-center gap-3 text-black">
+                    <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 shadow-inner group-hover:rotate-12 transition-transform duration-500">
+                      <FaVideo className="text-lg" />
+                    </div>
+                    Creative Reel Concept
+                  </h3>
+                  
+                  <p className="text-purple-950/80 mb-6 leading-relaxed text-base">
+                    We create professionally designed promotional reels that highlight your business story, ambiance, products, and exclusive offers using modern creative techniques to guarantee engagement.
+                  </p>
+                  
+                  {/* Deliverables Grid */}
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      { icon: FaCamera, text: "Professional Shooting", sub: "30-60 sec content" },
+                      { icon: FaEdit, text: "Creative Editing", sub: "Enhanced visuals" },
+                      { icon: FaChartLine, text: "100k+ Reach", sub: "Guaranteed views" },
+                      { icon: FaShareAlt, text: "Multi-Platform", sub: "Insta, FB, YT" },
+                      { icon: FaCheckCircle, text: "Caption Strategy", sub: "Hashtags included" },
+                      { icon: FaFileDownload, text: "Raw File Delivery", sub: "For your own use" },
+                    
+                    ].map((item, idx) => (
+                      <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-white hover:bg-purple-50 transition-all duration-300 border-2 border-purple-100 group-hover:border-purple-200 hover:-translate-y-1 hover:shadow-lg">
+                        <item.icon className="text-purple-600 mt-1 flex-shrink-0 text-base" />
+                        <div>
+                          <div className="font-bold text-purple-950 text-sm">{item.text}</div>
+                          <div className="text-xs text-purple-700/70">{item.sub}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
               </div>
             </div>
 
             {/* Workflow Card */}
             <div className="bg-white/95 backdrop-blur-sm text-black rounded-3xl shadow-xl shadow-purple-900/30 p-6 relative overflow-hidden flex-grow animate-fade-up animation-delay-400 group">
-               <div className="flex items-center gap-3 mb-6">
-                 <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300">
-                    <FaLayerGroup className="text-lg" />
-                 </div>
-                 <h3 className="text-xl font-bold text-purple-950">How It Works</h3>
-               </div>
-               
-               <div className="relative space-y-4">
-                 <div className="absolute left-5 top-2 bottom-2 w-0.5 bg-purple-100 group-hover:bg-purple-300 transition-colors duration-500"></div>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 group-hover:scale-110 transition-transform duration-300">
+                     <FaLayerGroup className="text-lg" />
+                  </div>
+                  <h3 className="text-xl font-bold text-purple-950">How It Works</h3>
+                </div>
+                
+                <div className="relative space-y-4">
+                  <div className="absolute left-5 top-2 bottom-2 w-0.5 bg-purple-100 group-hover:bg-purple-300 transition-colors duration-500"></div>
 
-                 {workflowSteps.map((step, idx) => (
-                   <div key={idx} className="relative flex items-start gap-4 group/step hover:pl-2 transition-all duration-300">
-                     <div className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-white border-2 border-purple-200 flex items-center justify-center font-bold text-purple-700 group-hover/step:border-pink-500 group-hover/step:text-white group-hover/step:bg-pink-500 transition-all duration-300 shadow-sm text-sm">
-                       {idx + 1}
-                     </div>
-                     <div className="bg-white p-3 rounded-xl border-2 border-purple-50 flex-grow shadow-sm group-hover/step:border-purple-200 group-hover/step:shadow-md transition-all">
-                       <h5 className="font-bold text-purple-950 text-base mb-0.5">{step.title}</h5>
-                       <p className="text-purple-800/70 text-xs leading-relaxed">{step.desc}</p>
-                     </div>
-                   </div>
-                 ))}
-               </div>
+                  {workflowSteps.map((step, idx) => (
+                    <div key={idx} className="relative flex items-start gap-4 group/step hover:pl-2 transition-all duration-300">
+                      <div className="relative z-10 flex-shrink-0 w-10 h-10 rounded-full bg-white border-2 border-purple-200 flex items-center justify-center font-bold text-purple-700 group-hover/step:border-pink-500 group-hover/step:text-white group-hover/step:bg-pink-500 transition-all duration-300 shadow-sm text-sm">
+                        {idx + 1}
+                      </div>
+                      <div className="bg-white p-3 rounded-xl border-2 border-purple-50 flex-grow shadow-sm group-hover/step:border-purple-200 group-hover/step:shadow-md transition-all">
+                        <h5 className="font-bold text-purple-950 text-base mb-0.5">{step.title}</h5>
+                        <p className="text-purple-800/70 text-xs leading-relaxed">{step.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
             </div>
           </div>
 
@@ -261,13 +262,13 @@ export default function BusinessProposal() {
                 {/* Form */}
                 <div className="p-6 pt-6 bg-white text-black relative z-10">
                     <form onSubmit={handlePayment} className="space-y-4">
-                       <div className="text-center mb-6">
-                         <h4 className="font-bold text-lg mb-1 text-purple-950">Booking Details</h4>
-                         <p className="text-[10px] text-purple-700 uppercase tracking-widest font-semibold">Secure Payment Gateway</p>
-                       </div>
+                        <div className="text-center mb-6">
+                          <h4 className="font-bold text-lg mb-1 text-purple-950">Booking Details</h4>
+                          <p className="text-[10px] text-purple-700 uppercase tracking-widest font-semibold">Secure Payment Gateway</p>
+                        </div>
 
-                       {/* Input Fields Loop */}
-                       {['Business Name', 'Owner Name', 'Phone Number', 'Business Email'].map((placeholder, idx) => {
+                        {/* Input Fields Loop */}
+                        {['Business Name', 'Owner Name', 'Phone Number', 'Business Email'].map((placeholder, idx) => {
                           const icons = [FaGem, FaUsers, FaPhoneAlt, FaEnvelope];
                           const names = ['businessName', 'ownerName', 'phone', 'email'];
                           const Icon = icons[idx];
@@ -291,30 +292,30 @@ export default function BusinessProposal() {
                              </div>
                            </div>
                           )
-                       })}
+                        })}
 
-                       <button 
-                         type="submit"
-                         disabled={isLoading}
-                         className="w-full group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl shadow-xl shadow-purple-900/20 hover:shadow-purple-900/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 mt-2 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-                       >
-                         {/* Button Shimmer */}
-                         {!isLoading && <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>}
-                         
-                         <span className="relative z-10 flex items-center gap-2 text-base">
-                            {isLoading ? (
-                                <>Processing...</> 
-                            ) : (
-                                <>Pay ₹3,500 <FaArrowRight className="group-hover:translate-x-1 transition-transform" /></>
-                            )}
-                         </span>
-                       </button>
-                       
-                       <div className="text-center mt-3">
-                          <p className="text-[10px] text-purple-700/80 font-medium flex items-center justify-center gap-1.5">
-                            <FaLock className="text-green-500 text-xs" /> SSL Encrypted Payment
-                          </p>
-                       </div>
+                        <button 
+                          type="submit"
+                          disabled={isLoading}
+                          className="w-full group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl shadow-xl shadow-purple-900/20 hover:shadow-purple-900/40 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 mt-2 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
+                        >
+                          {/* Button Shimmer */}
+                          {!isLoading && <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>}
+                          
+                          <span className="relative z-10 flex items-center gap-2 text-base">
+                             {isLoading ? (
+                                 <>Processing...</> 
+                             ) : (
+                                 <>Pay ₹3,500 <FaArrowRight className="group-hover:translate-x-1 transition-transform" /></>
+                             )}
+                          </span>
+                        </button>
+                        
+                        <div className="text-center mt-3">
+                           <p className="text-[10px] text-purple-700/80 font-medium flex items-center justify-center gap-1.5">
+                             <FaLock className="text-green-500 text-xs" /> SSL Encrypted Payment
+                           </p>
+                        </div>
                     </form>
                 </div>
               </div>

@@ -56,7 +56,9 @@ const HeroSection = () => {
   ];
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center px-4 md:px-8 pt-24 pb-12 md:pb-20 overflow-hidden">
+    // UPDATED: Changed pb-0 to pb-6 md:pb-8. 
+    // This creates a small, balanced gap between the categories and the purple section.
+    <section id="home" className="relative min-h-screen flex flex-col justify-center px-4 md:px-8 pt-24 pb-6 md:pb-8 overflow-hidden">
       
       {/* --- Animated Background --- */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -90,7 +92,7 @@ const HeroSection = () => {
       </div>
 
       {/* --- Main Content --- */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto text-center space-y-8 flex-grow flex flex-col justify-center">
+      <div className="relative z-10 w-full max-w-7xl mx-auto text-center space-y-8 flex-grow flex flex-col justify-center pb-4">
         
         <div className="flex justify-center animate-fade-up">
           <div className="relative group">
@@ -149,11 +151,15 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center mt-2 animate-fade-up animation-delay-800">
-            <button className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold text-sm md:text-base hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 shadow-md">
+            {/* Start Your Journey Button -> Linked to #proposal */}
+            <Link 
+              href="#proposal" 
+              className="group bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-full font-semibold text-sm md:text-base hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-2 shadow-md"
+            >
               <FaRocket className="group-hover:rotate-12 transition-transform" />
               Start Your Journey
               <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
         </div>
 

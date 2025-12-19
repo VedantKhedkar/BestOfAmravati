@@ -43,27 +43,20 @@ export default function Navbar() {
         isVisible ? 'translate-y-0' : '-translate-y-full'
       }`}
     >
-      {/* Reduced vertical padding to py-2 for a sleeker look */}
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           
-        {/* Logo Section - ADJUSTED WIDTHS */}
+        {/* Logo Section */}
           <Link href="/" className="flex items-center gap-2 group">
-            {/* Reduced widths significantly to remove the extra space on the right.
-               New Dimensions:
-               Mobile: w-20 (80px) / h-8
-               Tablet: w-24 (96px) / h-10
-               Desktop: w-32 (128px) / h-12 
-            */}
            <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-32 lg:h-12">
-  <Image 
-    src="/nav-logo.png" // <--- Added leading slash
-    alt="Best Of Amravati Logo" 
-    fill
-    className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
-    priority
-  />
-</div>
+              <Image 
+                src="/nav-logo.png" 
+                alt="Best Of Amravati Logo" 
+                fill
+                className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -78,9 +71,14 @@ export default function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all group-hover:w-full"></span>
               </Link>
             ))}
-            <button className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm md:text-base">
+            
+            {/* UPDATED: Desktop Get Started Button -> Linked to #proposal */}
+            <Link 
+              href="#proposal"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm md:text-base"
+            >
               Get Started
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -105,9 +103,15 @@ export default function Navbar() {
                 {link.name}
               </Link>
             ))}
-            <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md mt-2">
+            
+            {/* UPDATED: Mobile Get Started Button -> Linked to #proposal */}
+            <Link 
+              href="#proposal"
+              onClick={() => setIsOpen(false)}
+              className="w-full text-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md mt-2 block"
+            >
               Get Started
-            </button>
+            </Link>
           </div>
         </div>
 
