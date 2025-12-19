@@ -132,14 +132,7 @@ const AboutUs = () => {
         </div> 
         {/* ^^^ THIS CLOSING DIV WAS MISSING IN YOUR CODE */}
 
-        {/* Brand Footer */}
-        <div className="mt-20 pt-10 border-t border-gray-100 text-center">
-          <p className="text-gray-500 italic text-sm">
-            Trademark Owned & Managed by <span className="font-bold text-purple-600">BIZONANCE INDIA PVT LTD</span>
-          </p>
-          <p className="text-red-600 font-bold text-lg mt-2">#bestofamravati</p>
-        </div>
-
+       
       </div>
     </section>
   );

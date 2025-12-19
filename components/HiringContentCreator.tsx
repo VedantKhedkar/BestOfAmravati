@@ -1,219 +1,150 @@
 "use client";
 
 import { useState } from 'react';
-import Image from 'next/image'; // <--- Added import
-import { 
-  FaVideo, FaCamera, FaEdit, FaUser, FaPhoneAlt, 
-  FaLink, FaPaperPlane, FaBriefcase, FaLightbulb, 
-  FaInstagram, FaYoutube, FaFacebook, FaEnvelope
-} from 'react-icons/fa';
+import Image from 'next/image';
+import { FaBriefcase, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
+import ApplyForm from '@/ApplyForm'; // Make sure this path is correct based on your file structure
 
 export default function HiringContentCreator() {
-  // --- Form Logic ---
-  const [formData, setFormData] = useState({
-    name: '',
-    phone: '',
-    email: '', 
-    socialLink: '',
-    portfolio: ''
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleApply = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Redirect to WhatsApp with pre-filled application details
-    const message = `👋 Hi, I'm applying for the *Content Creator* role!%0A%0A*👤 Name:* ${formData.name}%0A*📞 Phone:* ${formData.phone}%0A*📧 Email:* ${formData.email}%0A*🔗 Social Profile:* ${formData.socialLink}%0A*📂 Portfolio:* ${formData.portfolio}`;
-    window.open(`https://wa.me/918956727311?text=${message}`, '_blank');
-  };
+  // --- Modal State ---
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
-    // THEME: Primary Gradient Background
-    <section id="career" className="py-20 md:py-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">
-      
-      {/* --- ANIMATED BACKGROUND ELEMENTS --- */}
-      <div className="absolute inset-0 pointer-events-none">
-        
-        {/* Base Textures */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20"></div>
-        <div className="absolute top-0 left-0 w-full h-full bg-[url('/noise.png')] opacity-10 mix-blend-overlay"></div>
-        
-        {/* Glow Effects */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-900/20 rounded-full blur-3xl animate-pulse"></div>
+    <section
+      id="hiring"
+      className="py-24 bg-gray-50 overflow-hidden relative"
+    >
+      {/* --- Background Atmosphere --- */}
+      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-purple-200/20 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-200/20 rounded-full blur-[100px] translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
 
-        {/* Animated GIF 1 (Right Side) */}
-        <div className="absolute top-10 right-0 md:-right-20 opacity-20 animate-float-slow mix-blend-overlay">
-           <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-             <Image 
-               src="/bestofamravati.gif" 
-               alt="Background Animation" 
-               fill
-               className="object-contain"
-             />
-           </div>
-        </div>
-
-        {/* Animated GIF 2 (Left Side) */}
-        <div className="absolute bottom-10 left-0 md:-left-20 opacity-20 animate-float-slow animation-delay-1000 mix-blend-overlay">
-           <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-             <Image 
-               src="/bestofamravati.gif" 
-               alt="Background Animation" 
-               fill
-               className="object-contain"
-             />
-           </div>
-        </div>
-      </div>
-      {/* ----------------------------------- */}
-
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 max-w-5xl relative z-10">
         
-        {/* Header */}
-        <div className="text-center mb-16 animate-fade-up">
-          <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/30 px-4 py-2 rounded-full mb-4 shadow-lg">
-            <FaBriefcase className="text-yellow-300" />
-            <span className="text-sm font-bold text-white uppercase tracking-wider shadow-sm">Join Our Team</span>
+        {/* 1. Header */}
+        <div className="text-center mb-16 space-y-4 animate-fade-up">
+          <div className="inline-flex items-center gap-2 bg-white border border-purple-100 px-5 py-2 rounded-full shadow-sm mb-2 hover:shadow-md transition-shadow">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+            </span>
+            <span className="text-purple-900 font-bold text-xs tracking-wide uppercase">
+              We are Hiring
+            </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">
-            We Are Hiring <span className="text-yellow-300">Content Creators</span>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+            Join Our{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+              Creative Team
+            </span>
           </h2>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto font-medium">
-            Passionate about storytelling, editing, and trends? Join Amravati's fastest-growing digital media agency.
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
+            Help us bring the best of our city to the world. We're looking for
+            passionate creators to lead our next phase of growth.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 items-start max-w-6xl mx-auto">
-          
-          {/* LEFT COLUMN: Role & Responsibilities */}
-          <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-10 animate-fade-up animation-delay-200 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-bl-full -mr-8 -mt-8 transition-transform group-hover:scale-110"></div>
-            
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-              <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-600">
-                <FaVideo className="text-xl" />
-              </div>
-              Role & Responsibilities
-            </h3>
+        {/* 2. Job Post Card */}
+        <div className="relative group animate-fade-up animation-delay-200">
+          {/* Gradient Border Effect */}
+          <div className="absolute -inset-[1px] bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 rounded-[2.5rem] opacity-30 group-hover:opacity-100 blur-sm transition-opacity duration-500"></div>
 
-            <div className="space-y-6 relative z-10">
-              <p className="text-gray-600 leading-relaxed">
-                We are looking for creative individuals who can shoot, edit, and produce engaging short-form content (Reels/Shorts) for local brands.
-              </p>
+          <div className="relative bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl overflow-hidden">
+            {/* Subtle Background Pattern inside card */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50"></div>
 
-              <div className="grid gap-4">
-                {[
-                  { icon: FaCamera, text: "Shoot High-Quality Video", desc: "Capture cinematic shots using mobile or camera." },
-                  { icon: FaEdit, text: "Creative Editing", desc: "Edit engaging reels with trending audio & transitions." },
-                  { icon: FaLightbulb, text: "Idea Generation", desc: "Brainstorm viral concepts for client promotions." },
-                  { icon: FaUser, text: "On-Site Collaboration", desc: "Visit client locations and direct shoots confidently." }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:bg-purple-50 hover:border-purple-100 transition-all">
-                    <div className="mt-1 text-purple-600 text-lg"><item.icon /></div>
-                    <div>
-                      <h4 className="font-bold text-gray-900 text-sm">{item.text}</h4>
-                      <p className="text-xs text-gray-500 mt-1">{item.desc}</p>
-                    </div>
+            <div className="relative z-10 flex flex-col md:flex-row gap-10 lg:gap-16">
+              
+              {/* Left Side: Role Info */}
+              <div className="flex-1 space-y-6">
+                <div className="flex flex-col items-start gap-4">
+                  <div className="h-14 w-14 rounded-2xl bg-purple-100 flex items-center justify-center text-purple-600 shadow-sm">
+                    <FaBriefcase className="w-6 h-6" />
                   </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* RIGHT COLUMN: Application Form */}
-          <div className="relative animate-fade-up animation-delay-400">
-            {/* Holographic Border Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-pink-500 rounded-[2.2rem] blur opacity-30"></div>
-            
-            <div className="bg-white rounded-[2rem] shadow-2xl p-8 md:p-10 relative z-10">
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Apply Now</h3>
-                <p className="text-sm text-gray-500">Send your profile directly to our hiring team.</p>
-              </div>
-
-              <form onSubmit={handleApply} className="space-y-5">
-                
-                {/* Name Field */}
-                <div className="group">
-                  <label className="text-xs font-bold text-purple-700 uppercase tracking-wider ml-3 mb-1 block">Full Name</label>
-                  <div className="relative flex items-center">
-                    <div className="absolute left-0 pl-4 text-gray-400 group-focus-within:text-purple-600 transition-colors">
-                      <FaUser />
-                    </div>
-                    <input 
-                      type="text" name="name" required placeholder="Your Full Name"
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 rounded-xl border-2 border-gray-100 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-100/50 outline-none transition-all text-sm font-semibold text-gray-800 placeholder-gray-400"
-                      onChange={handleChange}
-                    />
+                  <div>
+                    <h3 className="text-3xl font-bold text-gray-900">
+                      Content Creator
+                    </h3>
+                    <p className="text-gray-500 mt-1 font-medium">
+                      Best of Amravati • Media Team
+                    </p>
                   </div>
                 </div>
 
-                {/* Phone Field */}
-                <div className="group">
-                  <label className="text-xs font-bold text-purple-700 uppercase tracking-wider ml-3 mb-1 block">Phone Number</label>
-                  <div className="relative flex items-center">
-                    <div className="absolute left-0 pl-4 text-gray-400 group-focus-within:text-purple-600 transition-colors">
-                      <FaPhoneAlt />
-                    </div>
-                    <input 
-                      type="tel" name="phone" required placeholder="+91..."
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 rounded-xl border-2 border-gray-100 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-100/50 outline-none transition-all text-sm font-semibold text-gray-800 placeholder-gray-400"
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                {/* Email Field */}
-                <div className="group">
-                  <label className="text-xs font-bold text-purple-700 uppercase tracking-wider ml-3 mb-1 block">Email Address</label>
-                  <div className="relative flex items-center">
-                    <div className="absolute left-0 pl-4 text-gray-400 group-focus-within:text-purple-600 transition-colors">
-                      <FaEnvelope />
-                    </div>
-                    <input 
-                      type="email" name="email" required placeholder="example@email.com"
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 rounded-xl border-2 border-gray-100 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-100/50 outline-none transition-all text-sm font-semibold text-gray-800 placeholder-gray-400"
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                {/* Social Links Field */}
-                <div className="group">
-                  <label className="text-xs font-bold text-purple-700 uppercase tracking-wider ml-3 mb-1 block">Social Profile Link</label>
-                  <div className="relative flex items-center">
-                    <div className="absolute left-0 pl-4 text-gray-400 group-focus-within:text-purple-600 transition-colors">
-                      <FaInstagram />
-                    </div>
-                    <input 
-                      type="url" name="socialLink" placeholder="Instagram / YouTube URL"
-                      className="w-full pl-10 pr-4 py-3 bg-gray-50 rounded-xl border-2 border-gray-100 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-100/50 outline-none transition-all text-sm font-semibold text-gray-800 placeholder-gray-400"
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="flex gap-2 mt-2 ml-2 text-gray-400 text-xs">
-                    <FaInstagram /> <FaYoutube /> <FaFacebook />
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <button 
-                  type="submit"
-                  className="w-full group relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 mt-4 flex items-center justify-center gap-2"
-                >
-                  <span className="relative z-10 flex items-center gap-2">
-                      Submit Application <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <div className="flex flex-wrap gap-3">
+                  <span className="px-4 py-1.5 rounded-full bg-gray-100 text-gray-700 text-xs md:text-sm font-bold border border-gray-200 uppercase tracking-wide">
+                    Full-Time
                   </span>
-                </button>
+                  <span className="px-4 py-1.5 rounded-full bg-purple-50 text-purple-700 text-xs md:text-sm font-bold border border-purple-100 uppercase tracking-wide">
+                    On-site / Hybrid
+                  </span>
+                  <span className="px-4 py-1.5 rounded-full bg-green-50 text-green-700 text-xs md:text-sm font-bold border border-green-100 uppercase tracking-wide">
+                    Immediate
+                  </span>
+                </div>
 
-              </form>
+                <p className="text-gray-600 text-lg leading-relaxed">
+                  We are looking for a talented Content Creator to craft
+                  engaging visuals for local businesses. You'll be the
+                  creative force behind our{" "}
+                  <span className="font-bold text-purple-600">
+                    Creative Reel Promotion Concept
+                  </span>.
+                </p>
+
+                {/* Desktop Button */}
+                <button
+                  onClick={() => setIsFormOpen(true)}
+                  className="hidden md:inline-flex items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg hover:bg-purple-600 hover:shadow-purple-500/30 hover:-translate-y-1 transition-all duration-300 group/btn"
+                >
+                  Apply Now
+                  <FaArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
+                </button>
+              </div>
+
+              {/* Right Side: Responsibilities */}
+              <div className="flex-1 bg-gray-50/80 rounded-3xl p-8 border border-gray-100">
+                <h4 className="text-lg font-bold text-gray-900 mb-6 flex items-center gap-2">
+                  Key Responsibilities
+                </h4>
+                <ul className="space-y-4">
+                  {[
+                    "Script & direct viral-worthy reels.",
+                    "Execute professional on-site shoots.",
+                    "High-quality editing (Premiere/CapCut).",
+                    "Collaborate on content strategy.",
+                    "Ensure brand consistency.",
+                    "Use trending music, hooks & styles.",
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0 mt-0.5">
+                        <FaCheckCircle className="w-3 h-3 text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Mobile-only Button */}
+                <button 
+                  onClick={() => setIsFormOpen(true)}
+                  className="w-full mt-8 md:hidden inline-flex justify-center items-center gap-2 bg-gray-900 text-white px-8 py-4 rounded-xl font-bold text-lg shadow-lg active:scale-95 transition-transform"
+                >
+                  Apply Now
+                </button>
+              </div>
+
             </div>
           </div>
-
         </div>
+
+        {/* --- MODAL INJECTION --- */}
+        <ApplyForm 
+          isOpen={isFormOpen} 
+          onClose={() => setIsFormOpen(false)} 
+        />
+
       </div>
     </section>
   );
