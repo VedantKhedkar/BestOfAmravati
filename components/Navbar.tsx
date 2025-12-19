@@ -57,7 +57,7 @@ export default function Navbar() {
             */}
            <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-32 lg:h-12">
   <Image 
-    src="/logo.png" // <--- Added leading slash
+    src="/nav-logo.png" // <--- Added leading slash
     alt="Best Of Amravati Logo" 
     fill
     className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
