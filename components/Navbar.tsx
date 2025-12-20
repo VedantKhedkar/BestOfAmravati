@@ -10,6 +10,13 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true); 
   const [lastScrollY, setLastScrollY] = useState(0); 
 
+  // 1. Logo Configuration
+  // Make sure your file in /public is named exactly "nav-logo.png" (lowercase)
+  const logo = {
+    src: "/nav-logo.png",
+    alt: "Best Of Amravati Logo"
+  };
+
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
@@ -46,13 +53,15 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           
-        {/* Logo Section */}
+          {/* Logo Section */}
           <Link href="/" className="flex items-center gap-2 group">
-           <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-32 lg:h-12">
+            <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-32 lg:h-12">
               <Image 
-                src="/nav-logo.png" 
-                alt="Best Of Amravati Logo" 
+                src={logo.src} 
+                alt={logo.alt} 
                 fill
+                // 2. Added 'sizes' prop to fix the warning and improve performance
+                sizes="(max-width: 768px) 80px, (max-width: 1024px) 96px, 128px"
                 className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
                 priority
               />
@@ -72,7 +81,6 @@ export default function Navbar() {
               </Link>
             ))}
             
-            {/* UPDATED: Desktop Get Started Button -> Linked to #proposal */}
             <Link 
               href="#proposal"
               className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:-translate-y-0.5 transition-all text-sm md:text-base"
@@ -104,7 +112,6 @@ export default function Navbar() {
               </Link>
             ))}
             
-            {/* UPDATED: Mobile Get Started Button -> Linked to #proposal */}
             <Link 
               href="#proposal"
               onClick={() => setIsOpen(false)}
