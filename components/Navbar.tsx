@@ -55,14 +55,15 @@ export default function Navbar() {
         {/* Logo Section */}
           <Link href="/" className="flex items-center gap-2 group">
            <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-32 lg:h-12">
-              <Image 
-                src={logo.src} 
-                alt={logo.alt} 
-                fill
-                className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
-                priority
-              />
-            </div>
+            <Image 
+              src={logo.src} 
+              alt={logo.alt} 
+              fill
+              sizes="(max-width: 768px) 80px, (max-width: 1024px) 96px, 128px" // <--- ADD THIS
+              className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
+              priority
+            />
+          </div>
           </Link>
 
           {/* Desktop Navigation */}
