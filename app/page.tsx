@@ -9,6 +9,7 @@ import BusinessProposal from '@/components/BusinessProposal';
 import SuccessStories from '@/components/SuccessStories';
 import Footer from '@/components/Footer';
 import AboutUs from '@/components/AboutUs';
+import ApplyForm from '@/components/ApplyForm';
 
 
 // --- Libraries ---

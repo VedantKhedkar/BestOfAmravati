@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom"; // Import createPortal
 import {
   FaTimes,
   FaUser,
@@ -25,7 +26,8 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  
+  const [mounted, setMounted] = useState(false); // New state to check if we are on client
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,6 +36,11 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
     address: '',
     portfolio: ''
   });
+
+  // 1. Ensure code only runs on client-side to avoid hydration errors with Portals
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -63,31 +70,34 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
     }, 1500);
   };
 
-  if (!isVisible && !isOpen) return null;
+  // If not mounted or closed/invisible, render nothing
+  if (!mounted || (!isVisible && !isOpen)) return null;
 
-  return (
-    <div className={`fixed inset-0 z-[9999] flex items-center justify-center px-4 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}>
+  // 2. Use createPortal to teleport this Modal to document.body
+  // This bypasses all stacking contexts of the Footer or Parent components
+  return createPortal(
+    <div className={`fixed inset-0 z-[999999] flex items-center justify-center px-4 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}>
       
       {/* Backdrop */}
       <div 
-        className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm transition-all" 
+        className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm transition-all" 
         onClick={onClose}
       />
 
       {/* Modal Card */}
       <div 
-        className={`relative w-full max-w-2xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden transform transition-all duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) ${
+        className={`relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl flex flex-col max-h-[85vh] transform transition-all duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) ${
           isOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"
         }`}
       >
         
         {isSubmitted ? (
           // ================= SUCCESS STATE =================
-          <div className="p-12 text-center flex flex-col items-center justify-center min-h-[500px]">
-            <div className="w-24 h-24 bg-purple-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
+          <div className="p-8 md:p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
+            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
               <FaCheck className="text-purple-600 text-3xl" />
             </div>
-            <h3 className="text-3xl font-bold text-gray-900 mb-2">Application Sent!</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Application Sent!</h3>
             <p className="text-gray-600 mb-8 max-w-xs mx-auto">
               We've received your details. Our creative team will review and contact you shortly.
             </p>
@@ -102,29 +112,29 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
           // ================= FORM STATE =================
           <>
             {/* Header */}
-            <div className="relative bg-gradient-to-r from-purple-600 to-pink-600 p-8 pb-10 text-white text-center">
+            <div className="relative shrink-0 bg-gradient-to-r from-purple-600 to-pink-600 p-6 md:p-8 text-white text-center rounded-t-[2rem]">
                <button 
                  onClick={onClose} 
-                 className="absolute top-6 right-6 text-white/70 hover:text-white hover:rotate-90 transition-all p-2 bg-white/10 rounded-full"
+                 className="absolute top-5 right-5 text-white/70 hover:text-white hover:rotate-90 transition-all p-2 bg-white/10 rounded-full z-10"
                >
-                 <FaTimes size={18} />
+                 <FaTimes size={16} />
                </button>
-               <h3 className="text-2xl font-bold mb-1">Join the Team</h3>
+               <h3 className="text-xl md:text-2xl font-bold mb-1">Join the Team</h3>
                <p className="text-purple-100 text-sm">Best of Amravati • Media</p>
                
-               <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-6 py-2 rounded-full font-extrabold shadow-lg border-4 border-purple-50 text-sm flex items-center gap-2 whitespace-nowrap">
+               <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-6 py-2 rounded-full font-extrabold shadow-lg border-4 border-purple-50 text-xs md:text-sm flex items-center gap-2 whitespace-nowrap z-20">
                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Hiring Now
                </div>
             </div>
 
             {/* Form Body */}
-            <div className="pt-12 pb-8 px-6 md:px-10 max-h-[70vh] overflow-y-auto custom-scrollbar bg-white">
-               <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pt-10 md:p-10 bg-white rounded-b-[2rem]">
+               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
                  
                  {/* Row 1: Name & Email */}
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                    <div className="group">
-                     <label className="text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Full Name</label>
+                     <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Full Name</label>
                      <div className="relative flex items-center">
                        <FaUser className="absolute left-4 text-purple-400" />
                        <input 
@@ -132,14 +142,14 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
                          name="name" 
                          required 
                          placeholder="John Doe"
-                         className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border-2 border-gray-100 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700"
+                         className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
                          onChange={handleChange}
                        />
                      </div>
                    </div>
 
                    <div className="group">
-                     <label className="text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Email Address</label>
+                     <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Email Address</label>
                      <div className="relative flex items-center">
                        <FaEnvelope className="absolute left-4 text-purple-400" />
                        <input 
@@ -147,7 +157,7 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
                          name="email" 
                          required 
                          placeholder="john@example.com"
-                         className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border-2 border-gray-100 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700"
+                         className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
                          onChange={handleChange}
                        />
                      </div>
@@ -155,9 +165,9 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
                  </div>
 
                  {/* Row 2: Phone & Role */}
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
                     <div className="group">
-                      <label className="text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Phone</label>
+                      <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Phone</label>
                       <div className="relative flex items-center">
                         <FaPhoneAlt className="absolute left-4 text-purple-400" />
                         <input 
@@ -165,21 +175,21 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
                           name="phone" 
                           required 
                           placeholder="+91..."
-                          className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border-2 border-gray-100 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700"
+                          className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
                           onChange={handleChange}
                         />
                       </div>
                     </div>
 
                     <div className="group">
-                      <label className="text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Role</label>
+                      <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Role</label>
                       <div className="relative flex items-center">
                         <FaBriefcase className="absolute left-4 text-purple-400 z-10" />
                         <select 
                           name="role" 
                           required
                           defaultValue=""
-                          className="w-full pl-10 pr-8 py-3 bg-white rounded-xl border-2 border-gray-100 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 appearance-none cursor-pointer"
+                          className="w-full pl-10 pr-8 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base appearance-none cursor-pointer"
                           onChange={handleChange}
                         >
                           <option value="" disabled>Select Role</option>
@@ -194,14 +204,14 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
 
                  {/* Address Input */}
                  <div className="group">
-                   <label className="text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Current Address</label>
+                   <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Current Address</label>
                    <div className="relative flex items-center">
                      <FaMapMarkerAlt className="absolute left-4 text-purple-400" />
                      <input 
                        type="text" 
                        name="address" 
                        placeholder="e.g. Rajapeth, Amravati"
-                       className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border-2 border-gray-100 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700"
+                       className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
                        onChange={handleChange}
                      />
                    </div>
@@ -209,24 +219,24 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
 
                  {/* Portfolio Link */}
                  <div className="group">
-                   <label className="text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Portfolio Link</label>
+                   <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Portfolio Link</label>
                    <div className="relative flex items-center">
                      <FaLink className="absolute left-4 text-purple-400" />
                      <input 
                        type="url" 
                        name="portfolio" 
                        placeholder="Instagram / Behance / Drive"
-                       className="w-full pl-10 pr-4 py-3 bg-white rounded-xl border-2 border-gray-100 focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700"
+                       className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
                        onChange={handleChange}
                      />
                    </div>
                  </div>
 
-                 {/* Submit Button - THEME GRADIENT */}
+                 {/* Submit Button */}
                  <button 
                    type="submit" 
                    disabled={isLoading}
-                   className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2"
+                   className="w-full mt-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-sm md:text-base"
                  >
                    {isLoading ? (
                      <><FaSpinner className="animate-spin" /> Sending...</>
@@ -235,7 +245,7 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
                    )}
                  </button>
 
-                 <div className="text-center">
+                 <div className="text-center pb-2">
                    <p className="text-[10px] text-gray-400 font-medium flex items-center justify-center gap-1">
                      <FaLock className="text-green-500" /> Secure Application via Best of Amravati
                    </p>
@@ -246,6 +256,7 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
           </>
         )}
       </div>
-    </div>
+    </div>,
+    document.body // This is the key: we attach the modal to the body, not the footer!
   );
 }

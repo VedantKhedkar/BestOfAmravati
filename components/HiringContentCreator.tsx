@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { FaBriefcase, FaArrowRight, FaCheckCircle } from 'react-icons/fa';
-import ApplyForm from '@/ApplyForm'; // Make sure this path is correct based on your file structure
+import ApplyForm from '@/components/ApplyForm';
 
 export default function HiringContentCreator() {
   // --- Modal State ---
