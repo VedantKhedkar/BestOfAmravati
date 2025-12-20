@@ -10,10 +10,10 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true); 
   const [lastScrollY, setLastScrollY] = useState(0); 
 
-  // LOGO CONFIGURATION
-  // Ensure "nav-logo.png" exists in your /public folder
+  // FIXED LOGO CONFIGURATION
+  // Matches your actual filename: navlogo.png
   const logo = {
-    src: "/nav-logo.png",
+    src: "/navlogo.png",
     alt: "Best Of Amravati Logo"
   };
 
@@ -23,6 +23,7 @@ export default function Navbar() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
+      // Hide navbar when scrolling down, show when scrolling up
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
       } else {
@@ -32,7 +33,7 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
@@ -92,6 +93,7 @@ export default function Navbar() {
           <button 
             className="md:hidden text-gray-700 p-2 focus:outline-none"
             onClick={toggleMenu}
+            aria-label="Toggle Menu"
           >
             {isOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
           </button>
