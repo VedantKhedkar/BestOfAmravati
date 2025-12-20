@@ -13,7 +13,7 @@ export default function Navbar() {
   // FIXED LOGO CONFIGURATION
   // Matches your actual filename: navlogo.png
   const logo = {
-    src: "/navlogo.svg",
+    src: "/boanav.svg",
     alt: "Best Of Amravati Logo"
   };
 
