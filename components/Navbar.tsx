@@ -12,7 +12,7 @@ export default function Navbar() {
 
   // Logo Configuration Object
   const logo = {
-    src: "/nav-logo.png",
+    src: "/navlogo.png",
     alt: "Best Of Amravati Logo"
   };
 
