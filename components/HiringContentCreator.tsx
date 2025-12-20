@@ -107,13 +107,17 @@ export default function HiringContentCreator() {
                   Key Responsibilities
                 </h4>
                 <ul className="space-y-4">
-                  {[
-                    "Script & direct viral-worthy reels.",
-                    "Execute professional on-site shoots.",
-                    "High-quality editing (Premiere/CapCut).",
-                    "Collaborate on content strategy.",
-                    "Ensure brand consistency.",
-                    "Use trending music, hooks & styles.",
+                  {[                  
+                  "Script & direct viral-worthy reels.",
+                  "Execute professional on-site shoots.",
+                  "High-quality editing (Premiere/CapCut).",
+                  "Collaborate on content strategy.",
+                  "Ensure brand consistency.",
+                  "Use trending music, hooks & styles.",
+                  "Enhance visuals with dynamic motion graphics.", // New
+                  "Professional color grading for cinematic looks.", // New
+                  "Optimize content for maximum algorithm reach.", // New
+                  "Capture authentic behind-the-scenes moments." // New
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <div className="w-5 h-5 rounded-full bg-green-100 flex items-center justify-center shrink-0 mt-0.5">

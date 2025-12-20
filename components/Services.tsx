@@ -35,9 +35,7 @@ export default function Services() {
       {/* --- ANIMATED BACKGROUND ELEMENTS --- */}
       <div className="absolute inset-0 pointer-events-none">
           
-          {/* Grid Texture */}
-          <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div>
-          
+    
           {/* Floating Blobs */}
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/20 rounded-full blur-3xl opacity-30 animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-yellow-300/20 rounded-full blur-3xl opacity-30 animate-pulse animation-delay-2000"></div>
