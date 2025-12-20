@@ -63,7 +63,7 @@ export default function Navbar() {
                 fill
                 sizes="(max-width: 768px) 80px, (max-width: 1024px) 96px, 128px"
                 className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
-                priority
+               
               />
             </div>
           </Link>
