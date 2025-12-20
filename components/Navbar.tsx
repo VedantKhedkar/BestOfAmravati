@@ -10,8 +10,8 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true); 
   const [lastScrollY, setLastScrollY] = useState(0); 
 
-  // 1. Logo Configuration
-  // Make sure your file in /public is named exactly "nav-logo.png" (lowercase)
+  // LOGO CONFIGURATION
+  // Ensure "nav-logo.png" exists in your /public folder
   const logo = {
     src: "/nav-logo.png",
     alt: "Best Of Amravati Logo"
@@ -60,7 +60,6 @@ export default function Navbar() {
                 src={logo.src} 
                 alt={logo.alt} 
                 fill
-                // 2. Added 'sizes' prop to fix the warning and improve performance
                 sizes="(max-width: 768px) 80px, (max-width: 1024px) 96px, 128px"
                 className="object-contain object-left group-hover:scale-105 transition-transform duration-300"
                 priority

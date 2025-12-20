@@ -71,6 +71,8 @@ const HeroSection = () => {
               src="/bestofamravati.gif" 
               alt="Background Animation" 
               fill
+              // ADDED sizes prop to fix warning
+              sizes="(max-width: 768px) 100vw, 60vw"
               className="object-contain"
               priority
             />
@@ -78,12 +80,13 @@ const HeroSection = () => {
         </div>
         
         <div className="absolute -left-24 md:-left-2/3 md:bottom-40 lg:-left-96 lg:bottom-6 opacity-10 animate-float-slow animation-delay-1000">
-          {/* UPDATED: Added base width (w-44) and height (h-80) to fix the 'height value of 0' error on mobile */}
           <div className="w-44 h-80 sm:w-44 sm:h-80 md:w-[60rem] md:h-[110rem] lg:w-[44rem] lg:h-[72rem] relative">
             <Image 
               src="/bestofamravati.gif" 
               alt="Background Animation" 
               fill
+              // ADDED sizes prop to fix warning
+              sizes="(max-width: 768px) 100vw, 60vw"
               className="object-contain"
               priority
             />
@@ -102,6 +105,7 @@ const HeroSection = () => {
                 src="/boalogo.svg" 
                 alt="Best Of Amravati Logo" 
                 fill
+                sizes="(max-width: 768px) 240px, 320px"
                 className="object-cover transform group-hover:scale-105 transition-transform duration-500"
                 priority
               />
@@ -211,20 +215,31 @@ const HeroSection = () => {
       <section id="services" className="w-full mt-0 pt-6 pb-16 md:pb-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">
         
         <div className="absolute inset-0 pointer-events-none">
-          {/* UPDATED: Removed the line below causing the 404 error for grid.svg */}
-          {/* <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10"></div> */}
-          
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/20 rounded-full blur-3xl opacity-30 animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-yellow-300/20 rounded-full blur-3xl opacity-30 animate-pulse animation-delay-2000"></div>
           
           <div className="absolute top-0 right-0 md:-right-20 opacity-20 animate-float-slow mix-blend-overlay">
             <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-              <Image src="/bestofamravati.gif" alt="Background Animation" fill className="object-contain" />
+              <Image 
+                src="/bestofamravati.gif" 
+                alt="Background Animation" 
+                fill 
+                // ADDED sizes prop to fix warning
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain" 
+              />
             </div>
           </div>
           <div className="absolute bottom-0 left-0 md:-left-20 opacity-20 animate-float-slow animation-delay-1000 mix-blend-overlay">
             <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-              <Image src="/bestofamravati.gif" alt="Background Animation" fill className="object-contain" />
+              <Image 
+                src="/bestofamravati.gif" 
+                alt="Background Animation" 
+                fill 
+                // ADDED sizes prop to fix warning
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-contain" 
+              />
             </div>
           </div>
         </div>
