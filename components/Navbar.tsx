@@ -10,8 +10,7 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true); 
   const [lastScrollY, setLastScrollY] = useState(0); 
 
-  // FIXED LOGO CONFIGURATION
-  // Matches your actual filename: navlogo.png
+
   const logo = {
     src: "/boanav.svg",
     alt: "Best Of Amravati Logo"
@@ -56,7 +55,7 @@ export default function Navbar() {
           
           {/* Logo Section */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-32 lg:h-12">
+            <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-20 lg:h-10">
               <Image 
                 src={logo.src} 
                 alt={logo.alt} 
