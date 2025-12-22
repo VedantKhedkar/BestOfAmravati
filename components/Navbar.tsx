@@ -5,7 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaHome, FaHandshake, FaBriefcase, FaInfoCircle, FaEnvelope, FaUserPlus, FaTimes } from 'react-icons/fa';
 
-// Custom Modern Menu Icon mimicking your uploaded image
+// Custom Modern Menu Icon
 const CustomMenuIcon = () => (
   <svg 
     width="32" 
@@ -50,7 +50,6 @@ export default function Navbar() {
       setLastScrollY(currentScrollY);
     };
 
-    // Responsive interaction listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('mousemove', showNavbar);
     window.addEventListener('mousedown', showNavbar);
@@ -81,7 +80,7 @@ export default function Navbar() {
           isVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
-        <div className="container mx-auto px-4 sm:px-8 lg:px-6 py-3">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-6 py-3">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center group">
               <div className="relative transition-transform duration-300 group-hover:scale-105 w-24 h-9 lg:w-28 lg:h-10">
@@ -89,14 +88,16 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-6">
-              <div className="flex items-center gap-8 mr-4">
+            {/* Desktop & Tablet Navigation */}
+            {/* ADJUSTED: Changed 'md:flex' gaps for tablet (gap-4) vs desktop (lg:gap-8) */}
+            <div className="hidden md:flex items-center gap-4 lg:gap-6">
+              <div className="flex items-center gap-4 lg:gap-8 mr-2 lg:mr-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="font-medium text-[15px] text-gray-700 hover:text-purple-600 transition-colors relative group"
+                    // ADJUSTED: Font size smaller for tablet (text-[14px])
+                    className="font-medium text-[14px] lg:text-[15px] text-gray-700 hover:text-purple-600 transition-colors relative group whitespace-nowrap"
                   >
                     {link.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
@@ -104,29 +105,27 @@ export default function Navbar() {
                 ))}
               </div>
               
-              <div className="flex items-center gap-3">
+              {/* BUTTON ADJUSTMENTS FOR IPAD/TABLET */}
+              <div className="flex items-center gap-2 lg:gap-3">
                 <Link
                   href="#hiring"
-                  className="text-purple-600 border-2 border-purple-600 px-5 py-1.5 rounded-full font-semibold hover:bg-purple-50 transition-all text-sm"
+                  // ADJUSTED: Reduced padding (px-3) and font size (text-xs) for tablets
+                  className="text-purple-600 border-2 border-purple-600 px-3 lg:px-5 py-1.5 rounded-full font-semibold hover:bg-purple-50 transition-all text-xs lg:text-sm whitespace-nowrap"
                 >
                   Join Us
                 </Link>
 
                 <Link
                   href="#proposal"
-                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-200/50 hover:-translate-y-0.5 transition-all text-sm"
+                  // ADJUSTED: Optimized padding and shadow behavior for tablet screens
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 lg:px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-200/50 hover:-translate-y-0.5 transition-all text-xs lg:text-sm whitespace-nowrap"
                 >
                   Get Started
                 </Link>
               </div>
             </div>
 
-            {/* Modern Menu Button (Custom SVG) */}
-            <button 
-              className="md:hidden text-gray-800 p-2 hover:bg-purple-50 rounded-xl transition-all active:scale-90" 
-              onClick={toggleMenu}
-              aria-label="Open Menu"
-            >
+            <button className="md:hidden text-gray-700 p-2 hover:bg-purple-50 rounded-lg" onClick={toggleMenu}>
               <CustomMenuIcon />
             </button>
           </div>
@@ -163,7 +162,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="flex items-center gap-4 px-4 py-3.5 text-gray-600 font-semibold rounded-2xl transition-all group hover:bg-purple-50 hover:text-purple-700 active:scale-95"
+                className="flex items-center gap-4 px-4 py-3.5 text-gray-600 font-semibold rounded-2xl transition-all group hover:bg-purple-100/80 hover:text-purple-700 active:scale-95"
                 onClick={() => setIsOpen(false)}
               >
                 <Icon className="w-5 h-5 text-gray-400 group-hover:text-purple-600" />

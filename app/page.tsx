@@ -10,6 +10,7 @@ import SuccessStories from '@/components/SuccessStories';
 import Footer from '@/components/Footer';
 import AboutUs from '@/components/AboutUs';
 import ApplyForm from '@/components/ApplyForm';
+import Chatbot from '@/components/Chatbot';
 
 
 // --- Libraries ---
@@ -41,11 +42,7 @@ export default function Home() {
       {/* 2. Hero Section */}
       {/* Note: Ensure this component contains your full Hero section or just the Logo depending on your preference */}
       <HomeLogo />
-      
-     
 
-      {/* 3. Services Section */}
-   
       {/* 4. Business Proposal (Includes Workflow & Booking Form) */}
       <BusinessProposal />
 
@@ -59,20 +56,8 @@ export default function Home() {
       <Footer />
 
       {/* 8. Floating Whatsapp Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <a 
-          href="https://wa.me/918956727311" 
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group bg-gradient-to-r from-green-500 to-green-600 text-white px-5 py-3 rounded-full font-bold shadow-2xl hover:shadow-green-500/40 transform hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 animate-bounce-slow border-2 border-white/20"
-        >
-          <div className="relative">
-            <div className="absolute inset-0 bg-white/20 rounded-full animate-ping"></div>
-            <FaWhatsapp className="text-white text-2xl relative z-10" />
-          </div>
-          <span className="hidden sm:inline">Let's Chat</span>
-        </a>
-      </div>
+     {/* FLOATING CHATBOT BUTTON */}
+      <Chatbot />
 
       {/* 9. Global Styles for Animations */}
       <style jsx global>{`

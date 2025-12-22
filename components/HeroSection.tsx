@@ -71,7 +71,6 @@ const HeroSection = () => {
               src="/bestofamravati.gif" 
               alt="Background Animation" 
               fill
-              // ADDED sizes prop to fix warning
               sizes="(max-width: 768px) 100vw, 60vw"
               className="object-contain"
               priority
@@ -85,7 +84,6 @@ const HeroSection = () => {
               src="/bestofamravati.gif" 
               alt="Background Animation" 
               fill
-              // ADDED sizes prop to fix warning
               sizes="(max-width: 768px) 100vw, 60vw"
               className="object-contain"
               priority
@@ -192,16 +190,21 @@ const HeroSection = () => {
 
         {/* --- GRID FOR CATEGORIES --- */}
         <div className="w-full pt-2 mb-0 animate-fade-up animation-delay-1000">
-           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-2 md:gap-3 py-6 max-w-full mx-auto px-4 md:px-8">
+           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 py-6 max-w-full mx-auto px-4 md:px-8">
              {categories.map((cat, index) => (
                <Link key={index} href={cat.href} className="w-full h-full">
                  <div 
-                   className="group w-full h-full min-h-[110px] bg-white/80 backdrop-blur-md rounded-2xl shadow-sm hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer border border-pink-300 hover:border-purple-400 hover:-translate-y-1 hover:scale-105 flex flex-col justify-between p-3 text-left"
+                   className="group w-full h-full min-h-[120px] bg-white/80 backdrop-blur-md rounded-2xl shadow-sm hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer border border-pink-300 hover:border-purple-400 hover:-translate-y-1 hover:scale-105 flex flex-col justify-between p-4 text-left"
                  >
                    <div className="text-purple-600 group-hover:text-pink-600 transition-colors transform group-hover:scale-110 duration-300 mb-2">
                      {cat.icon}
                    </div>
-                   <span className="text-xs md:text-sm lg:text-[11px] xl:text-xs font-bold text-gray-700 leading-tight group-hover:text-purple-700 break-words">
+                   
+                   {/* UPDATED: 
+                     1. Added 'max-w-[100px]' to force wrapping on small screens.
+                     2. Added 'line-clamp-2' to ensure it fits perfectly in 2 lines.
+                   */}
+                   <span className="text-xs sm:text-sm font-bold text-gray-700 leading-tight group-hover:text-purple-700 break-words line-clamp-2 max-w-[100px] sm:max-w-none block">
                      {cat.label}
                    </span>
                  </div>
@@ -224,7 +227,6 @@ const HeroSection = () => {
                 src="/bestofamravati.gif" 
                 alt="Background Animation" 
                 fill 
-                // ADDED sizes prop to fix warning
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain" 
               />
@@ -236,7 +238,6 @@ const HeroSection = () => {
                 src="/bestofamravati.gif" 
                 alt="Background Animation" 
                 fill 
-                // ADDED sizes prop to fix warning
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-contain" 
               />

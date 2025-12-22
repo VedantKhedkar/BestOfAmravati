@@ -5,6 +5,7 @@ import { MdVerified } from 'react-icons/md';
 import { 
   FaEnvelope, 
   FaPhoneAlt, 
+  FaWhatsapp,
   FaInstagram, 
   FaFacebookF, 
   FaYoutube,
@@ -144,6 +145,20 @@ export default function Footer() {
                 <FaYoutube className="relative z-10 w-5 h-5 md:w-6 md:h-6 text-white transition-transform duration-300" />
               </div>
               <span className="text-xs font-semibold text-white/80 tracking-wide uppercase group-hover:text-white transition-colors">YouTube</span>
+            </a>
+
+            {/*4. WhatsApp Icon */}
+
+             <a href="/" className="group flex flex-col items-center gap-3" aria-label="WhatsApp">
+              <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:-translate-y-2 group-hover:scale-110 group-hover:shadow-red-500/50 hover:shadow-xl">
+                {/* Glass Ring */}
+                <div className="absolute -inset-1 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110"></div>
+                {/* Background Gradient */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-green-500 to-green-700 opacity-90 group-hover:opacity-100 transition-opacity"></div>
+                {/* Icon (No Rotation) */}
+                <FaWhatsapp className="relative z-10 w-5 h-5 md:w-6 md:h-6 text-white transition-transform duration-300" />
+              </div>
+              <span className="text-xs font-semibold text-white/80 tracking-wide uppercase group-hover:text-white transition-colors">WhatsApp</span>
             </a>
 
           </div>
