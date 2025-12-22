@@ -92,58 +92,58 @@ export default function Chatbot() {
 
   return (
     <>
-      {/* Floating Chat Trigger Button */}
-  {/* FLOATING CHAT TRIGGER BUTTON */}
-<div className="fixed bottom-8 right-8 z-50">
-  <button
-    onClick={() => setIsChatOpen(true)}
-    className="group relative flex items-center justify-center transition-all duration-500 active:scale-95"
-  >
-    {/* 1. Dynamic Background Aura (Using #8b5cf6, #ec4899, #f43f5e) */}
-    <div className="absolute inset-0 animate-spin-slow rounded-full bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e] opacity-30 blur-2xl transition-all duration-700 group-hover:opacity-70 group-hover:blur-3xl"></div>
+ 
+      {/* FLOATING CHAT TRIGGER BUTTON */}
+      <div className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 lg:bottom-10 lg:right-10 z-50">
+        <button
+          onClick={() => setIsChatOpen(true)}
+          className="group relative flex items-center justify-center transition-all duration-500 active:scale-90"
+        >
+          {/* 1. Enhanced Dynamic Background Aura */}
+          <div className="absolute inset-0 animate-spin-slow rounded-full bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e] opacity-40 blur-2xl sm:blur-3xl transition-all duration-700 group-hover:opacity-80 group-hover:blur-[40px]"></div>
 
-    {/* 2. Main Button Body (Glassmorphism) */}
-    <div className="relative flex items-center gap-3 overflow-hidden rounded-full border border-white/20 bg-pink-600 px-6 py-4 backdrop-blur-2xl transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] group-hover:border-white/40 group-hover:shadow-[0_0_30px_rgba(236,72,153,0.5)]">
-      
-      {/* Moving Shimmer Overlay */}
-      <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]"></div>
+          {/* 2. Main Button Body - Desktop/Landscape Size Enhancement */}
+          <div className="relative flex flex-col sm:flex-row h-14 w-14 sm:h-auto sm:w-auto items-center justify-center overflow-hidden rounded-full border-2 border-white/30 bg-gradient-to-r from-[#8b5cf6] via-[#ba49c3] to-[#e83e8c] backdrop-blur-2xl transition-all duration-300 shadow-[0_0_20px_rgba(139,92,246,0.3)] 
+            sm:px-7 sm:py-4 lg:px-6 lg:py-3.5 sm:gap-4
+            group-hover:border-white/50 group-hover:shadow-[0_0_35px_rgba(236,72,153,0.6)]">
+            
+            {/* Moving Shimmer Overlay - Brighter for better UI pop */}
+            <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 group-hover:translate-x-[100%]"></div>
 
-      {/* 3. The Energy Core (Icon Container) */}
-      <div className="relative flex items-center justify-center">
-        <Sparkles 
-          size={20} 
-          className="relative z-10 text-white transition-all duration-500 group-hover:rotate-[30deg] group-hover:scale-125" 
-          fill="#ec4899"
-          fillOpacity={0.4}
-        />
-        {/* Pulsing internal glow behind icon */}
-        <div className="absolute inset-0 blur-md bg-[#8b5cf6] opacity-60 rounded-full animate-pulse"></div>
+            {/* 3. The Energy Core (Icon) - Slightly Scaled Up for Desktop */}
+            <div className="relative flex items-center justify-center">
+              <Sparkles 
+                size={22} 
+                className="relative z-10 text-white transition-all duration-500 group-hover:rotate-[30deg] group-hover:scale-125 sm:size-[24px] lg:size-[22px]" 
+                fill="#ffffff"
+                fillOpacity={0.3}
+              />
+              <div className="absolute inset-0 blur-lg bg-[#ffffff] opacity-30 rounded-full animate-pulse"></div>
+            </div>
+
+            {/* 4. Text Labels - Bolder and more spacious for Landscape */}
+            <span className="hidden sm:inline-block relative z-10 text-sm lg:text-[13px] font-extrabold tracking-[0.15em] text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]">
+              Let's Chat
+            </span>
+            
+            {/* NO CHANGE FOR MOBILE VIEW (Keep original size/placeholder) */}
+            <span className="sm:hidden relative z-10 text-[9px] font-black tracking-tighter text-white uppercase leading-none mt-1">
+              Chat
+            </span>
+          </div>
+
+          {/* 5. Stronger Ground Glow Effect */}
+          <div className="absolute -bottom-5 h-8 w-4/5 rounded-full bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e] opacity-20 blur-2xl transition-all group-hover:opacity-50"></div>
+        </button>
       </div>
 
-      {/* 4. Sleek Typography */}
-      <span className="relative z-10 text-sm font-bold tracking-[0.15em] text-white uppercase drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-        Let's Chat
-      </span>
-
-      {/* 5. Modern "Live" Indicator */}
-      <div className="relative flex h-2 w-2 ml-1">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#000000] opacity-75"></span>
-        <span className="relative inline-flex h-2 w-2 rounded-full bg-[#ffffff] shadow-[0_0_8px_#ec4899]"></span>
-      </div>
-    </div>
-
-    {/* 6. Ground Glow Effect */}
-    <div className="absolute -bottom-4 h-6 w-3/4 rounded-full bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e] opacity-10 blur-xl transition-all group-hover:opacity-40"></div>
-  </button>
-</div>
       <Drawer
         anchor="right"
         open={isChatOpen}
         onClose={() => setIsChatOpen(false)}
-        // MODIFIED: PaperProps to prevent full-screen mobile view
         PaperProps={{
           sx: {
-            width: { xs: "85%", sm: "380px", md: "420px" }, // xs: 85% leaves space on the left
+            width: { xs: "85%", sm: "380px", md: "420px" },
             height: "100%",
             display: "flex",
             flexDirection: "column",
@@ -180,7 +180,7 @@ export default function Chatbot() {
           </IconButton>
         </Box>
 
-        {/* Message Area - Background matching the Lavender/Purple UI theme */}
+        {/* Message Area */}
         <Box sx={{ 
           flexGrow: 1, 
           overflowY: "auto", 
@@ -188,7 +188,7 @@ export default function Chatbot() {
           display: "flex", 
           flexDirection: "column", 
           gap: 2, 
-          background: "linear-gradient(to bottom, #ffffff 0%, #fdf4ff 100%)" // Lavender fade background
+          background: "linear-gradient(to bottom, #ffffff 0%, #fdf4ff 100%)" 
         }}>
           {messages.map((msg) => (
             <Box key={msg.id} sx={{ alignSelf: msg.sender === "user" ? "flex-end" : "flex-start", maxWidth: "85%" }}>
@@ -214,7 +214,7 @@ export default function Chatbot() {
           <div ref={messagesEndRef} />
         </Box>
 
-        {/* Suggestion Buttons - Tag UI Style */}
+        {/* Suggestion Buttons */}
         <Box sx={{ p: 1.5, background: "white", borderTop: "1px solid #f3e8ff" }}>
           <Box sx={{ display: "flex", gap: 0.8, flexWrap: "wrap" }}>
             {quickQuestions.map((q, i) => (

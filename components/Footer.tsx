@@ -149,7 +149,7 @@ export default function Footer() {
 
             {/*4. WhatsApp Icon */}
 
-             <a href="/" className="group flex flex-col items-center gap-3" aria-label="WhatsApp">
+             <a href="https://wa.me/917666266137" className="group flex flex-col items-center gap-3" aria-label="WhatsApp">
               <div className="relative w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:-translate-y-2 group-hover:scale-110 group-hover:shadow-red-500/50 hover:shadow-xl">
                 {/* Glass Ring */}
                 <div className="absolute -inset-1 rounded-full border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-110"></div>
