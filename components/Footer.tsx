@@ -89,7 +89,7 @@ export default function Footer() {
                   href="tel:8956727311"
                   className="text-xl md:text-2xl font-semibold text-white hover:text-yellow-300 transition-colors"
                 >
-                  +91 89567 27311
+                  +91 7666266137
                 </a>
                 <div className="text-white/80 mt-2 text-sm md:text-base">Available 24/7 for business inquiries</div>
               </div>
@@ -174,7 +174,7 @@ export default function Footer() {
       <MdVerified className="text-white text-lg" />
     </p>
     <p className="text-white/60 text-sm md:text-base">
-      Owned & Managed by BIZONANCE INDIA PVT LTD 
+      Owned & Managed by BiZONANCE INDIA PVT LTD 
     </p>
   </div>
 </div>
