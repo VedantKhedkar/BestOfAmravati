@@ -164,9 +164,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-      <div className="absolute top-20 right-0 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pointer-events-none animate-float-slow"></div>
-      <div className="absolute bottom-10 left-0 w-96 h-96 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 pointer-events-none animate-float-slow animation-delay-2000"></div>
-
       <div className="text-center mb-2 relative z-10 pt-16">
         
         <div className="flex justify-center mb-4 animate-fade-up">
@@ -176,12 +173,17 @@ const HeroSection = () => {
           </div>
         </div>
         <br />
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-up">
+        {/* <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-up">
           <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent bg-animate">
             What We Offer
           </span>
-        </h2>
-        
+        </h2> */}
+         <h2 className="w-full text-[6.5vw] xs:text-[6.8vw] sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-white mb-3 drop-shadow-md whitespace-nowrap md:whitespace-normal tracking-tighter px-2">
+   <span className='bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-clip-text text-transparent bg-animate'>
+   What We Offer
+   </span>
+       </h2>
+
         <p className="text-gray-600 max-w-2xl mx-auto text-lg animate-fade-up animation-delay-200 leading-relaxed px-4">
           Premium digital services designed to make your business <span className="text-pink-600 font-bold">Grow </span> &
           <span className="text-pink-600 font-bold"> Recognize</span> in Amravati City.
@@ -200,10 +202,6 @@ const HeroSection = () => {
                      {cat.icon}
                    </div>
                    
-                   {/* UPDATED: 
-                     1. Added 'max-w-[100px]' to force wrapping on small screens.
-                     2. Added 'line-clamp-2' to ensure it fits perfectly in 2 lines.
-                   */}
                    <span className="text-xs sm:text-sm font-bold text-gray-700 leading-tight group-hover:text-purple-700 break-words line-clamp-2 max-w-[100px] sm:max-w-none block">
                      {cat.label}
                    </span>
@@ -214,7 +212,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* --- READY TO TRANSFORM SECTION --- */}
+      {/* --- READY TO TRANSFORM SECTION (UPDATED) --- */}
       <section id="services" className="w-full mt-0 pt-6 pb-16 md:pb-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">
         
         <div className="absolute inset-0 pointer-events-none">
@@ -245,7 +243,8 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 relative z-10 pt-0"> 
+        {/* px-2 for a wider mobile feel */}
+        <div className="container mx-auto px-2 relative z-10 pt-0"> 
           <div className="text-center mb-12">
             
             <div className="flex justify-center w-full">
@@ -255,18 +254,20 @@ const HeroSection = () => {
               </div>
             </div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-md">
+            {/* Header: Bigger, Single Line on Mobile, and Tracking Tighter */}
+            <h2 className="w-full text-[6.5vw] xs:text-[6.8vw] sm:text-4xl md:text-5xl lg:text-5xl font-bold text-white mb-3 drop-shadow-md whitespace-nowrap md:whitespace-normal tracking-tighter px-2">
               Ready To Transform Our City.
             </h2>
-            <p className="text-xl text-white/90 max-w-2xl mx-auto font-medium">
+            
+            <p className="text-sm xs:text-base sm:text-xl lg:text-2xl text-white/90 max-w-2xl mx-auto font-medium px-4">
               Discover, explore, and celebrate success with us
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
+          <div className="flex flex-wrap justify-center gap-4 lg:gap-8">
             {services.map((card, index) => (
-              <div key={index} className="w-full max-w-[380px] flex-shrink-0">
-                <div className="h-full flex flex-col bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-3xl p-8 hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:scale-[1.02] shadow-xl cursor-pointer group">
+              <div key={index} className="w-full max-w-[420px] sm:max-w-[380px] flex-shrink-0">
+                <div className="h-full flex flex-col bg-white/10 backdrop-blur-md border-2 border-white/20 rounded-3xl p-6 xs:p-8 hover:bg-white/20 hover:border-white/30 transition-all duration-300 hover:scale-[1.02] shadow-xl cursor-pointer group">
                   <div className="text-5xl mb-4 drop-shadow-md transform transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                     {card.icon}
                   </div>

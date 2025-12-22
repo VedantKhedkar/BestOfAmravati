@@ -70,7 +70,7 @@ export default function Navbar() {
     { name: "Services", href: "#services", icon: FaHandshake },
     { name: "Business", href: "#proposal", icon: FaBriefcase },
     { name: "About Us", href: "#about", icon: FaInfoCircle },
-    { name: "Connect", href: "#footer", icon: FaEnvelope },
+    { name: "Contact", href: "#footer", icon: FaEnvelope },
   ];
 
   return (
@@ -89,14 +89,12 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop & Tablet Navigation */}
-            {/* ADJUSTED: Changed 'md:flex' gaps for tablet (gap-4) vs desktop (lg:gap-8) */}
             <div className="hidden md:flex items-center gap-4 lg:gap-6">
               <div className="flex items-center gap-4 lg:gap-8 mr-2 lg:mr-4">
                 {navLinks.map((link) => (
                   <Link
                     key={link.name}
                     href={link.href}
-                    // ADJUSTED: Font size smaller for tablet (text-[14px])
                     className="font-medium text-[14px] lg:text-[15px] text-gray-700 hover:text-purple-600 transition-colors relative group whitespace-nowrap"
                   >
                     {link.name}
@@ -105,11 +103,9 @@ export default function Navbar() {
                 ))}
               </div>
               
-              {/* BUTTON ADJUSTMENTS FOR IPAD/TABLET */}
               <div className="flex items-center gap-2 lg:gap-3">
                 <Link
                   href="#hiring"
-                  // ADJUSTED: Reduced padding (px-3) and font size (text-xs) for tablets
                   className="text-purple-600 border-2 border-purple-600 px-3 lg:px-5 py-1.5 rounded-full font-semibold hover:bg-purple-50 transition-all text-xs lg:text-sm whitespace-nowrap"
                 >
                   Join Us
@@ -117,7 +113,6 @@ export default function Navbar() {
 
                 <Link
                   href="#proposal"
-                  // ADJUSTED: Optimized padding and shadow behavior for tablet screens
                   className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 lg:px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-200/50 hover:-translate-y-0.5 transition-all text-xs lg:text-sm whitespace-nowrap"
                 >
                   Get Started
@@ -146,13 +141,14 @@ export default function Navbar() {
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
+        {/* HEADER SWAPPED: Logo is now first (left) and Cross button is second (right) */}
         <div className="p-6 flex items-center justify-between border-b border-purple-50">
+          <div className="relative w-24 h-8">
+            <Image src={logo.src} alt={logo.alt} fill className="object-contain object-left" />
+          </div>
           <button onClick={toggleMenu} className="p-2 text-gray-500 hover:bg-red-50 hover:text-red-500 rounded-full transition-all">
             <FaTimes className="w-6 h-6" />
           </button>
-          <div className="relative w-24 h-8">
-            <Image src={logo.src} alt={logo.alt} fill className="object-contain object-right" />
-          </div>
         </div>
 
         <div className="flex-grow py-6 px-4 space-y-2 overflow-y-auto">
