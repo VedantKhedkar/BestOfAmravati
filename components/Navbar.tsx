@@ -3,7 +3,27 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FaBars, FaTimes, FaHome, FaHandshake, FaBriefcase, FaInfoCircle, FaEnvelope } from 'react-icons/fa';
+import { FaHome, FaHandshake, FaBriefcase, FaInfoCircle, FaEnvelope, FaUserPlus, FaTimes } from 'react-icons/fa';
+
+// Custom Modern Menu Icon mimicking your uploaded image
+const CustomMenuIcon = () => (
+  <svg 
+    width="32" 
+    height="32" 
+    viewBox="0 0 24 24" 
+    fill="none" 
+    stroke="currentColor" 
+    strokeWidth="2.5" 
+    strokeLinecap="round" 
+    strokeLinejoin="round"
+  >
+    <circle cx="4" cy="6" r="1" fill="currentColor" stroke="none" />
+    <line x1="9" y1="6" x2="20" y2="6" />
+    <line x1="4" y1="12" x2="20" y2="12" />
+    <line x1="4" y1="18" x2="15" y2="18" />
+    <circle cx="20" cy="18" r="1" fill="currentColor" stroke="none" />
+  </svg>
+);
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,26 +38,22 @@ export default function Navbar() {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   useEffect(() => {
-    // Function to force the navbar to become visible
     const showNavbar = () => setIsVisible(true);
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
-      // Hide only if scrolling down and past the threshold (100px)
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         setIsVisible(false);
       } else {
-        // Show if scrolling up
         showNavbar();
       }
       setLastScrollY(currentScrollY);
     };
 
-    // Event Listeners for Interaction
+    // Responsive interaction listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('mousemove', showNavbar); // Show on cursor move
-    window.addEventListener('mousedown', showNavbar); // Show on click
+    window.addEventListener('mousemove', showNavbar);
+    window.addEventListener('mousedown', showNavbar);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -46,7 +62,6 @@ export default function Navbar() {
     };
   }, [lastScrollY]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'unset';
   }, [isOpen]);
@@ -74,33 +89,51 @@ export default function Navbar() {
               </div>
             </Link>
 
-            <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-6">
+              <div className="flex items-center gap-8 mr-4">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="font-medium text-[15px] text-gray-700 hover:text-purple-600 transition-colors relative group"
+                  >
+                    {link.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                  </Link>
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-3">
                 <Link
-                  key={link.name}
-                  href={link.href}
-                  className="font-medium text-[15px] text-gray-700 hover:text-purple-600 transition-colors relative group"
+                  href="#hiring"
+                  className="text-purple-600 border-2 border-purple-600 px-5 py-1.5 rounded-full font-semibold hover:bg-purple-50 transition-all text-sm"
                 >
-                  {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-purple-600 transition-all duration-300 group-hover:w-full"></span>
+                  Join Us
                 </Link>
-              ))}
-              <Link
-                href="#proposal"
-                className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-200/50 hover:-translate-y-0.5 transition-all text-sm"
-              >
-                Get Started
-              </Link>
+
+                <Link
+                  href="#proposal"
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-200/50 hover:-translate-y-0.5 transition-all text-sm"
+                >
+                  Get Started
+                </Link>
+              </div>
             </div>
 
-            <button className="md:hidden text-gray-700 p-2 hover:bg-purple-50 rounded-lg" onClick={toggleMenu}>
-              <FaBars className="w-6 h-6" />
+            {/* Modern Menu Button (Custom SVG) */}
+            <button 
+              className="md:hidden text-gray-800 p-2 hover:bg-purple-50 rounded-xl transition-all active:scale-90" 
+              onClick={toggleMenu}
+              aria-label="Open Menu"
+            >
+              <CustomMenuIcon />
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar Overlay */}
       <div
         className={`fixed inset-0 bg-black/40 backdrop-blur-[2px] z-[60] transition-opacity duration-300 md:hidden ${
           isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
@@ -108,6 +141,7 @@ export default function Navbar() {
         onClick={toggleMenu}
       />
 
+      {/* Sidebar */}
       <aside
         className={`fixed top-0 left-0 h-full w-[280px] bg-white z-[70] shadow-2xl transform transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] md:hidden flex flex-col ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
@@ -122,14 +156,14 @@ export default function Navbar() {
           </div>
         </div>
 
-        <div className="flex-grow py-6 px-4 space-y-2">
+        <div className="flex-grow py-6 px-4 space-y-2 overflow-y-auto">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
               <Link
                 key={link.name}
                 href={link.href}
-                className="flex items-center gap-4 px-4 py-3.5 text-gray-600 font-semibold rounded-2xl transition-all group hover:bg-purple-100/80 hover:text-purple-700 active:scale-95"
+                className="flex items-center gap-4 px-4 py-3.5 text-gray-600 font-semibold rounded-2xl transition-all group hover:bg-purple-50 hover:text-purple-700 active:scale-95"
                 onClick={() => setIsOpen(false)}
               >
                 <Icon className="w-5 h-5 text-gray-400 group-hover:text-purple-600" />
@@ -139,7 +173,16 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="p-6 border-t border-purple-50">
+        <div className="p-6 border-t border-purple-50 flex flex-col gap-3">
+          <Link
+            href="#hiring"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center justify-center w-full border-2 border-purple-600 text-purple-600 px-6 py-3.5 rounded-2xl font-bold active:scale-95 transition-all"
+          >
+            <FaUserPlus className="mr-2" />
+            Join Us
+          </Link>
+
           <Link
             href="#proposal"
             onClick={() => setIsOpen(false)}

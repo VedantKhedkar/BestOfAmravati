@@ -156,7 +156,7 @@ export default function Footer() {
     <p className="text-white/80 text-base md:text-lg mb-2 flex items-center justify-center gap-1">
       © {new Date().getFullYear()} Best Of Amravati
       {/* The Blue Tick Icon */}
-      <MdVerified className="text-blue-500 text-sm" />
+      <MdVerified className="text-white text-lg" />
     </p>
     <p className="text-white/60 text-sm md:text-base">
       Owned & Managed by BIZONANCE INDIA PVT LTD 
