@@ -30,7 +30,7 @@ export default function Services() {
   ];
 
   return (
-   <section id="services" className="w-full mt-0 pt-6 pb-16 md:pb-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">
+   <section id="mission" className="w-full mt-0 pt-6 pb-16 md:pb-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">
            
            <div className="absolute inset-0 pointer-events-none">
              <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/20 rounded-full blur-3xl opacity-30 animate-pulse"></div>

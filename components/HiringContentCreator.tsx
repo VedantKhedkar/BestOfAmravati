@@ -28,12 +28,12 @@ export default function HiringContentCreator() {
               <span className="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
             </span>
             <span className="text-purple-900 font-bold text-xs tracking-wide uppercase">
-              We are Hiring
+             Join with us
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight">
             Join Our{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
+            <span className="text-transparent font-extrabold bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">
               Creative Team
             </span>
           </h2>

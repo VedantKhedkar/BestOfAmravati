@@ -45,7 +45,7 @@ const AboutUs = () => {
               Who We Are
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4">
             <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Empowering Amravati's Excellence
             </span>

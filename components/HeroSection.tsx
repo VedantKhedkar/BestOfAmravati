@@ -111,12 +111,13 @@ const HeroSection = () => {
           </div>
         </div>
         
-        <div className="space-y-4">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-up">
-            <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent bg-animate">
-              Best of Amravati
-            </span>
-          </h1>
+       <div className="space-y-4">
+  <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-up">
+    <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent bg-animate">
+      Best of Amravati 
+    </span>
+  </h1>
+
           
           <p className="text-lg md:text-xl lg:text-2xl font-medium text-gray-800 leading-relaxed animate-fade-up animation-delay-200">
             Where <span className="font-bold text-purple-600">Excellence</span> Meets 
@@ -164,7 +165,8 @@ const HeroSection = () => {
           </div>
         </div>
 
-      <div className="text-center mb-2 relative z-10 pt-16">
+      {/* ADDED ID="SERVICES" HERE */}
+      <div id="services" className="text-center mb-2 relative z-10 pt-16 scroll-mt-20">
         
         <div className="flex justify-center mb-4 animate-fade-up">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-200 bg-purple-50/80 backdrop-blur-sm text-purple-900 font-bold text-xs uppercase tracking-widest shadow-sm">
@@ -173,16 +175,11 @@ const HeroSection = () => {
           </div>
         </div>
         <br />
-        {/* <h2 className="text-3xl md:text-5xl font-bold mb-4 animate-fade-up">
-          <span className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent bg-animate">
-            What We Offer
-          </span>
-        </h2> */}
          <h2 className="w-full text-[6.5vw] xs:text-[6.8vw] sm:text-4xl md:text-5xl lg:text-5xl font-extrabold text-white mb-3 drop-shadow-md whitespace-nowrap md:whitespace-normal tracking-tighter px-2">
-   <span className='bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-clip-text text-transparent bg-animate'>
-   What We Offer
-   </span>
-       </h2>
+           <span className='bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 bg-clip-text text-transparent bg-animate'>
+             What We Offer
+           </span>
+         </h2>
 
         <p className="text-gray-600 max-w-2xl mx-auto text-lg animate-fade-up animation-delay-200 leading-relaxed px-4">
           Premium digital services designed to make your business <span className="text-pink-600 font-bold">Grow </span> &
@@ -212,8 +209,8 @@ const HeroSection = () => {
         </div>
       </div>
 
-      {/* --- READY TO TRANSFORM SECTION (UPDATED) --- */}
-      <section id="services" className="w-full mt-0 pt-6 pb-16 md:pb-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">
+      {/* REMOVED DUPLICATE ID="SERVICES" FROM HERE */}
+      <section className="w-full mt-0 pt-6 pb-16 md:pb-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">
         
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-white/20 rounded-full blur-3xl opacity-30 animate-pulse"></div>
@@ -243,7 +240,6 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* px-2 for a wider mobile feel */}
         <div className="container mx-auto px-2 relative z-10 pt-0"> 
           <div className="text-center mb-12">
             
@@ -254,7 +250,6 @@ const HeroSection = () => {
               </div>
             </div>
 
-            {/* Header: Bigger, Single Line on Mobile, and Tracking Tighter */}
             <h2 className="w-full text-[6.5vw] xs:text-[6.8vw] sm:text-4xl md:text-5xl lg:text-5xl font-bold text-white mb-3 drop-shadow-md whitespace-nowrap md:whitespace-normal tracking-tighter px-2">
               Ready To Transform Our City.
             </h2>
