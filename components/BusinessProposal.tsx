@@ -175,7 +175,7 @@ export default function BusinessProposal() {
                       { icon: FaCamera, text: "Professional Shooting", sub: "30-60 sec content" },
                       { icon: FaEdit, text: "Creative Editing", sub: "Enhanced visuals" },
                       { icon: FaChartLine, text: "1,00,000+ Reach", sub: "Guaranteed views" },
-                      { icon: FaShareAlt, text: "Multi-Platform", sub: "Insta, FB, YT" },
+                      { icon: FaShareAlt, text: "Multi-Platform", sub: "Instagram, Facebook, Youtube" },
                       { icon: FaCheckCircle, text: "Caption Strategy", sub: "Hashtags included" },
                       { icon: FaFileDownload, text: "Raw File Delivery", sub: "For your own use" },
                     ].map((item, idx) => (
