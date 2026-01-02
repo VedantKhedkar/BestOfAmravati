@@ -26,12 +26,12 @@ const HeroSection = () => {
   const categories = [
     // Updated first card to force two lines using JSX
     { icon: <Store size={22} />, label: <>Local Business <br /> Listing</>, href: "#" },
-    { icon: <Video size={22} />, label: <>Content <br /> Production</>, href: "#" }, 
-    { icon: <Share2 size={22} />, label: <>Social Media <br /> Ads & Marketing</>, href: "#" },
+    { icon: <Video size={22} />, label: <>Content <br /> Production</>, href: "content-production" }, 
+    { icon: <Share2 size={22} />, label: <>Advertising &<br />Marketing</>, href: "" },
     { icon: <TrendingUp size={22} />, label: <>Digital Growth <br /> Strategy</>, href: "#" },
     { icon: <Handshake size={22} />, label: <>Business <br /> Collaboration</>, href: "#" },
     { icon: <Megaphone size={22} />, label: <>Brand <br /> Awareness</>, href: "#" },
-    { icon: <Users size={22} />, label: <>Influencer <br /> Marketing</>, href: "#" },
+    { icon: <Users size={22} />, label: <>Influencer <br /> Marketing</>, href: "influencer-marketing" },
     { icon: <TrophyIcon size={22} />, label: <>Awards & <br /> Recognition</>, href: "#" },
   ];
 
@@ -176,26 +176,29 @@ const HeroSection = () => {
       </div>
 
         {/* --- GRID FOR CATEGORIES --- */}
-        <div className="w-full pt-2 mb-0 animate-fade-up animation-delay-1000">
-           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 py-6 max-w-full mx-auto px-4 md:px-8">
-             {categories.map((cat, index) => (
-               <Link key={index} href={cat.href} className="w-full h-full">
-                 <div 
-                   className="group w-full h-full min-h-[140px] bg-white/80 backdrop-blur-md rounded-2xl shadow-sm hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer border border-pink-300 hover:border-purple-400 hover:-translate-y-1 hover:scale-105 flex flex-col justify-between p-4 text-left"
-                 >
-                   <div className="text-purple-600 group-hover:text-pink-600 transition-colors transform group-hover:scale-110 duration-300 mb-2">
-                     {cat.icon}
-                   </div>
-                   
-                   {/* Consistency: text wraps for a perfect grid layout */}
-                   <span className="text-xs h-14 sm:text-sm font-bold text-gray-700 leading-tight group-hover:text-purple-700 break-words block max-w-[120px]">
-                     {cat.label}
-                   </span>
-                 </div>
-               </Link>
-             ))}
-           </div>
+       <div className="w-full pt-2 mb-0 animate-fade-up animation-delay-1000">
+  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 py-6 max-w-full mx-auto px-4 md:px-8">
+    {categories.map((cat, index) => (
+      <Link key={index} href={cat.href} className="w-full h-full">
+        <div
+          className="group w-full h-full min-h-[140px] bg-white/80 backdrop-blur-md rounded-2xl shadow-sm hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer border border-pink-300 hover:border-purple-400 hover:-translate-y-1 hover:scale-105 flex flex-col justify-between p-4 text-left"
+        >
+          {/* Icon Container */}
+          <div className="text-purple-600 group-hover:text-pink-600 transition-colors transform group-hover:scale-110 duration-300 mb-2">
+            {cat.icon}
+          </div>
+
+          {/* Text Container */}
+          {/* REMOVED: h-14 */}
+          {/* ADDED: mt-auto (optional, but reinforces bottom position) */}
+          <span className="text-xs sm:text-sm font-bold text-gray-700 leading-tight group-hover:text-purple-700 break-words block max-w-[120px]">
+            {cat.label}
+          </span>
         </div>
+      </Link>
+    ))}
+  </div>
+</div>
       </div>
 
       <section className="w-full mt-0 pt-6 pb-16 md:pb-24 bg-gradient-to-r from-purple-600 to-pink-600 relative overflow-hidden">

@@ -1,22 +1,9 @@
 "use client";
 
-// --- Components ---
-import HomeLogo from '@/components/HeroSection';
-import HiringContentCreator from '@/components/HiringContentCreator';
-import Navbar from '@/components/Navbar';
-import Services from '@/components/Services';
-import BusinessProposal from '@/components/BusinessProposal';
-import SuccessStories from '@/components/SuccessStories';
-import Footer from '@/components/Footer';
-import AboutUs from '@/components/AboutUs';
-import ApplyForm from '@/components/ApplyForm';
-import Chatbot from '@/components/Chatbot';
-
-
 // --- Libraries ---
+import { useState } from 'react'; // 1. Import useState
 import Image from "next/image"
 import Link from 'next/link'
-// 1. IMPORT TOASTER
 import { Toaster } from 'react-hot-toast'; 
 import { 
   FaRocket, 
@@ -29,37 +16,57 @@ import {
   FaWhatsapp
 } from 'react-icons/fa'
 
+// --- Components ---
+import HomeLogo from '@/components/HeroSection';
+import HiringContentCreator from '@/components/HiringContentCreator';
+import Navbar from '@/components/Navbar';
+import Services from '@/components/Services';
+import BusinessProposal from '@/components/BusinessProposal';
+import SuccessStories from '@/components/SuccessStories';
+import Footer from '@/components/Footer';
+import AboutUs from '@/components/AboutUs';
+import ApplyForm from '@/components/ApplyForm';
+import Chatbot from '@/components/Chatbot';
+import FloatingChatButton from '@/components/FloatingChatButton'; // 2. Import the button
+
 export default function Home() {
+  // 3. Create state to control Chatbot visibility
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-white text-gray-900 overflow-hidden font-sans selection:bg-purple-100 selection:text-purple-900">
       
-      {/* 2. ADD TOASTER CONTAINER */}
       <Toaster position="top-center" reverseOrder={false} />
 
-      {/* 1. Navigation Bar */}
+      {/* Navigation Bar */}
       <Navbar />
 
-      {/* 2. Hero Section */}
-      {/* Note: Ensure this component contains your full Hero section or just the Logo depending on your preference */}
+      {/* Hero Section */}
       <HomeLogo />
 
-      {/* 4. Business Proposal (Includes Workflow & Booking Form) */}
+      {/* Business Proposal */}
       <BusinessProposal />
 
-      {/* 5. Success Stories */}
+      {/* Success Stories */}
       <AboutUs />
       
-      {/* 6. Hiring Creator Component */}
+      {/* Hiring Creator Component */}
       <HiringContentCreator />
 
-      {/* 7. Footer / Connect */}
+      {/* Footer */}
       <Footer />
 
-      {/* 8. Floating Whatsapp Button */}
-     {/* FLOATING CHATBOT BUTTON */}
-      <Chatbot />
+      {/* 4. Chatbot Integration */}
+      {/* The button sets state to TRUE to open the drawer */}
+      <FloatingChatButton onClick={() => setIsChatOpen(true)} />
 
-      {/* 9. Global Styles for Animations */}
+      {/* The Chatbot receives the state and a function to set it to FALSE to close */}
+      <Chatbot 
+        isOpen={isChatOpen} 
+        onClose={() => setIsChatOpen(false)} 
+      />
+
+      {/* Global Styles for Animations */}
       <style jsx global>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px); }

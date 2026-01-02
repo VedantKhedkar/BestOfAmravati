@@ -123,7 +123,7 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
                <p className="text-purple-100 text-sm">Best of Amravati • Media</p>
                
                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-6 py-2 rounded-full font-extrabold shadow-lg border-4 border-purple-50 text-xs md:text-sm flex items-center gap-2 whitespace-nowrap z-20">
-                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Hiring Now
+                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Join Now
                </div>
             </div>
 
