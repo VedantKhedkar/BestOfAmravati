@@ -13,11 +13,11 @@ import {
 } from 'react-icons/fa';
 
 export default function Footer() {
-  // Navigation mapping for the separate TermsPage.tsx
+  // Navigation mapping updated to separate static pages
   const policyLinks = [
-    { name: 'Terms & Conditions', href: '/TermsPage#terms' },
-    { name: 'Privacy Policy', href: '/TermsPage#privacy' },
-    { name: 'Refund Policy', href: '/TermsPage#refund' }
+    { name: 'Terms & Conditions', href: '/terms' },
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Refund Policy', href: '/refund' }
   ];
 
   return (
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         {/* --- CONTACT CARDS SECTION --- */}
-       <div className="space-y-4 max-w-2xl mx-auto mb-12">
+        <div className="space-y-4 max-w-2xl mx-auto mb-12">
   
   {/* Phone Row */}
   <div className="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 hover:bg-white/20 hover:border-white/30 transition-all duration-300 shadow-lg">
@@ -111,7 +111,6 @@ export default function Footer() {
 </div>
 
         {/* Social Media Section */}
-     {/* Social Media Section */}
 <div className="pt-10 animate-fade-up">
   <div className="relative inline-block mb-8 text-center">
     <h3 className="text-2xl font-extrabold text-white relative z-10  tracking-tighter">Follow us on</h3>

@@ -26,12 +26,12 @@ const HeroSection = () => {
   const categories = [
     // Updated first card to force two lines using JSX
     { icon: <Store size={22} />, label: <>Local Business <br /> Listing</>, href: "#" },
-    { icon: <Video size={22} />, label: <>Content <br /> Production</>, href: "content-production" }, 
+    { icon: <Video size={22} />, label: <>Content <br /> Production</>, href: "#" }, 
     { icon: <Share2 size={22} />, label: <>Advertising &<br />Marketing</>, href: "" },
     { icon: <TrendingUp size={22} />, label: <>Digital Growth <br /> Strategy</>, href: "#" },
     { icon: <Handshake size={22} />, label: <>Business <br /> Collaboration</>, href: "#" },
     { icon: <Megaphone size={22} />, label: <>Brand <br /> Awareness</>, href: "#" },
-    { icon: <Users size={22} />, label: <>Influencer <br /> Marketing</>, href: "influencer-marketing" },
+    { icon: <Users size={22} />, label: <>Influencer <br /> Marketing</>, href: "#" },
     { icon: <TrophyIcon size={22} />, label: <>Awards & <br /> Recognition</>, href: "#" },
   ];
 
