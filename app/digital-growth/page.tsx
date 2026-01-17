@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import {
   BrainCircuit,
@@ -29,10 +30,22 @@ import {
   Building,
   Quote,
   BarChart4,
-  CheckIcon,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+// Helper Component for Check Icon to resolve the undefined error
+const CheckIcon = () => (
+  <svg 
+    className="w-4 h-4 text-purple-600 flex-shrink-0" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7" />
+  </svg>
+);
 
 // Animation Presets
 const fadeInUp = {
@@ -125,11 +138,9 @@ export default function DigitalGrowthPR() {
                 transition={{ duration: 0.7 }}
                 className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               >
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105">
-                  <span className="flex items-center gap-2">
-                    Start Growth Journey
-                    <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
-                  </span>
+                <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                  Start Growth Journey
+                  <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
                 </button>
 
                 <button className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-purple-200 text-gray-900 font-bold rounded-full hover:bg-white hover:border-purple-300 transition-all duration-300">
@@ -291,7 +302,7 @@ export default function DigitalGrowthPR() {
               whileInView="whileInView"
               className="p-8 bg-white/80 backdrop-blur-xl border border-white/40 rounded-[2rem] shadow-xl hover:shadow-2xl transition-all"
             >
-              <div className={`w-14 h-14 p-3 bg-gradient-to-br ${item.color} rounded-xl text-white mb-4`}>
+              <div className={`w-14 h-14 p-3 bg-gradient-to-br ${item.color} rounded-xl text-white mb-4 flex items-center justify-center`}>
                 <item.icon size={26} />
               </div>
 
@@ -316,6 +327,7 @@ export default function DigitalGrowthPR() {
 </section>
 
 
+
 {/* PR PLAYBOOKS – ADVANCED STRATEGY */}
 {/* =========================== */}
 <section className="py-24 bg-gradient-to-b from-white to-purple-50/30">
@@ -333,7 +345,7 @@ export default function DigitalGrowthPR() {
 
       <h2 className="text-4xl md:text-5xl font-black text-gray-900">
         Strategic Playbooks  
-        <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent ml-2">
           That Build Market Leaders
         </span>
       </h2>
@@ -478,7 +490,7 @@ export default function DigitalGrowthPR() {
 
       <h2 className="text-4xl md:text-5xl font-black text-gray-900">
         Brands Featured In  
-        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ml-2">
           Top Media Publications
         </span>
       </h2>
@@ -531,7 +543,7 @@ export default function DigitalGrowthPR() {
 
       <h2 className="text-4xl md:text-5xl font-black text-gray-900">
         Recognized By  
-        <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent ml-2">
           Industry Leaders
         </span>
       </h2>
@@ -574,61 +586,50 @@ export default function DigitalGrowthPR() {
 {/* =========================== */}
 {/* TESTIMONIALS SLIDER */}
 {/* =========================== */}
-<section className="py-24 bg-gradient-to-b from-white to-yellow-50/60">
+<section className="py-24 bg-gradient-to-b from-white to-purple-50/40">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    {/* Heading */}
+    
     <motion.div
       variants={fadeInUp}
       initial="initial"
       whileInView="whileInView"
-      className="text-center mb-20"
+      className="text-center mb-16"
     >
-      <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 rounded-full mb-6">
-        <Quote className="text-yellow-700" size={18} />
-        <span className="text-sm font-bold text-yellow-700">TESTIMONIALS</span>
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6">
+        <Quote className="text-purple-600" size={18} />
+        <span className="text-sm font-bold text-purple-600">TESTIMONIALS</span>
       </div>
 
       <h2 className="text-4xl md:text-5xl font-black text-gray-900">
-        Stories From Brands  
-        <span className="bg-gradient-to-r from-yellow-600 to-orange-500 bg-clip-text text-transparent ml-2">
-          We Transformed
+        Trusted By  
+        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ml-2">
+          High-Growth Brands
         </span>
       </h2>
-
-      <p className="text-gray-600 text-lg max-w-2xl mx-auto mt-4">
-        Real voices from founders, CEOs, and marketing teams who scaled visibility,
-        trust, and revenue through our Growth + PR ecosystem.
-      </p>
     </motion.div>
 
     {/* Carousel */}
     <motion.div
-      className="flex overflow-x-auto no-scrollbar gap-8 pb-4"
+      className="flex overflow-x-auto no-scrollbar gap-6 pb-4"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
     >
       {[
         {
-          name: "Sanya Khurana",
-          role: "Co-Founder – GlowHub Beauty",
-          msg: "Their narrative-based PR strategy helped us break into national media. Within 45 days, our brand searches grew by 260% and retail footfall doubled.",
+          name: "Rohit Sharma",
+          role: "Founder - TechScale",
+          msg: "Their PR + growth system helped us scale from 12k to 180k monthly traffic within 3 months.",
         },
         {
-          name: "Dev Malik",
-          role: "CMO – FinCore Technologies",
-          msg: "We went from zero media visibility to being featured in Economic Times, Forbes India, and MoneyControl. Our investor trust skyrocketed.",
+          name: "Ayushi Verma",
+          role: "CEO - UrbanWell",
+          msg: "We appeared in 14+ publications in 60 days. Our brand authority skyrocketed.",
         },
         {
-          name: "Nikita Rao",
-          role: "Founder – FitAura Wellness",
-          msg: "The consumer psychology layer they added transformed our content. Engagement went up 4.7x and we built a loyal community organically.",
-        },
-        {
-          name: "Arjun Verma",
-          role: "VP Marketing – EduPrime",
-          msg: "Their PR + Growth Engine delivered a full ecosystem—authority, visibility, conversions. We scaled to 1.2M organic impressions in 90 days.",
+          name: "Manav Kapoor",
+          role: "Marketing Head - EcoLuxe",
+          msg: "The storytelling frameworks and growth loops changed everything for us.",
         },
       ].map((t, idx) => (
         <motion.div
@@ -636,31 +637,19 @@ export default function DigitalGrowthPR() {
           variants={scaleIn}
           initial="initial"
           whileInView="whileInView"
-          className="
-            min-w-[330px] md:min-w-[420px] 
-            bg-white/90 backdrop-blur-lg 
-            border border-yellow-200 
-            rounded-3xl 
-            p-10 
-            shadow-[0_8px_20px_rgba(0,0,0,0.08)]
-            hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)]
-            transition-all duration-300
-            hover:-translate-y-1
-          "
+          className="min-w-[320px] md:min-w-[400px] 
+                     bg-[#FFF9D9]/80 backdrop-blur-lg
+                     border border-yellow-200/60
+                     rounded-3xl p-8 shadow-xl
+                     hover:shadow-2xl hover:scale-[1.02]
+                     transition-all"
         >
-          {/* Quotation Marks */}
-          <div className="w-10 h-10 mb-6">
-            <Quote className="text-yellow-600 opacity-70" size={40} />
-          </div>
-
-          {/* Message */}
-          <p className="text-gray-700 text-[17px] leading-relaxed mb-6">
+          <p className="text-gray-800 text-lg leading-relaxed mb-4 font-medium">
             “{t.msg}”
           </p>
 
-          {/* Name & Role */}
           <h4 className="text-xl font-bold text-gray-900">{t.name}</h4>
-          <p className="text-sm text-gray-500">{t.role}</p>
+          <p className="text-sm text-gray-600">{t.role}</p>
         </motion.div>
       ))}
     </motion.div>
@@ -689,7 +678,7 @@ export default function DigitalGrowthPR() {
 
       <h2 className="text-4xl md:text-5xl font-black text-gray-900">
         Frequently Asked  
-        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ml-2">
           Questions
         </span>
       </h2>
@@ -734,13 +723,13 @@ export default function DigitalGrowthPR() {
       variants={scaleIn}
       initial="initial"
       whileInView="whileInView"
-      className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 via-pink-600 to-purple-800 p-16 text-center"
+      className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 via-pink-600 to-purple-800 p-16 text-center shadow-2xl"
     >
       <Crown className="w-16 h-16 mx-auto mb-8 text-white/90" />
 
       <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
         Ready to Transform  
-        <span className="bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent">
+        <span className="bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent ml-2">
           Your Brand?
         </span>
       </h2>
@@ -795,5 +784,3 @@ export default function DigitalGrowthPR() {
     </>
   );
 }
-
-// Helper Component for Check Icon
