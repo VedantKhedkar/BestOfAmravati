@@ -271,7 +271,7 @@ export default function BrandAwarenessPage() {
                     className="bg-gray-50/50 backdrop-blur-sm p-6 rounded-[2rem] border border-gray-100 shadow-sm flex flex-col items-center text-center group transition-all duration-300 hover:bg-white hover:shadow-lg"
                   >
                     <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-gray-900 mb-4 shadow-sm group-hover:bg-gradient-to-br group-hover:from-purple-500 group-hover:to-pink-500 group-hover:text-white transition-all duration-300">
-                      {React.cloneElement(item.icon as React.ReactElement, { size: 20 })}
+                      {React.cloneElement(item.icon as React.ReactElement, { className: "w-5 h-5" } as React.SVGProps<SVGSVGElement>)}
                     </div>
                     <div className="text-[10px] font-bold text-gray-400 mb-1 uppercase tracking-widest">Step {item.step}</div>
                     <h3 className="text-lg font-bold text-gray-900 mb-1">{item.title}</h3>

@@ -2,683 +2,798 @@
 
 import { motion } from "framer-motion";
 import {
-    TrendingUp,
-    Target,
-    Zap,
-    BarChart4,
-    MousePointer2,
-    Binary,
-    Rocket,
-    LineChart,
-    PieChart,
-    Users,
-    ArrowUpRight,
-    Search,
-    Fingerprint,
-    Lightbulb,
-    // NEW ICONS ADDED
-    Shield,
-    TrendingUp as GrowthIcon,
-    Clock,
-    DollarSign,
-    Calendar,
-    CheckCircle,
-    Cpu,
-    Brain,
-    Target as TargetIcon,
-    Globe,
-    Smartphone,
-    Video,
-    Hash
+  BrainCircuit,
+  TrendingUp,
+  ShieldCheck,
+  Target,
+  Users,
+  Zap,
+  Globe,
+  BarChart3,
+  MessageSquare,
+  Newspaper,
+  Sparkles,
+  Rocket,
+  ArrowRight,
+  Crown,
+  BadgeCheck,
+  ChartNoAxesCombined,
+  Megaphone,
+  Video,
+  Search,
+  Star,
+  Lightbulb,
+  Calendar,
+  PieChart,
+  Award,
+  Building,
+  Quote,
+  BarChart4,
+  CheckIcon,
 } from "lucide-react";
-import ProductionNavbar from "@/components/ProductionNavbar";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-// Animation Variants
+// Animation Presets
 const fadeInUp = {
-    initial: { opacity: 0, y: 30 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.6, ease: "easeOut" }
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-100px" },
+  transition: { duration: 0.7, ease: "easeOut" },
 };
 
 const staggerContainer = {
-    initial: {},
-    whileInView: { transition: { staggerChildren: 0.1 } },
-    viewport: { once: true }
+  initial: { opacity: 0 },
+  whileInView: { 
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
 };
 
-export default function GrowthStrategyPage() {
-    return (
-        <>
-            <ProductionNavbar />
+const scaleIn = {
+  initial: { opacity: 0, scale: 0.8 },
+  whileInView: { opacity: 1, scale: 1 },
+  transition: { duration: 0.5 }
+};
 
-            {/* THEME BACKGROUND: MAINTAINING CONSISTENCY */}
-            <main className="pt-24 min-h-screen relative overflow-hidden bg-[#fffaf2]">
-                <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-                    <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000"></div>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
-                </div>
+export default function DigitalGrowthPR() {
+  return (
+    <>
+      <Navbar />
 
-                {/* HERO SECTION */}
-                <motion.section
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                    className="max-w-6xl mx-auto px-6 text-center py-24 relative z-10"
+      <main className="pt-20 min-h-screen bg-gradient-to-br from-gray-50 via-white to-purple-50/30 relative overflow-hidden">
+        
+        {/* Animated Background */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+          <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
+        </div>
+
+        {/* =========================== */}
+        {/* HERO SECTION */}
+        {/* =========================== */}
+        <section className="relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-24">
+            <div className="text-center">
+
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-full border border-purple-200/50 mb-8"
+              >
+                <div className="w-2 h-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full animate-pulse"></div>
+                <span className="text-sm font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  INTELLIGENT GROWTH PLATFORM
+                </span>
+              </motion.div>
+
+              {/* Heading */}
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight mb-8"
+              >
+                <span className="block text-gray-900">Digital Growth</span>
+                <span className="block bg-gradient-to-r from-purple-600 via-pink-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
+                  Reimagined For the New Era
+                </span>
+              </motion.h1>
+
+              {/* Subheading */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto mb-12 font-medium leading-relaxed"
+              >
+                We merge <span className="font-bold text-gray-900">AI-driven analytics</span>, 
+                <span className="font-bold text-gray-900"> strategic PR frameworks</span>, 
+                and <span className="font-bold text-gray-900">high-performance storytelling</span> 
+                to build brands that lead markets—not chase them.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              >
+                <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-full hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105">
+                  <span className="flex items-center gap-2">
+                    Start Growth Journey
+                    <ArrowRight className="group-hover:translate-x-2 transition-transform" size={20} />
+                  </span>
+                </button>
+
+                <button className="px-8 py-4 bg-white/80 backdrop-blur-sm border-2 border-purple-200 text-gray-900 font-bold rounded-full hover:bg-white hover:border-purple-300 transition-all duration-300">
+                  View Case Studies
+                </button>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+
+        {/* =========================== */}
+        {/* STRATEGIC PILLARS */}
+        {/* =========================== */}
+        <section className="py-24 relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <motion.div
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="whileInView"
+              className="text-center mb-20"
+            >
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6">
+                <BrainCircuit className="text-purple-600" size={18} />
+                <span className="text-sm font-bold text-purple-600">STRATEGIC PILLARS</span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900">
+                The Four Pillars of  
+                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  Next-Gen Growth
+                </span>
+              </h2>
+            </motion.div>
+
+            <motion.div
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="whileInView"
+              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+            >
+              {[ 
+                {
+                  icon: Target,
+                  title: "Precision Targeting",
+                  desc: "AI-powered persona detection and audience segmentation",
+                  stat: "92% Accuracy",
+                },
+                {
+                  icon: Zap,
+                  title: "Velocity Deployment",
+                  desc: "Faster content-to-distribution pipelines with algorithmic optimization",
+                  stat: "3.2x Faster",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Trust Engineering",
+                  desc: "Narrative design, PR placement, and credibility frameworks",
+                  stat: "71% Trust Lift",
+                },
+                {
+                  icon: TrendingUp,
+                  title: "Exponential Scaling",
+                  desc: "Automated growth loops and performance ecosystems",
+                  stat: "412% Growth",
+                },
+              ].map((item, i) => (
+                <motion.div  
+                  key={i}
+                  variants={scaleIn}
+                  className="group bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500"
                 >
-                    <div className="flex flex-col items-center gap-4 mb-8">
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-orange-200 bg-white/80 backdrop-blur-md shadow-sm"
-                        >
-                            <Binary size={16} className="text-orange-600" />
-                            <span className="text-orange-600 font-bold text-[10px] uppercase tracking-[0.2em]">
-                                Algorithm Intelligence Unit
-                            </span>
-                        </motion.div>
-                    </div>
+                  <div className="w-16 h-16 p-3 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 mb-6">
+                    <item.icon className="text-white" size={28} />
+                  </div>
 
-                    <div className="relative inline-block px-4 md:px-16">
-                        {/* Velocity Badge */}
-                        <div className="absolute -top-12 -right-2 md:-right-12 z-20 flex items-center gap-2 bg-white p-3 rounded-2xl shadow-xl border border-orange-50 animate-bounce">
-                            <div className="bg-orange-100 p-1.5 rounded-lg">
-                                <Rocket size={16} className="text-orange-600" />
-                            </div>
-                            <div className="text-left">
-                                <p className="text-[10px] font-bold text-gray-400 uppercase leading-none">Velocity</p>
-                                <p className="text-sm font-black text-gray-900">2.4x Growth</p>
-                            </div>
-                        </div>
-
-                        <motion.h1
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            className="text-5xl md:text-8xl font-black text-gray-900 leading-[1.05] tracking-tight relative z-10"
-                        >
-                            Engineered To <br />
-                            <span className="bg-gradient-to-r from-orange-600 via-pink-500 to-purple-600 bg-clip-text text-transparent">
-                                Scale Rapidly_
-                            </span>
-                        </motion.h1>
-                    </div>
-
-                    <motion.p
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
-                        className="mt-12 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium"
-                    >
-                        We move beyond "vanity metrics." Our <span className="font-extrabold text-gray-900">#GrowthArchitecture</span> combines consumer psychology with algorithmic precision to turn views into business revenue.
-                    </motion.p>
-                </motion.section>
-
-                {/* THE RETENTION ENGINE - 3 PILLARS */}
-                <section className="max-w-6xl mx-auto px-6 py-12 relative z-10">
-                    <motion.div
-                        variants={staggerContainer}
-                        initial="initial"
-                        whileInView="whileInView"
-                        viewport={{ once: true }}
-                        className="grid md:grid-cols-3 gap-8"
-                    >
-                        {[
-                            { title: "The Hook", icon: Zap, color: "text-orange-600", bg: "bg-orange-50", desc: "Stopping the scroll in the first 1.5 seconds with visual triggers." },
-                            { title: "Retention", icon: MousePointer2, color: "text-pink-600", bg: "bg-pink-50", desc: "Keeping high audience-watch-time through rhythmic editing." },
-                            { title: "Conversion", icon: Target, color: "text-purple-600", bg: "bg-purple-50", desc: "Strategic Call-to-Actions that drive footfall and inquiries." }
-                        ].map((item, i) => (
-                            <motion.div variants={fadeInUp} key={i} className="bg-white/60 backdrop-blur-md p-8 rounded-[2.5rem] border border-white shadow-sm hover:shadow-xl transition-all group">
-                                <div className={`w-14 h-14 rounded-2xl ${item.bg} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                    <item.icon className={item.color} size={28} />
-                                </div>
-                                <h3 className="font-black text-xl text-gray-900 tracking-tight">{item.title}</h3>
-                                <p className="text-sm text-gray-600 mt-3 leading-relaxed font-medium">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </section>
-
-                {/* =========== NEW SECTION: TECHNOLOGY STACK =========== */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-                            Precision Tech <br />
-                            <span className="bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-                                Stack
-                            </span>
-                        </h2>
-                        <p className="mt-6 max-w-2xl mx-auto text-gray-600 font-medium">
-                            Cutting-edge tools and platforms engineered for maximum digital impact.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        {[
-                            { icon: Cpu, title: "AI Analytics", desc: "Predictive algorithms" },
-                            { icon: Brain, title: "Behavioral AI", desc: "Pattern recognition" },
-                            { icon: TargetIcon, title: "Precision Targeting", desc: "Audience segmentation" },
-                            { icon: Globe, title: "Multi-Platform", desc: "Cross-channel sync" },
-                            { icon: Smartphone, title: "Mobile-First", desc: "Responsive optimization" },
-                            { icon: Video, title: "Content AI", desc: "Automated optimization" },
-                            { icon: Hash, title: "Trend Intelligence", desc: "Real-time insights" },
-                            { icon: Shield, title: "Data Security", desc: "Encrypted analytics" },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className="bg-white/50 backdrop-blur-md p-6 rounded-3xl border border-white hover:shadow-lg transition-all group"
-                            >
-                                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-100 to-pink-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                                    <item.icon className="text-orange-600" size={22} />
-                                </div>
-                                <h4 className="font-black text-gray-900 text-sm">{item.title}</h4>
-                                <p className="text-xs text-gray-500 mt-1 font-medium">{item.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* =========== NEW SECTION: CASE STUDY RESULTS =========== */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-                            Proven Results <br />
-                            <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-                                In Real Campaigns
-                            </span>
-                        </h2>
-                        <p className="mt-6 text-gray-600 font-medium max-w-2xl">
-                            Actual metrics from businesses we've transformed in the Amravati region.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                category: "Fashion Retail",
-                                metrics: [
-                                    { label: "Instagram Growth", value: "312%" },
-                                    { label: "Monthly Leads", value: "540+" },
-                                    { label: "ROI", value: "8.2x" },
-                                ],
-                                color: "from-pink-500 to-rose-500"
-                            },
-                            {
-                                category: "Restaurant Chain",
-                                metrics: [
-                                    { label: "Footfall Increase", value: "185%" },
-                                    { label: "Online Orders", value: "320%" },
-                                    { label: "Brand Searches", value: "410%" },
-                                ],
-                                color: "from-orange-500 to-amber-500"
-                            },
-                            {
-                                category: "Professional Services",
-                                metrics: [
-                                    { label: "Website Traffic", value: "280%" },
-                                    { label: "Lead Quality", value: "67%" },
-                                    { label: "Conversion Rate", value: "24.5%" },
-                                ],
-                                color: "from-purple-500 to-indigo-500"
-                            },
-                        ].map((caseStudy, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className="bg-white/80 backdrop-blur-md rounded-[3rem] p-8 border border-white shadow-lg"
-                            >
-                                <h3 className="text-xl font-black text-gray-900 mb-6">{caseStudy.category}</h3>
-                                <div className="space-y-6">
-                                    {caseStudy.metrics.map((metric, idx) => (
-                                        <div key={idx} className="pb-4 border-b border-gray-100 last:border-0 last:pb-0">
-                                            <div className="flex justify-between items-center">
-                                                <span className="text-sm text-gray-600 font-medium">{metric.label}</span>
-                                                <span className={`text-2xl font-black bg-gradient-to-r ${caseStudy.color} bg-clip-text text-transparent`}>
-                                                    {metric.value}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                                <div className="mt-8 pt-6 border-t border-gray-100">
-                                    <div className="flex items-center gap-2 text-sm text-gray-500">
-                                        <Clock size={14} />
-                                        <span className="font-medium">Results within 90 days</span>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* ANALYTICS DASHBOARD SECTION */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <div className="grid md:grid-cols-2 gap-16 items-center">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, ease: "easeOut" }}
-                        >
-                            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight tracking-tight">
-                                Data-Driven <br />
-                                <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-                                    Decision Intelligence
-                                </span>
-                            </h2>
+                  <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-sm text-gray-600 mb-4">{item.desc}</p>
+                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-bold text-sm">
+                    {item.stat}
+                  </span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+{/* =========================== */}
 
 
-                            <p className="text-gray-600 mb-10 text-lg font-medium">
-                                We don't guess. We track 15+ KPIs across the <span className="text-gray-900 font-bold">Amravati digital ecosystem</span> to optimize your content's performance in real-time.
-                            </p>
+{/* =========================== */}
+{/* FULL-FUNNEL BREAKDOWN */}
+{/* =========================== */}
+<section className="py-24">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                {[
-                                    { icon: Fingerprint, t: "Persona Mapping", d: "Targeting your ideal client" },
-                                    { icon: BarChart4, t: "Sentiment Analysis", d: "Monitoring brand perception" },
-                                    { icon: Search, t: "Hashtag Clusters", d: "Local SEO optimization" },
-                                    { icon: Lightbulb, t: "Trend Prediction", d: "Early adoption of viral hooks" },
-                                ].map((item, i) => (
-                                    <div key={i} className="flex gap-4 p-5 bg-white/60 backdrop-blur-md rounded-[2rem] border border-white group">
-                                        <item.icon className="text-orange-600" size={20} />
-                                        <div>
-                                            <h4 className="font-black text-gray-900 text-[11px] uppercase tracking-wider">{item.t}</h4>
-                                            <p className="text-[10px] text-gray-400 font-bold uppercase mt-0.5">{item.d}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </motion.div>
+    {/* Gradient Container With Rounded Corners */}
+    <div className="bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700 rounded-[3rem] p-1">
 
-                        {/* PREMIUM DATA CARD */}
-                        <motion.div
-                            initial={{ x: 30, opacity: 0 }}
-                            whileInView={{ x: 0, opacity: 1 }}
-                            className="bg-gray-900 rounded-[3.5rem] p-12 text-white relative shadow-2xl border border-white/10"
-                        >
-                            <div className="absolute -top-10 -right-10 w-40 h-40 bg-orange-600/20 blur-[80px] rounded-full"></div>
+      {/* Inner White Container (For Clean Borders) */}
+      <div className="rounded-[2.7rem] bg-white/30 backdrop-blur-lg p-12">
 
-                            <div className="flex justify-between items-start mb-12">
-                                <h3 className="text-2xl font-black tracking-tight">Growth Metrics.</h3>
-                                <LineChart className="text-orange-400" size={24} />
-                            </div>
+        {/* Heading Section */}
+        <motion.div
+          variants={fadeInUp}
+          initial="initial"
+          whileInView="whileInView"
+          className="text-center mb-20"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/30 backdrop-blur-sm rounded-full mb-6">
+            <BarChart3 className="text-white" size={18} />
+            <span className="text-sm font-bold text-white">GROWTH FUNNEL</span>
+          </div>
 
-                            <div className="space-y-10 relative z-10">
-                                <div>
-                                    <p className="text-6xl font-black bg-gradient-to-r from-orange-400 to-pink-400 bg-clip-text text-transparent">+18.5%</p>
-                                    <p className="text-[10px] text-gray-400 font-black uppercase tracking-[0.3em] mt-2">Avg. Conversion Rate</p>
-                                </div>
+          <h2 className="text-4xl md:text-5xl font-black text-white">
+            The Full-Funnel  
+            <span className="bg-gradient-to-r from-yellow-200 to-white bg-clip-text text-transparent ml-2">
+              Growth Architecture
+            </span>
+          </h2>
 
-                                <div className="h-24 w-full flex items-end gap-1.5">
-                                    {[30, 45, 35, 60, 80, 55, 90, 100].map((h, i) => (
-                                        <motion.div
-                                            key={i}
-                                            initial={{ height: 0 }}
-                                            whileInView={{ height: `${h}%` }}
-                                            transition={{ delay: i * 0.1 }}
-                                            className="flex-1 bg-gradient-to-t from-orange-600 to-pink-500 rounded-t-sm"
-                                        />
-                                    ))}
-                                </div>
+          <p className="text-white/85 text-lg max-w-3xl mx-auto mt-4 font-medium">
+            A complete mapping of Awareness → Engagement → Conversion → Advocacy.
+          </p>
+        </motion.div>
 
-                                <div className="flex items-center gap-6 pt-4 border-t border-white/10">
-                                    <div className="text-center">
-                                        <p className="text-lg font-black">1.2M+</p>
-                                        <p className="text-[8px] text-gray-500 uppercase font-black">Impressions</p>
-                                    </div>
-                                    <div className="text-center">
-                                        <p className="text-lg font-black">42K</p>
-                                        <p className="text-[8px] text-gray-500 uppercase font-black">Interactions</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
-                </section>
+        {/* Cards */}
+        <div className="grid md:grid-cols-4 gap-6">
+          {[
+            {
+              stage: "Awareness",
+              icon: Megaphone,
+              points: ["Mass visibility", "Media features", "Influencer push", "Top-of-funnel ads"],
+              color: "from-purple-500 to-pink-500"
+            },
+            {
+              stage: "Engagement",
+              icon: MessageSquare,
+              points: ["High-retention content", "Storytelling", "Community interaction", "Trust hooks"],
+              color: "from-pink-500 to-rose-500"
+            },
+            {
+              stage: "Conversion",
+              icon: TrendingUp,
+              points: ["Offer design", "Landing pages", "Retargeting", "Lead nurturing"],
+              color: "from-purple-600 to-indigo-600"
+            },
+            {
+              stage: "Advocacy",
+              icon: Users,
+              points: ["Testimonials", "UGC", "Referral loops", "Loyalty programs"],
+              color: "from-pink-600 to-purple-600"
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              variants={scaleIn}
+              initial="initial"
+              whileInView="whileInView"
+              className="p-8 bg-white/80 backdrop-blur-xl border border-white/40 rounded-[2rem] shadow-xl hover:shadow-2xl transition-all"
+            >
+              <div className={`w-14 h-14 p-3 bg-gradient-to-br ${item.color} rounded-xl text-white mb-4`}>
+                <item.icon size={26} />
+              </div>
 
-              
+              <h3 className="font-bold text-xl text-gray-900 mb-2">{item.stage}</h3>
 
-                {/* =========== NEW SECTION: PROCESS TIMELINE =========== */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-                            The Growth <br />
-                            <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-                                Engine Timeline
-                            </span>
-                        </h2>
-                        <p className="mt-6 text-gray-600 font-medium max-w-2xl">
-                            A systematic approach that ensures consistent, scalable growth.
-                        </p>
-                    </motion.div>
+              <ul className="space-y-2 mt-3">
+                {item.points.map((p, idx) => (
+                  <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
+                    <CheckIcon />
+                    {p}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
 
-                    <div className="relative">
-                        {/* Timeline Line */}
-                        <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-300 via-pink-300 to-purple-300 transform -translate-x-1/2 hidden md:block"></div>
+      </div>
+    </div>
 
-                        {[
-                            {
-                                phase: "Phase 01",
-                                title: "Deep Dive Analysis",
-                                duration: "Week 1-2",
-                                tasks: ["Market Research", "Competitor Audit", "Audience Mapping"],
-                                side: "left"
-                            },
-                            {
-                                phase: "Phase 02",
-                                title: "Strategy Formulation",
-                                duration: "Week 3-4",
-                                tasks: ["Content Blueprint", "Channel Strategy", "KPI Setting"],
-                                side: "right"
-                            },
-                            {
-                                phase: "Phase 03",
-                                title: "Execution & Launch",
-                                duration: "Week 5-8",
-                                tasks: ["Content Production", "Campaign Launch", "Initial Optimization"],
-                                side: "left"
-                            },
-                            {
-                                phase: "Phase 04",
-                                title: "Scale & Optimize",
-                                duration: "Ongoing",
-                                tasks: ["Performance Analysis", "A/B Testing", "Strategy Refinement"],
-                                side: "right"
-                            },
-                        ].map((phase, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className={`relative mb-12 ${phase.side === 'left' ? 'md:pr-1/2 md:pr-8' : 'md:pl-1/2 md:pl-8'} ${phase.side === 'left' ? 'md:text-right' : ''}`}
-                            >
-                                <div className="bg-white/80 backdrop-blur-md p-8 rounded-[2.5rem] border border-white shadow-lg">
-                                    <div className={`flex ${phase.side === 'left' ? 'md:justify-end' : ''}`}>
-                                        <div className={`max-w-md ${phase.side === 'left' ? 'md:text-right' : ''}`}>
-                                            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-100 to-pink-100 mb-4">
-                                                <Calendar size={14} className="text-orange-600" />
-                                                <span className="text-xs font-black text-orange-600">{phase.duration}</span>
-                                            </div>
-                                            <h3 className="text-2xl font-black text-gray-900 mb-2">{phase.title}</h3>
-                                            <div className={`space-y-2 mt-4 ${phase.side === 'left' ? 'md:items-end' : ''}`}>
-                                                {phase.tasks.map((task, idx) => (
-                                                    <div key={idx} className="flex items-center gap-2 text-gray-600">
-                                                        {phase.side === 'right' && <CheckCircle size={14} className="text-green-500" />}
-                                                        <span className="font-medium text-sm">{task}</span>
-                                                        {phase.side === 'left' && <CheckCircle size={14} className="text-green-500" />}
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {/* Timeline Dot */}
-                                <div className="absolute top-8 left-6 md:left-1/2 w-4 h-4 bg-gradient-to-r from-orange-500 to-pink-500 rounded-full border-4 border-white transform -translate-x-1/2 hidden md:block"></div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* HOW WE EXECUTE GROWTH */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-                            From Visibility <br />
-                            <span className="bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent">
-                                To Authority
-                            </span>
-                        </h2>
-                    </motion.div>
+  </div>
+</section>
 
 
-                    <div className="grid md:grid-cols-4 gap-6">
-                        {[
-                            {
-                                step: "01",
-                                title: "Discovery",
-                                desc: "Audience behavior, competitors & demand signals.",
-                            },
-                            {
-                                step: "02",
-                                title: "Content Architecture",
-                                desc: "Hooks, narratives & CTAs aligned with intent.",
-                            },
-                            {
-                                step: "03",
-                                title: "Execution",
-                                desc: "High-frequency, high-quality deployment.",
-                            },
-                            {
-                                step: "04",
-                                title: "Optimization",
-                                desc: "Weekly iteration using performance data.",
-                            },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className="bg-white/50 backdrop-blur-md p-7 rounded-[2.25rem] border border-white hover:shadow-lg transition-all"
-                            >
-                                <p className="text-xs font-black text-orange-600 tracking-widest">
-                                    STEP {item.step}
-                                </p>
-                                <h3 className="mt-4 text-lg font-black text-gray-900">
-                                    {item.title}
-                                </h3>
-                                <p className="mt-2 text-sm text-gray-600 font-medium leading-relaxed">
-                                    {item.desc}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
+{/* PR PLAYBOOKS – ADVANCED STRATEGY */}
+{/* =========================== */}
+<section className="py-24 bg-gradient-to-b from-white to-purple-50/30">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="whileInView"
+      className="text-center mb-20"
+    >
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-pink-100 rounded-full mb-6">
+        <Sparkles className="text-pink-600" size={18} />
+        <span className="text-sm font-bold text-pink-600">PR PLAYBOOKS</span>
+      </div>
+
+      <h2 className="text-4xl md:text-5xl font-black text-gray-900">
+        Strategic Playbooks  
+        <span className="bg-gradient-to-r from-pink-600 to-purple-600 bg-clip-text text-transparent">
+          That Build Market Leaders
+        </span>
+      </h2>
+
+      <p className="text-gray-600 text-lg max-w-3xl mx-auto mt-4">
+        Proven frameworks used by top-performing brands to dominate media,
+        shape public perception, and engineer long-term trust.
+      </p>
+    </motion.div>
+
+    <motion.div
+      variants={staggerContainer}
+      initial="initial"
+      whileInView="whileInView"
+      className="grid md:grid-cols-3 gap-10"
+    >
+      {[
+        {
+          title: "Authority Acceleration",
+          desc: "Turn your founders and brand into industry voices with PR placements, interviews & thought-leadership systems.",
+          icon: Newspaper
+        },
+        {
+          title: "Reputation Mastery",
+          desc: "Psychology-backed trust signals, high-authority media mentions, influencer referencing & reputation loops.",
+          icon: ShieldCheck
+        },
+        {
+          title: "Market Penetration Engine",
+          desc: "Localized PR, hyper-geo segmentation, cultural storytelling & regional media dominance.",
+          icon: Globe
+        },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          variants={scaleIn}
+          className="bg-white/80 backdrop-blur-md p-10 border border-gray-200 rounded-3xl shadow-lg hover:shadow-2xl transition-all"
+        >
+          <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 p-4 rounded-2xl mb-6 flex items-center justify-center">
+            <item.icon className="text-white" size={28} />
+          </div>
+
+          <h3 className="text-2xl font-black text-gray-900 mb-3">{item.title}</h3>
+          <p className="text-gray-600 text-sm font-medium leading-relaxed">
+            {item.desc}
+          </p>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</section>
 
 
-                {/* =========== NEW SECTION: EXPERTISE HIGHLIGHTS =========== */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-                            Why We're <br />
-                            <span className="bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-                                Different
-                            </span>
-                        </h2>
-                        <p className="mt-6 max-w-2xl mx-auto text-gray-600 font-medium">
-                            Unique capabilities that set our growth architecture apart.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {[
-                            {
-                                title: "Local Market Mastery",
-                                desc: "Deep understanding of Amravati consumer behavior and cultural nuances.",
-                                highlight: "100+ Local Campaigns"
-                            },
-                            {
-                                title: "Algorithm Whisperers",
-                                desc: "We don't just use platforms - we understand how their algorithms think.",
-                                highlight: "Proprietary AI Models"
-                            },
-                            {
-                                title: "Psychographic Targeting",
-                                desc: "Targeting based on interests, values, and lifestyle, not just demographics.",
-                                highlight: "Behavioral Clusters"
-                            },
-                            {
-                                title: "Scalable Creativity",
-                                desc: "Systematic creative production that maintains quality at scale.",
-                                highlight: "Creative Assembly Line"
-                            },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className="bg-white/60 backdrop-blur-md p-8 rounded-[2.5rem] border border-white hover:shadow-xl transition-all group"
-                            >
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-xl font-black text-gray-900">{item.title}</h3>
-                                    <div className="px-3 py-1 bg-gradient-to-r from-orange-100 to-pink-100 rounded-full">
-                                        <span className="text-xs font-black text-orange-600">{item.highlight}</span>
-                                    </div>
-                                </div>
-                                <p className="text-gray-600 font-medium">{item.desc}</p>
-                                <div className="mt-6 pt-6 border-t border-gray-100">
-                                    <div className="flex items-center gap-2 text-sm text-orange-600 font-medium">
-                                        <ArrowUpRight size={16} />
-                                        <span>Built for Amravati market</span>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
-
-                {/* DIGITAL GROWTH STRATEGY */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-                            Digital Growth <br />
-                            <span className="bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-                                Strategy
-                            </span>
-                        </h2>
-                        <p className="mt-6 max-w-3xl mx-auto text-gray-600 font-medium leading-relaxed">
-                            We don't chase trends. We engineer repeatable growth systems that turn
-                            attention into measurable business outcomes.
-                        </p>
-                    </motion.div>
-
-                    <div className="grid md:grid-cols-3 gap-8">
-                        {[
-                            {
-                                title: "Psychology-First",
-                                desc: "Understanding why users stop, watch, trust, and take action.",
-                            },
-                            {
-                                title: "Algorithm-Aware",
-                                desc: "Built around how platforms actually distribute reach.",
-                            },
-                            {
-                                title: "Revenue-Focused",
-                                desc: "Every campaign is tied to conversion and business impact.",
-                            },
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className="bg-white/60 backdrop-blur-md p-8 rounded-[2.5rem] border border-white hover:shadow-xl transition-all"
-                            >
-                                <h3 className="text-xl font-black text-gray-900">{item.title}</h3>
-                                <p className="mt-3 text-sm text-gray-600 font-medium leading-relaxed">
-                                    {item.desc}
-                                </p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
 
 
-                {/* METRICS THAT MATTER */}
-                <section className="max-w-6xl mx-auto px-6 py-24 relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="text-center mb-16"
-                    >
-                        <h2 className="text-4xl md:text-5xl font-black text-gray-900 tracking-tight">
-                            Metrics That <br />
-                            <span className="bg-gradient-to-r from-orange-600 to-pink-600 bg-clip-text text-transparent">
-                                Actually Matter
-                            </span>
-                        </h2>
+
+{/* =========================== */}
+{/* BLOG / INSIGHTS SECTION */}
+{/* =========================== */}
+<section className="py-24 w-full bg-gradient-to-r from-purple-600 via-pink-600 to-purple-700">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <motion.div
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="whileInView"
+      className="text-center mb-20"
+    >
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full mb-6">
+        <Lightbulb className="text-white" size={18} />
+        <span className="text-sm font-bold text-white">INSIGHTS</span>
+      </div>
+
+      <h2 className="text-4xl md:text-5xl font-black text-white">
+        Latest Insights &  
+        <span className="bg-gradient-to-r from-yellow-200 to-white bg-clip-text text-transparent ml-2">
+          Market Analysis
+        </span>
+      </h2>
+
+      <p className="text-white/80 text-lg max-w-3xl mx-auto mt-4 font-medium">
+        Expert breakdowns on PR, consumer psychology, market shifts, and emerging digital ecosystems.
+      </p>
+    </motion.div>
+
+    <div className="grid md:grid-cols-3 gap-10">
+      {[
+        {
+          title: "PR is the New SEO: Why Authority Beats Keywords",
+          tag: "PR Strategy",
+        },
+        {
+          title: "Consumer Behavior in Tier-2 & Tier-3 Cities 2026",
+          tag: "Market Research",
+        },
+        {
+          title: "The Secret Psychology Behind Viral Storytelling",
+          tag: "Content Psychology",
+        },
+      ].map((blog, index) => (
+        <motion.div
+          key={index}
+          variants={scaleIn}
+          initial="initial"
+          whileInView="whileInView"
+          className="bg-white/90 backdrop-blur-md border border-white/40 p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all cursor-pointer group"
+        >
+          <span className="px-3 py-1 bg-purple-100 text-purple-600 font-bold text-xs rounded-full">
+            {blog.tag}
+          </span>
+
+          <h3 className="mt-4 text-xl font-black text-gray-900 group-hover:text-purple-600 transition">
+            {blog.title}
+          </h3>
+
+          <div className="mt-5 flex items-center gap-2 text-purple-600 font-bold">
+            Read More <ArrowRight size={16} />
+          </div>
+        </motion.div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+{/* =========================== */}
+{/* MEDIA PUBLICATIONS */}
+{/* =========================== */}
+<section className="py-24 bg-gradient-to-b from-purple-50/40 to-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <motion.div
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="whileInView"
+      className="text-center mb-20"
+    >
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6">
+        <Newspaper className="text-purple-600" size={18} />
+        <span className="text-sm font-bold text-purple-600">FEATURED ON</span>
+      </div>
+
+      <h2 className="text-4xl md:text-5xl font-black text-gray-900">
+        Brands Featured In  
+        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          Top Media Publications
+        </span>
+      </h2>
+    </motion.div>
+
+    {/* Media Logo Grid */}
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-10 items-center justify-center opacity-90">
+      {[
+        "Forbes",
+        "Times of India",
+        "Economic Times",
+        "Hindustan Times",
+        "Business Today",
+        "YourStory",
+        "Mint",
+        "NDTV"
+      ].map((brand, idx) => (
+        <motion.div
+          key={idx}
+          variants={scaleIn}
+          initial="initial"
+          whileInView="whileInView"
+          className="text-gray-700 font-extrabold text-xl md:text-2xl opacity-70 hover:opacity-100 transition cursor-pointer text-center"
+        >
+          {brand}
+        </motion.div>
+      ))}
+    </div>
+
+  </div>
+</section>
 
 
-                        <p className="mt-6 max-w-2xl mx-auto text-gray-600 font-medium">
-                            Vanity metrics don't build businesses. We track what drives real growth.
-                        </p>
-                    </motion.div>
+{/* =========================== */}
+{/* AWARDS & RECOGNITIONS */}
+{/* =========================== */}
+<section className="py-24">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                    <div className="grid md:grid-cols-2 gap-8">
-                        {[
-                            "Conversion Rate & Lead Quality",
-                            "Watch Time & Retention Curves",
-                            "Engagement-to-Reach Ratio",
-                            "Cost per Acquisition (CPA)",
-                            "Local Search & Discovery Signals",
-                            "Content-to-Revenue Attribution",
-                        ].map((text, i) => (
-                            <motion.div
-                                key={i}
-                                variants={fadeInUp}
-                                className="bg-gray-900 text-white p-8 rounded-[2.5rem] flex items-center gap-4"
-                            >
-                                <div className="w-9 h-9 bg-orange-500 rounded-full flex items-center justify-center font-black">
-                                    ✓
-                                </div>
-                                <p className="font-medium text-lg">{text}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </section>
+    <motion.div
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="whileInView"
+      className="text-center mb-20"
+    >
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 rounded-full mb-6">
+        <Award className="text-yellow-600" size={18} />
+        <span className="text-sm font-bold text-yellow-600">AWARDS</span>
+      </div>
+
+      <h2 className="text-4xl md:text-5xl font-black text-gray-900">
+        Recognized By  
+        <span className="bg-gradient-to-r from-yellow-600 to-orange-600 bg-clip-text text-transparent">
+          Industry Leaders
+        </span>
+      </h2>
+    </motion.div>
+
+    <div className="grid md:grid-cols-3 gap-10">
+      {[
+        {
+          title: "Best Digital Strategy Developer 2025",
+          org: "Startup India",
+        },
+        {
+          title: "Top PR Transformation Agency",
+          org: "Media Innovators Award",
+        },
+        {
+          title: "Excellence in Brand Growth",
+          org: "CXO Global Forum",
+        },
+      ].map((award, idx) => (
+        <motion.div
+          key={idx}
+          variants={scaleIn}
+          initial="initial"
+          whileInView="whileInView"
+          className="bg-white/80 backdrop-blur-md p-10 border border-gray-200 rounded-3xl shadow-xl hover:shadow-2xl transition-all"
+        >
+          <h3 className="text-2xl font-black mb-3 text-gray-900">
+            {award.title}
+          </h3>
+          <p className="text-gray-600 font-medium">{award.org}</p>
+        </motion.div>
+      ))}
+    </div>
+
+  </div>
+</section>
 
 
-                {/* BOTTOM CALL TO ACTION */}
-                <section className="max-w-6xl mx-auto px-6 py-24 text-center relative z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        className="bg-white/80 backdrop-blur-xl p-16 rounded-[4rem] border border-white shadow-2xl relative overflow-hidden"
-                    >
-                        <div className="relative z-10">
-                            <h2 className="text-4xl md:text-6xl font-black text-gray-900 mb-8 tracking-tighter italic">READY TO DOMINATE <br /> THE FEED?</h2>
-                            <button className="bg-gray-900 text-white px-12 py-5 rounded-full font-black uppercase text-sm tracking-widest flex items-center gap-3 mx-auto hover:bg-black transition-all">
-                                Request Strategy Audit <ArrowUpRight size={18} className="text-orange-400" />
-                            </button>
-                        </div>
-                    </motion.div>
-                </section>
+{/* =========================== */}
+{/* TESTIMONIALS SLIDER */}
+{/* =========================== */}
+<section className="py-24 bg-gradient-to-b from-white to-yellow-50/60">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                <Footer />
-            </main>
-        </>
-    );
+    {/* Heading */}
+    <motion.div
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="whileInView"
+      className="text-center mb-20"
+    >
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-100 rounded-full mb-6">
+        <Quote className="text-yellow-700" size={18} />
+        <span className="text-sm font-bold text-yellow-700">TESTIMONIALS</span>
+      </div>
+
+      <h2 className="text-4xl md:text-5xl font-black text-gray-900">
+        Stories From Brands  
+        <span className="bg-gradient-to-r from-yellow-600 to-orange-500 bg-clip-text text-transparent ml-2">
+          We Transformed
+        </span>
+      </h2>
+
+      <p className="text-gray-600 text-lg max-w-2xl mx-auto mt-4">
+        Real voices from founders, CEOs, and marketing teams who scaled visibility,
+        trust, and revenue through our Growth + PR ecosystem.
+      </p>
+    </motion.div>
+
+    {/* Carousel */}
+    <motion.div
+      className="flex overflow-x-auto no-scrollbar gap-8 pb-4"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.6 }}
+    >
+      {[
+        {
+          name: "Sanya Khurana",
+          role: "Co-Founder – GlowHub Beauty",
+          msg: "Their narrative-based PR strategy helped us break into national media. Within 45 days, our brand searches grew by 260% and retail footfall doubled.",
+        },
+        {
+          name: "Dev Malik",
+          role: "CMO – FinCore Technologies",
+          msg: "We went from zero media visibility to being featured in Economic Times, Forbes India, and MoneyControl. Our investor trust skyrocketed.",
+        },
+        {
+          name: "Nikita Rao",
+          role: "Founder – FitAura Wellness",
+          msg: "The consumer psychology layer they added transformed our content. Engagement went up 4.7x and we built a loyal community organically.",
+        },
+        {
+          name: "Arjun Verma",
+          role: "VP Marketing – EduPrime",
+          msg: "Their PR + Growth Engine delivered a full ecosystem—authority, visibility, conversions. We scaled to 1.2M organic impressions in 90 days.",
+        },
+      ].map((t, idx) => (
+        <motion.div
+          key={idx}
+          variants={scaleIn}
+          initial="initial"
+          whileInView="whileInView"
+          className="
+            min-w-[330px] md:min-w-[420px] 
+            bg-white/90 backdrop-blur-lg 
+            border border-yellow-200 
+            rounded-3xl 
+            p-10 
+            shadow-[0_8px_20px_rgba(0,0,0,0.08)]
+            hover:shadow-[0_12px_30px_rgba(0,0,0,0.12)]
+            transition-all duration-300
+            hover:-translate-y-1
+          "
+        >
+          {/* Quotation Marks */}
+          <div className="w-10 h-10 mb-6">
+            <Quote className="text-yellow-600 opacity-70" size={40} />
+          </div>
+
+          {/* Message */}
+          <p className="text-gray-700 text-[17px] leading-relaxed mb-6">
+            “{t.msg}”
+          </p>
+
+          {/* Name & Role */}
+          <h4 className="text-xl font-bold text-gray-900">{t.name}</h4>
+          <p className="text-sm text-gray-500">{t.role}</p>
+        </motion.div>
+      ))}
+    </motion.div>
+
+  </div>
+</section>
+
+
+
+{/* =========================== */}
+{/* FAQ SECTION */}
+{/* =========================== */}
+<section className="py-24">
+  <div className="max-w-5xl mx-auto px-6">
+
+    <motion.div
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="whileInView"
+      className="text-center mb-16"
+    >
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6">
+        <Lightbulb className="text-purple-600" size={18} />
+        <span className="text-sm font-bold text-purple-600">FAQ</span>
+      </div>
+
+      <h2 className="text-4xl md:text-5xl font-black text-gray-900">
+        Frequently Asked  
+        <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          Questions
+        </span>
+      </h2>
+    </motion.div>
+
+    <div className="space-y-6">
+      {[
+        {
+          q: "How long does it take to see measurable growth?",
+          a: "Most brands see early visibility within 14 days, PR traction within 30–45 days, and exponential growth between 60–90 days.",
+        },
+        {
+          q: "Do you offer PR + Digital Growth combined?",
+          a: "Yes — our system is built as a unified engine mixing PR, content, storytelling, distribution, and growth analytics.",
+        },
+        {
+          q: "Is this suitable for startups?",
+          a: "Absolutely. We have dedicated playbooks for early-stage, seed, and scaling startups.",
+        },
+      ].map((f, index) => (
+        <motion.div
+          key={index}
+          variants={fadeInUp}
+          className="p-6 bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-md"
+        >
+          <h3 className="font-bold text-gray-900 text-lg mb-2">{f.q}</h3>
+          <p className="text-gray-600">{f.a}</p>
+        </motion.div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+
+{/* =========================== */}
+{/* FINAL CTA */}
+{/* =========================== */}
+<section className="py-24">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      variants={scaleIn}
+      initial="initial"
+      whileInView="whileInView"
+      className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-purple-600 via-pink-600 to-purple-800 p-16 text-center"
+    >
+      <Crown className="w-16 h-16 mx-auto mb-8 text-white/90" />
+
+      <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
+        Ready to Transform  
+        <span className="bg-gradient-to-r from-white to-yellow-200 bg-clip-text text-transparent">
+          Your Brand?
+        </span>
+      </h2>
+
+      <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+        Join the fast-growing businesses who scaled visibility, authority, and revenue with our AI-powered PR + Growth ecosystem.
+      </p>
+
+      <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <button className="bg-white text-gray-900 px-10 py-4 rounded-full font-bold hover:bg-gray-100 hover:scale-105 transition-all duration-300 flex items-center gap-2 justify-center">
+          Schedule Strategy Call
+          <ArrowRight size={20} />
+        </button>
+
+        <button className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/40 px-10 py-4 rounded-full font-bold hover:bg-white/20 transition-all duration-300">
+          Download Growth Blueprint
+        </button>
+      </div>
+    </motion.div>
+  </div>
+</section>
+    
+    
+        <Footer />
+      </main>
+
+      <style jsx global>{`
+        @keyframes gradient {
+          0%, 100% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+        }
+        
+        .animate-gradient {
+          background-size: 200% 200%;
+          animation: gradient 3s ease infinite;
+        }
+        
+        .text-gradient {
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: transparent;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </>
+  );
 }
+
+// Helper Component for Check Icon
