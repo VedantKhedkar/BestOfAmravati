@@ -51,7 +51,7 @@ export default function ProductionNavbar() {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="relative w-20 h-8 md:w-24 md:h-10 lg:w-32 lg:h-12">
               <Image 
-                src="/nav-logo copy.png" 
+                src="/boanav.svg" 
                 alt="Best Of Amravati Logo" 
                 fill
                 className="object-contain object-left group-hover:scale-105 transition-transform duration-300"

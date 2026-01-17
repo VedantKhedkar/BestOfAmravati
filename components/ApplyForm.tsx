@@ -1,20 +1,18 @@
-// components/ApplyForm.tsx
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { createPortal } from "react-dom"; // Import createPortal
+import { createPortal } from "react-dom";
 import {
   FaTimes,
   FaUser,
   FaEnvelope,
-  FaLink,
   FaPhoneAlt,
   FaBriefcase,
   FaMapMarkerAlt,
-  FaCheck,
-  FaSpinner,
+  FaLink,
+  FaCheckCircle,
   FaArrowRight,
-  FaLock
+  FaRocket
 } from "react-icons/fa";
 
 interface ApplyFormProps {
@@ -26,7 +24,7 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const [mounted, setMounted] = useState(false); // New state to check if we are on client
+  const [mounted, setMounted] = useState(false);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -37,226 +35,273 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
     portfolio: ''
   });
 
-  // 1. Ensure code only runs on client-side to avoid hydration errors with Portals
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   useEffect(() => {
     if (isOpen) {
       setIsVisible(true);
-      document.body.style.overflow = "hidden";
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = "hidden";
+      }
     } else {
       const timer = setTimeout(() => {
         setIsVisible(false);
         setIsSubmitted(false);
         setIsLoading(false);
       }, 300);
-      document.body.style.overflow = "unset";
+      if (typeof document !== 'undefined') {
+        document.body.style.overflow = "unset";
+      }
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
       setIsSubmitted(true);
     }, 1500);
   };
 
-  // If not mounted or closed/invisible, render nothing
   if (!mounted || (!isVisible && !isOpen)) return null;
 
-  // 2. Use createPortal to teleport this Modal to document.body
-  // This bypasses all stacking contexts of the Footer or Parent components
   return createPortal(
-    <div className={`fixed inset-0 z-[999999] flex items-center justify-center px-4 transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}>
+    <div className={`fixed inset-0 z-[999999] flex items-center justify-center p-4 transition-all duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}>
       
-      {/* Backdrop */}
+      {/* Backdrop with Blur */}
       <div 
-        className="absolute inset-0 bg-gray-900/80 backdrop-blur-sm transition-all" 
+        className="absolute inset-0 bg-gray-900/60 backdrop-blur-md transition-all" 
         onClick={onClose}
       />
 
-      {/* Modal Card */}
+      {/* Main Modal Container */}
       <div 
-        className={`relative w-full max-w-2xl bg-white rounded-[2rem] shadow-2xl flex flex-col max-h-[85vh] transform transition-all duration-300 cubic-bezier(0.34, 1.56, 0.64, 1) ${
-          isOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-10"
+        className={`relative w-full max-w-5xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[700px] transform transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) ${
+          isOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-12"
         }`}
       >
         
-        {isSubmitted ? (
-          // ================= SUCCESS STATE =================
-          <div className="p-8 md:p-12 text-center flex flex-col items-center justify-center min-h-[400px]">
-            <div className="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mb-6 animate-bounce">
-              <FaCheck className="text-purple-600 text-3xl" />
+        {/* Close Button */}
+        <button 
+          onClick={onClose} 
+          className="absolute top-5 right-5 z-50 w-10 h-10 bg-white/10 hover:bg-black/5 backdrop-blur-md rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 transition-all duration-200"
+        >
+          <FaTimes size={18} />
+        </button>
+
+        {/* ---------------- LEFT PANEL (Branding) ---------------- */}
+        <div className="hidden md:flex w-[40%] bg-gradient-to-br from-purple-600 via-pink-600 to-pink-600 p-10 flex-col justify-between relative overflow-hidden text-white">
+            
+            <div className="absolute top-[-20%] right-[-20%] w-80 h-80 bg-white/20 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-[-10%] left-[-10%] w-60 h-60 bg-purple-900/20 rounded-full blur-3xl"></div>
+            
+            <div className="relative z-10 mt-4">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/20 backdrop-blur-md rounded-full border border-white/30 mb-8">
+                 <FaRocket className="text-yellow-300" />
+                 <span className="font-bold text-xs uppercase tracking-widest">Join The Team</span>
+              </div>
+              
+              <h2 className="text-5xl font-black leading-[1.1] mb-6">
+                Join the <br/>
+                <span className="text-white/90">Revolution.</span>
+              </h2>
+              <p className="text-purple-100 text-lg leading-relaxed font-medium">
+                Become part of Amravati's fastest-growing digital media powerhouse. We don't just create content; we create culture.
+              </p>
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Application Sent!</h3>
-            <p className="text-gray-600 mb-8 max-w-xs mx-auto">
-              We've received your details. Our creative team will review and contact you shortly.
-            </p>
-            <button 
-              onClick={onClose}
-              className="px-8 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded-xl transition-colors"
-            >
-              Close
-            </button>
-          </div>
-        ) : (
-          // ================= FORM STATE =================
-          <>
-            {/* Header */}
-            <div className="relative shrink-0 bg-gradient-to-r from-purple-600 to-pink-600 p-6 md:p-8 text-white text-center rounded-t-[2rem]">
-               <button 
-                 onClick={onClose} 
-                 className="absolute top-5 right-5 text-white/70 hover:text-white hover:rotate-90 transition-all p-2 bg-white/10 rounded-full z-10"
-               >
-                 <FaTimes size={16} />
-               </button>
-               <h3 className="text-xl md:text-2xl font-bold mb-1">Join the Team</h3>
-               <p className="text-purple-100 text-sm">Best of Amravati • Media</p>
-               
-               <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white text-gray-900 px-6 py-2 rounded-full font-extrabold shadow-lg border-4 border-purple-50 text-xs md:text-sm flex items-center gap-2 whitespace-nowrap z-20">
-                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Join Now
+
+            <div className="relative z-10 space-y-6">
+               <div className="p-5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20">
+                  <div className="flex -space-x-3 mb-3">
+                      {[1,2,3,4].map(i => (
+                       <div key={i} className={`w-8 h-8 rounded-full border-2 border-purple-500 bg-gray-200 flex items-center justify-center text-[10px] font-bold text-gray-600 bg-cover`} style={{backgroundImage: `url('https://i.pravatar.cc/100?img=${i + 10}')`}}></div>
+                      ))}
+                      <div className="w-8 h-8 rounded-full border-2 border-purple-500 bg-white flex items-center justify-center text-[10px] font-bold text-purple-600">+12</div>
+                  </div>
+                  <p className="text-sm font-semibold">Join 20+ Creatives & Strategists</p>
                </div>
             </div>
+        </div>
 
-            {/* Form Body */}
-            <div className="flex-1 overflow-y-auto custom-scrollbar p-6 pt-10 md:p-10 bg-white rounded-b-[2rem]">
-               <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
-                 
-                 {/* Row 1: Name & Email */}
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                   <div className="group">
-                     <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Full Name</label>
-                     <div className="relative flex items-center">
-                       <FaUser className="absolute left-4 text-purple-400" />
-                       <input 
-                         type="text" 
-                         name="name" 
-                         required 
-                         placeholder="John Doe"
-                         className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
-                         onChange={handleChange}
-                       />
-                     </div>
-                   </div>
-
-                   <div className="group">
-                     <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Email Address</label>
-                     <div className="relative flex items-center">
-                       <FaEnvelope className="absolute left-4 text-purple-400" />
-                       <input 
-                         type="email" 
-                         name="email" 
-                         required 
-                         placeholder="john@example.com"
-                         className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
-                         onChange={handleChange}
-                       />
-                     </div>
-                   </div>
-                 </div>
-
-                 {/* Row 2: Phone & Role */}
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                    <div className="group">
-                      <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Phone</label>
-                      <div className="relative flex items-center">
-                        <FaPhoneAlt className="absolute left-4 text-purple-400" />
-                        <input 
-                          type="tel" 
-                          name="phone" 
-                          required 
-                          placeholder="+91..."
-                          className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
-                          onChange={handleChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div className="group">
-                      <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Role</label>
-                      <div className="relative flex items-center">
-                        <FaBriefcase className="absolute left-4 text-purple-400 z-10" />
-                        <select 
-                          name="role" 
-                          required
-                          defaultValue=""
-                          className="w-full pl-10 pr-8 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base appearance-none cursor-pointer"
-                          onChange={handleChange}
-                        >
-                          <option value="" disabled>Select Role</option>
-                          <option value="video-editing">Video Editing</option>
-                          <option value="content-creation">Content Creation</option>
-                          <option value="social-media">Social Media</option>
-                        </select>
-                        <span className="absolute right-3 text-gray-400 text-xs pointer-events-none">▼</span>
-                      </div>
-                    </div>
-                 </div>
-
-                 {/* Address Input */}
-                 <div className="group">
-                   <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Current Address</label>
-                   <div className="relative flex items-center">
-                     <FaMapMarkerAlt className="absolute left-4 text-purple-400" />
-                     <input 
-                       type="text" 
-                       name="address" 
-                       placeholder="e.g. Rajapeth, Amravati"
-                       className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
-                       onChange={handleChange}
-                     />
-                   </div>
-                 </div>
-
-                 {/* Portfolio Link */}
-                 <div className="group">
-                   <label className="text-[10px] md:text-xs font-bold text-gray-500 uppercase ml-3 mb-1 block">Portfolio Link</label>
-                   <div className="relative flex items-center">
-                     <FaLink className="absolute left-4 text-purple-400" />
-                     <input 
-                       type="url" 
-                       name="portfolio" 
-                       placeholder="Instagram / Behance / Drive"
-                       className="w-full pl-10 pr-4 py-3 bg-gray-50/50 rounded-xl border border-gray-200 focus:bg-white focus:border-purple-500 focus:ring-4 focus:ring-purple-500/10 outline-none transition-all font-semibold text-gray-700 text-sm md:text-base"
-                       onChange={handleChange}
-                     />
-                   </div>
-                 </div>
-
-                 {/* Submit Button */}
-                 <button 
-                   type="submit" 
-                   disabled={isLoading}
-                   className="w-full mt-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-3 md:py-4 rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 text-sm md:text-base"
-                 >
-                   {isLoading ? (
-                     <><FaSpinner className="animate-spin" /> Sending...</>
-                   ) : (
-                     <><span>Submit Application</span> <FaArrowRight className="text-yellow-400" /></>
-                   )}
-                 </button>
-
-                 <div className="text-center pb-2">
-                   <p className="text-[10px] text-gray-400 font-medium flex items-center justify-center gap-1">
-                     <FaLock className="text-green-500" /> Secure Application via Best of Amravati
-                   </p>
-                 </div>
-
-               </form>
+        {/* ---------------- RIGHT PANEL (Form) ---------------- */}
+        <div className="w-full md:w-[60%] bg-white flex flex-col relative">
+          
+          {isSubmitted ? (
+            <div className="flex-1 flex flex-col items-center justify-center p-10 text-center">
+              <div className="w-24 h-24 bg-green-50 rounded-full flex items-center justify-center mb-6 shadow-sm ring-4 ring-green-50">
+                <FaCheckCircle className="text-green-500 text-5xl animate-bounce" />
+              </div>
+              <h3 className="text-3xl font-black text-gray-900 mb-3">Application Sent!</h3>
+              <p className="text-gray-500 max-w-sm mx-auto mb-8 text-lg">
+                Thanks, <span className="font-bold text-purple-600">{formData.name}</span>. Our team will review your profile and get back to you within 48 hours.
+              </p>
+              <button 
+                onClick={onClose}
+                className="px-10 py-4 bg-gray-900 text-white font-bold rounded-2xl hover:bg-gray-800 transition-all hover:scale-105 shadow-xl"
+              >
+                Back to Website
+              </button>
             </div>
-          </>
-        )}
+          ) : (
+            <div className="flex-1 overflow-y-auto p-6 md:p-12">
+              
+              <div className="md:hidden mb-8">
+                <h2 className="text-3xl font-black text-gray-900 mb-2">Apply Now</h2>
+                <p className="text-gray-500">Let's start your journey.</p>
+              </div>
+
+              <div className="mb-8 hidden md:block">
+                <h3 className="text-2xl font-bold text-gray-900">Your Details</h3>
+                <p className="text-gray-400 text-sm mt-1">Please fill out the form carefully.</p>
+              </div>
+
+              <form onSubmit={handleSubmit} className="space-y-6">
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="group space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1 group-focus-within:text-purple-600 transition-colors">Full Name</label>
+                    <div className="relative">
+                      <FaUser className="absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 group-focus-within:text-purple-500 transition-colors" />
+                      <input 
+                        type="text" 
+                        name="name" 
+                        required 
+                        placeholder="John Doe"
+                        className="w-full pl-11 pr-4 py-4 bg-gray-50 border-2 border-transparent focus:bg-white focus:border-purple-200 rounded-2xl outline-none transition-all shadow-sm font-semibold text-gray-800 placeholder-gray-300 focus:shadow-purple-100"
+                        onChange={handleChange}
+                        value={formData.name}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="group space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1 group-focus-within:text-purple-600 transition-colors">Email Address</label>
+                    <div className="relative">
+                      <FaEnvelope className="absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 group-focus-within:text-purple-500 transition-colors" />
+                      <input 
+                        type="email" 
+                        name="email" 
+                        required 
+                        placeholder="hello@example.com"
+                        className="w-full pl-11 pr-4 py-4 bg-gray-50 border-2 border-transparent focus:bg-white focus:border-purple-200 rounded-2xl outline-none transition-all shadow-sm font-semibold text-gray-800 placeholder-gray-300 focus:shadow-purple-100"
+                        onChange={handleChange}
+                        value={formData.email}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="group space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1 group-focus-within:text-purple-600 transition-colors">Phone Number</label>
+                    <div className="relative">
+                      <FaPhoneAlt className="absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 group-focus-within:text-purple-500 transition-colors" />
+                      <input 
+                        type="tel" 
+                        name="phone" 
+                        required 
+                        placeholder="+91 999..."
+                        className="w-full pl-11 pr-4 py-4 bg-gray-50 border-2 border-transparent focus:bg-white focus:border-purple-200 rounded-2xl outline-none transition-all shadow-sm font-semibold text-gray-800 placeholder-gray-300 focus:shadow-purple-100"
+                        onChange={handleChange}
+                        value={formData.phone}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="group space-y-2">
+                    <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1 group-focus-within:text-purple-600 transition-colors">Applying For</label>
+                    <div className="relative">
+                      <FaBriefcase className="absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 z-10 group-focus-within:text-purple-500 transition-colors" />
+                      <select 
+                        name="role" 
+                        required
+                        className="w-full pl-11 pr-8 py-4 bg-gray-50 border-2 border-transparent focus:bg-white focus:border-purple-200 rounded-2xl outline-none transition-all shadow-sm font-semibold text-gray-800 appearance-none cursor-pointer focus:shadow-purple-100"
+                        onChange={handleChange}
+                        value={formData.role}
+                      >
+                        <option value="" disabled>Select Position</option>
+                        <option value="video-creator">Video Creator</option>
+                        <option value="video-editor">Video Editor</option>
+                        <option value="script-writer">Script Writer</option>
+                        <option value="digital-marketing">Digital Marketing</option>
+                        <option value="graphic-designer">Graphic Designer</option>
+                        <option value="anchor">Anchor</option>
+                        <option value="voice-artist">Voice Artist</option>
+                      </select>
+                      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs pointer-events-none">▼</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="group space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1 group-focus-within:text-purple-600 transition-colors">Current Location</label>
+                  <div className="relative">
+                    <FaMapMarkerAlt className="absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 group-focus-within:text-purple-500 transition-colors" />
+                    <input 
+                      type="text" 
+                      name="address" 
+                      placeholder="e.g. Rajapeth, Amravati"
+                      className="w-full pl-11 pr-4 py-4 bg-gray-50 border-2 border-transparent focus:bg-white focus:border-purple-200 rounded-2xl outline-none transition-all shadow-sm font-semibold text-gray-800 placeholder-gray-300 focus:shadow-purple-100"
+                      onChange={handleChange}
+                      value={formData.address}
+                    />
+                  </div>
+                </div>
+
+                <div className="group space-y-2">
+                  <label className="text-xs font-bold text-gray-500 uppercase tracking-wider ml-1 group-focus-within:text-purple-600 transition-colors">Portfolio / Resume Link</label>
+                  <div className="relative">
+                    <FaLink className="absolute top-1/2 -translate-y-1/2 left-4 text-gray-400 group-focus-within:text-purple-500 transition-colors" />
+                    <input 
+                      type="url" 
+                      name="portfolio" 
+                      placeholder="https://behance.net/yourprofile"
+                      className="w-full pl-11 pr-4 py-4 bg-gray-50 border-2 border-transparent focus:bg-white focus:border-purple-200 rounded-2xl outline-none transition-all shadow-sm font-semibold text-gray-800 placeholder-gray-300 focus:shadow-purple-100"
+                      onChange={handleChange}
+                      value={formData.portfolio}
+                    />
+                  </div>
+                </div>
+
+                <div className="pt-4">
+                  <button 
+                    type="submit" 
+                    disabled={isLoading}
+                    className="group w-full bg-gradient-to-r from-purple-600 via-pink-600 to-pink-600 text-white font-black text-lg py-4 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-3 relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+
+                    {isLoading ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Sending...
+                      </span>
+                    ) : (
+                      <>
+                        <span className="relative z-10">Submit Application</span>
+                        <FaArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </form>
+            </div>
+          )}
+        </div>
       </div>
     </div>,
-    document.body // This is the key: we attach the modal to the body, not the footer!
+    document.body
   );
 }

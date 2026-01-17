@@ -29,6 +29,9 @@ import ApplyForm from '@/components/ApplyForm';
 import Chatbot from '@/components/Chatbot';
 import FloatingChatButton from '@/components/FloatingChatButton'; // 2. Import the button
 
+
+
+
 export default function Home() {
   // 3. Create state to control Chatbot visibility
   const [isChatOpen, setIsChatOpen] = useState(false);

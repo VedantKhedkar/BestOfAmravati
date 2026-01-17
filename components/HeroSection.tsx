@@ -24,15 +24,14 @@ import {
 const HeroSection = () => {
 
   const categories = [
-    // Updated first card to force two lines using JSX
-    { icon: <Store size={22} />, label: <>Local Business <br /> Listing</>, href: "#" },
-    { icon: <Video size={22} />, label: <>Content <br /> Production</>, href: "#" }, 
-    { icon: <Share2 size={22} />, label: <>Advertising &<br />Marketing</>, href: "" },
-    { icon: <TrendingUp size={22} />, label: <>Digital Growth <br /> Strategy</>, href: "#" },
-    { icon: <Handshake size={22} />, label: <>Business <br /> Collaboration</>, href: "#" },
-    { icon: <Megaphone size={22} />, label: <>Brand <br /> Awareness</>, href: "#" },
-    { icon: <Users size={22} />, label: <>Influencer <br /> Marketing</>, href: "#" },
-    { icon: <TrophyIcon size={22} />, label: <>Awards & <br /> Recognition</>, href: "#" },
+    { icon: <Store size={22} />, label: <>Local Business <br /> Listing</>, href: "localbusinesspromotion" },
+    { icon: <Video size={22} />, label: <>Content <br /> Production</>, href: "content-production" }, 
+    { icon: <Share2 size={22} />, label: <>Advertising &<br />Marketing</>, href: "media-handling" },
+    { icon: <TrendingUp size={22} />, label: <>Digital Growth <br /> Strategy</>, href: "digital-growth" },
+    { icon: <Handshake size={22} />, label: <>Business <br /> Collaboration</>, href: "business-colab" },
+    { icon: <Megaphone size={22} />, label: <>Brand <br /> Awareness</>, href: "brand-awareness" },
+    { icon: <Users size={22} />, label: <>Influencer <br /> Marketing</>, href: "influencer-marketing" },
+    { icon: <TrophyIcon size={22} />, label: <>Awards & <br /> Recognition</>, href: "awards-recognition" },
   ];
 
   const services = [
@@ -66,26 +65,32 @@ const HeroSection = () => {
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
         
+        {/* Background GIF Right */}
         <div className="absolute top-6 md:top-96 md:-right-[30rem] lg:-right-96 lg:top-6 opacity-10 animate-float-slow">
           <div className="w-[58rem] h-[120rem] md:w-[60rem] md:h-[80rem] lg:w-[44rem] lg:h-[72rem] relative">
             <Image 
               src="/bestofamravati.gif" 
               alt="Background Animation" 
               fill
-              className="object-contain"
               priority
+              loading="eager"
+              sizes="(max-width: 768px) 100vw, 60vw"
+              className="object-contain"
             />
           </div>
         </div>
         
+        {/* Background GIF Left */}
         <div className="absolute -left-24 md:-left-2/3 md:bottom-40 lg:-left-96 lg:bottom-6 opacity-10 animate-float-slow animation-delay-1000">
           <div className="w-44 h-80 sm:w-44 sm:h-80 md:w-[60rem] md:h-[110rem] lg:w-[44rem] lg:h-[72rem] relative">
             <Image 
               src="/bestofamravati.gif" 
               alt="Background Animation" 
               fill
-              className="object-contain"
               priority
+              loading="eager"
+              sizes="(max-width: 768px) 50vw, 40vw"
+              className="object-contain"
             />
           </div>
         </div>
@@ -103,6 +108,8 @@ const HeroSection = () => {
                 fill
                 className="object-cover transform group-hover:scale-105 transition-transform duration-500"
                 priority
+                loading="eager"
+                sizes="(max-width: 768px) 240px, 320px"
               />
             </div>
           </div>
@@ -176,21 +183,17 @@ const HeroSection = () => {
       </div>
 
         {/* --- GRID FOR CATEGORIES --- */}
-       <div className="w-full pt-2 mb-0 animate-fade-up animation-delay-1000">
+        <div className="w-full pt-2 mb-0 animate-fade-up animation-delay-1000">
   <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 py-6 max-w-full mx-auto px-4 md:px-8">
     {categories.map((cat, index) => (
       <Link key={index} href={cat.href} className="w-full h-full">
         <div
           className="group w-full h-full min-h-[140px] bg-white/80 backdrop-blur-md rounded-2xl shadow-sm hover:shadow-xl hover:shadow-purple-500/10 transition-all duration-300 cursor-pointer border border-pink-300 hover:border-purple-400 hover:-translate-y-1 hover:scale-105 flex flex-col justify-between p-4 text-left"
         >
-          {/* Icon Container */}
           <div className="text-purple-600 group-hover:text-pink-600 transition-colors transform group-hover:scale-110 duration-300 mb-2">
             {cat.icon}
           </div>
 
-          {/* Text Container */}
-          {/* REMOVED: h-14 */}
-          {/* ADDED: mt-auto (optional, but reinforces bottom position) */}
           <span className="text-xs sm:text-sm font-bold text-gray-700 leading-tight group-hover:text-purple-700 break-words block max-w-[120px]">
             {cat.label}
           </span>
@@ -208,12 +211,24 @@ const HeroSection = () => {
           
           <div className="absolute top-0 right-0 md:-right-20 opacity-20 animate-float-slow mix-blend-overlay">
             <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-              <Image src="/bestofamravati.gif" alt="Background Animation" fill className="object-contain" />
+              <Image 
+                src="/bestofamravati.gif" 
+                alt="Background Animation" 
+                fill 
+                className="object-contain" 
+                sizes="(max-width: 768px) 300px, 600px"
+              />
             </div>
           </div>
           <div className="absolute bottom-0 left-0 md:-left-20 opacity-20 animate-float-slow animation-delay-1000 mix-blend-overlay">
             <div className="w-[30rem] h-[30rem] md:w-[40rem] md:h-[40rem] relative">
-              <Image src="/bestofamravati.gif" alt="Background Animation" fill className="object-contain" />
+              <Image 
+                src="/bestofamravati.gif" 
+                alt="Background Animation" 
+                fill 
+                className="object-contain" 
+                sizes="(max-width: 768px) 300px, 600px"
+              />
             </div>
           </div>
         </div>

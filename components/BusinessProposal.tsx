@@ -301,7 +301,7 @@ export default function BusinessProposal() {
                         />
                       </div>
                       <label htmlFor="acceptedTerms" className="text-[11px] leading-tight font-bold text-purple-900 cursor-pointer select-none">
-                        I agree to the <Link href="/TermsPage#terms" className="text-pink-600 hover:underline decoration-pink-300 decoration-2 underline-offset-2">Terms & Conditions</Link> and <Link href="/TermsPage#privacy" className="text-pink-600 hover:underline decoration-pink-300 decoration-2 underline-offset-2">Privacy Policy</Link> of Best of Amravati.
+                        I agree to the <Link href="/terms" className="text-pink-600 hover:underline decoration-pink-300 decoration-2 underline-offset-2">Terms & Conditions</Link> and <Link href="/privacy" className="text-pink-600 hover:underline decoration-pink-300 decoration-2 underline-offset-2">Privacy Policy</Link> of Best of Amravati.
                       </label>
                     </div>
 
