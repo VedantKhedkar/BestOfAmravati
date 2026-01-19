@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Chatbot from '@/components/Chatbotv';
+import Chatbot from '@/components/Chatbot';
 
 export const metadata: Metadata = {
   title: 'Best Of Amravati',
