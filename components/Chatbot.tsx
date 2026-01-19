@@ -2190,14 +2190,14 @@ Amravati, Maharashtra
       </Drawer>
 
       {/* Apply Form Component */}
-      {/* {showApplicationForm && (
+      {showApplicationForm && (
         <ApplyForm
           isOpen={showApplicationForm}
           onClose={() => setShowApplicationForm(false)}
           onSuccess={handleFormSubmitted}
           userName={userName}
         />
-      )} */}
+      )}
 
       {/* Success Popup Dialog */}
       <Dialog

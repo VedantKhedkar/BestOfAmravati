@@ -15,25 +15,44 @@ import {
   FaRocket
 } from "react-icons/fa";
 
+// Defined the shape of the form data for better type safety
+interface ApplicationFormData {
+  name: string;
+  email: string;
+  phone: string;
+  role: string;
+  address: string;
+  portfolio: string;
+}
+
 interface ApplyFormProps {
   isOpen: boolean;
   onClose: () => void;
+  onSuccess?: (data: ApplicationFormData) => void;
+  userName?: string;
 }
 
-export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
+export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: ApplyFormProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  const [formData, setFormData] = useState({
-    name: '',
+  const [formData, setFormData] = useState<ApplicationFormData>({
+    name: userName || '',
     email: '',
     phone: '',
     role: '',
     address: '',
     portfolio: ''
   });
+
+  // Update name if userName prop changes
+  useEffect(() => {
+    if (userName) {
+      setFormData(prev => ({ ...prev, name: userName }));
+    }
+  }, [userName]);
 
   useEffect(() => {
     setMounted(true);
@@ -65,10 +84,16 @@ export default function ApplyForm({ isOpen, onClose }: ApplyFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    
     // Simulate API call
     setTimeout(() => {
       setIsLoading(false);
       setIsSubmitted(true);
+      
+      // Call the onSuccess callback passed from the parent
+      if (onSuccess) {
+        onSuccess(formData);
+      }
     }, 1500);
   };
 
