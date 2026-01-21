@@ -11,11 +11,11 @@ import {
   Chip,
   Dialog,
   DialogContent,
+  DialogActions,
   InputAdornment,
   Select,
   MenuItem,
   FormControl,
-  DialogActions,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
@@ -276,6 +276,36 @@ interface ApplicationFormData {
   portfolio: string;
 }
 
+// Function to save lead to database
+const saveLeadToDatabase = async (name: string, profession: string, mobile: string) => {
+  try {
+    const response = await fetch('/api/leads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        profession,
+        mobile,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log('✅ Lead saved successfully:', data);
+      return { success: true, data };
+    } else {
+      console.error('❌ Failed to save lead:', data.error);
+      return { success: false, error: data.error };
+    }
+  } catch (error) {
+    console.error('❌ Error saving lead:', error);
+    return { success: false, error: 'Network error' };
+  }
+};
+
 export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [userName, setUserName] = useState<string>("");
@@ -450,7 +480,7 @@ Amravati, Maharashtra
     }
   };
 
-  const sendMessage = () => {
+  const sendMessage = async () => {
     if (!inputMessage.trim()) return;
 
     const currentInput = inputMessage.trim();
@@ -495,16 +525,28 @@ Amravati, Maharashtra
         setInputMessage("");
         setIsLoading(true);
 
+        // Save lead to database
+        const result = await saveLeadToDatabase(userName, userProfession, currentInput);
+
         setTimeout(() => {
-          // CHANGE 1: For Local Audience, use "customer support", for others use "business consultant"
           const teamName =
             userProfession === "Local Audience"
               ? "customer support"
               : "business consultant";
 
+          let responseMessage = `✅ Thank You ${userName}! `;
+          
+          if (result.success) {
+            responseMessage += `Your details have been saved successfully.\n\n📋 **Your Information:**\n• Name: ${userName}\n• Profession: ${userProfession}\n• Mobile: ${currentInput}\n\n`;
+          } else {
+            responseMessage += `Your details have been submitted.\n\n`;
+          }
+          
+          responseMessage += `Our ${teamName} team will contact you soon.`;
+
           const botMsg: Message = {
             id: messages.length + 2,
-            text: `Thank You ${userName} ! your details has been submitted successfully our ${teamName} team will contact you soon.`,
+            text: responseMessage,
             sender: "bot",
             timestamp: new Date().toLocaleTimeString([], {
               hour: "2-digit",
@@ -567,7 +609,6 @@ Amravati, Maharashtra
 
         // If it's a service query and mobile hasn't been asked yet
         if (isServiceQuery && !hasAskedForMobile) {
-          // CHANGE 2: For Local Audience, use "customer support", for others use "business consultant"
           const teamName =
             userProfession === "Local Audience"
               ? "customer support"
@@ -714,7 +755,6 @@ Amravati, Maharashtra
       ) {
         // Ask for mobile number immediately
         setTimeout(() => {
-          // CHANGE 3: For Local Audience, use "customer support", for others use "business consultant"
           const teamName =
             userProfession === "Local Audience"
               ? "customer support"
@@ -722,10 +762,7 @@ Amravati, Maharashtra
           const responses = personalizedResponses(userName, userProfession);
           const mobileMsg: Message = {
             id: messages.length + 3,
-            text: `📱 **Let's get in touch!**\n\n${responses.mobilePrompt.replace(
-              "business consultant",
-              teamName
-            )}`,
+            text: `📱 **Let's get in touch!**\n\nPlease share your mobile number.\n\n✅ Your information will be saved securely:\n• Name: ${userName}\n• Profession: ${userProfession}\n\nOur ${teamName} team will contact you soon.`,
             sender: "bot",
             timestamp: new Date().toLocaleTimeString([], {
               hour: "2-digit",

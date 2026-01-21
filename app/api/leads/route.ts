@@ -1,34 +1,82 @@
-import dbConnect from "@/lib/mongodb"; // Ensure path is correct
-import Lead from "@/models/Lead";
-import { NextResponse } from "next/server";
+// app/api/leads/route.ts
+import { NextRequest, NextResponse } from 'next/server';
+import { MongoClient } from 'mongodb';
 
-export const dynamic = 'force-dynamic';
+const MONGODB_URI = process.env.MONGODB_URI!;
+const DB_NAME = process.env.MONGODB_DB!;
 
-export async function POST(req: Request) {
+export async function POST(request: NextRequest) {
   try {
-    await dbConnect(); // Establishes connection to MongoDB Atlas
-    const body = await req.json();
-    
-    // Check if the required chatbot fields are present
-    const { name, mobile, profession } = body;
-    if (!name || !mobile || !profession) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    const body = await request.json();
+    const { name, profession, mobile } = body;
+
+    // Validate required fields
+    if (!name || !profession || !mobile) {
+      return NextResponse.json(
+        { error: 'Name, profession, and mobile are required' },
+        { status: 400 }
+      );
     }
 
-    const newLead = await Lead.create(body);
-    return NextResponse.json({ success: true, data: newLead }, { status: 201 });
-  } catch (error: any) {
-    console.error("Database Save Error:", error.message);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
-  }
-}
+    // Validate mobile number format (10 digits)
+    const mobileRegex = /^[6-9]\d{9}$/;
+    if (!mobileRegex.test(mobile)) {
+      return NextResponse.json(
+        { error: 'Invalid mobile number format' },
+        { status: 400 }
+      );
+    }
 
-export async function GET() {
-  try {
-    await dbConnect();
-    const leads = await Lead.find({}).sort({ createdAt: -1 });
-    return NextResponse.json(leads);
+    // Connect to MongoDB
+    const client = await MongoClient.connect(MONGODB_URI);
+    const db = client.db(DB_NAME);
+
+    // Check if lead with same mobile already exists
+    const existingLead = await db
+      .collection('leads')
+      .findOne({ mobile });
+
+    if (existingLead) {
+      await client.close();
+      return NextResponse.json(
+        { message: 'Lead already exists', lead: existingLead },
+        { status: 200 }
+      );
+    }
+
+    // Create new lead document
+    const leadData = {
+      name,
+      profession,
+      mobile,
+      timestamp: new Date().toISOString(),
+      source: 'chatbot',
+      status: 'new',
+      contacted: false,
+      notes: [],
+    };
+
+    // Insert into leads collection
+    const result = await db
+      .collection('leads')
+      .insertOne(leadData);
+
+    await client.close();
+
+    return NextResponse.json(
+      {
+        message: 'Lead saved successfully',
+        leadId: result.insertedId,
+        lead: leadData,
+      },
+      { status: 201 }
+    );
+
   } catch (error) {
-    return NextResponse.json({ error: "Failed to fetch leads" }, { status: 500 });
+    console.error('Error saving lead:', error);
+    return NextResponse.json(
+      { error: 'Failed to save lead' },
+      { status: 500 }
+    );
   }
 }
