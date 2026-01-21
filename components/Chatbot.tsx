@@ -57,7 +57,7 @@ import BadgeIcon from "@mui/icons-material/Badge";
 
 // Use relative path to go UP one level then into app folder
 import { getAIResponse } from "@/app/utllis/aiResponses";
-import { Message } from "../app/types";
+import { Message } from "../types";
 import ApplyForm from "./ApplyForm"; // Import the ApplyForm component
 
 interface ChatbotProps {

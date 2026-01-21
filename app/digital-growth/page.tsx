@@ -155,79 +155,86 @@ export default function DigitalGrowthPR() {
         {/* =========================== */}
         {/* STRATEGIC PILLARS */}
         {/* =========================== */}
-        <section className="py-24 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+       <section className="py-24 relative">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <motion.div
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="whileInView"
+      className="text-center mb-20"
+    >
+      <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6">
+        <BrainCircuit className="text-purple-600" size={18} />
+        <span className="text-sm font-bold text-purple-600">STRATEGIC PILLARS</span>
+      </div>
 
-            <motion.div
-              variants={fadeInUp}
-              initial="initial"
-              whileInView="whileInView"
-              className="text-center mb-20"
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 rounded-full mb-6">
-                <BrainCircuit className="text-purple-600" size={18} />
-                <span className="text-sm font-bold text-purple-600">STRATEGIC PILLARS</span>
-              </div>
+      <h2 className="text-4xl md:text-5xl font-black text-gray-900">
+        The Four Pillars of <br />
+        <span className="bg-gradient-to-r text-5xl md:text-6xl from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          Next-Gen Growth
+        </span>
+      </h2>
+    </motion.div>
 
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900">
-                The Four Pillars of  
-                <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Next-Gen Growth
-                </span>
-              </h2>
-            </motion.div>
+    <motion.div
+      variants={staggerContainer}
+      initial="initial"
+      whileInView="whileInView"
+      className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+    >
+      {[
+        {
+          icon: Target,
+          title: "Precision Targeting",
+          desc: "AI-powered persona detection and audience segmentation",
+          stat: "92% Accuracy",
+        },
+        {
+          icon: Zap,
+          title: "Velocity Deployment",
+          desc: "Faster content-to-distribution pipelines with algorithmic optimization",
+          stat: "3.2x Faster",
+        },
+        {
+          icon: ShieldCheck,
+          title: "Trust Engineering",
+          desc: "Narrative design, PR placement, and credibility frameworks",
+          stat: "71% Trust Lift",
+        },
+        {
+          icon: TrendingUp,
+          title: "Exponential Scaling",
+          desc: "Automated growth loops and performance ecosystems",
+          stat: "412% Growth",
+        },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          variants={scaleIn}
+          // Changed to flex flex-col and text-left
+          className="group bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500 flex flex-col text-left h-full"
+        >
+          {/* Top content container */}
+          <div className="flex-1">
+            <div className="w-16 h-16 p-3 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 mb-6 flex items-center justify-center">
+              <item.icon className="text-white" size={28} />
+            </div>
 
-            <motion.div
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="whileInView"
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
-            >
-              {[ 
-                {
-                  icon: Target,
-                  title: "Precision Targeting",
-                  desc: "AI-powered persona detection and audience segmentation",
-                  stat: "92% Accuracy",
-                },
-                {
-                  icon: Zap,
-                  title: "Velocity Deployment",
-                  desc: "Faster content-to-distribution pipelines with algorithmic optimization",
-                  stat: "3.2x Faster",
-                },
-                {
-                  icon: ShieldCheck,
-                  title: "Trust Engineering",
-                  desc: "Narrative design, PR placement, and credibility frameworks",
-                  stat: "71% Trust Lift",
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Exponential Scaling",
-                  desc: "Automated growth loops and performance ecosystems",
-                  stat: "412% Growth",
-                },
-              ].map((item, i) => (
-                <motion.div  
-                  key={i}
-                  variants={scaleIn}
-                  className="group bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl p-8 hover:shadow-2xl hover:shadow-purple-500/20 transition-all duration-500"
-                >
-                  <div className="w-16 h-16 p-3 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 mb-6">
-                    <item.icon className="text-white" size={28} />
-                  </div>
-
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{item.desc}</p>
-                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-bold text-sm">
-                    {item.stat}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+            <p className="text-sm text-gray-600 mb-6">{item.desc}</p>
           </div>
-        </section>
+
+          {/* Bottom stat container */}
+          <div className="mt-auto">
+            <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-bold text-sm">
+              {item.stat}
+            </span>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</section>
 {/* =========================== */}
 
 
