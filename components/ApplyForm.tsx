@@ -79,13 +79,12 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // --- UPDATED SUBMISSION LOGIC ---
+  // --- CORRECT LIVE SUBMISSION FUNCTION ---
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
     try {
-      // Connect to your live Next.js API
       const response = await fetch("/api/join-team", {
         method: "POST",
         headers: {
@@ -102,7 +101,7 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
           onSuccess(formData);
         }
       } else {
-        // Correctly handle server-side errors
+        // Correctly handle server-side validation or connection errors
         console.error("Submission failed:", result.error);
         alert(result.error || "Submission failed. Please check all fields.");
       }
@@ -119,17 +118,20 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
   return createPortal(
     <div className={`fixed inset-0 z-[999999] flex items-center justify-center p-4 transition-all duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}>
       
+      {/* Backdrop with Blur */}
       <div 
         className="absolute inset-0 bg-gray-900/60 backdrop-blur-md transition-all" 
         onClick={onClose}
       />
 
+      {/* Main Modal Container */}
       <div 
         className={`relative w-full max-w-5xl bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[700px] transform transition-all duration-500 cubic-bezier(0.34, 1.56, 0.64, 1) ${
           isOpen ? "scale-100 translate-y-0" : "scale-95 translate-y-12"
         }`}
       >
         
+        {/* Close Button */}
         <button 
           onClick={onClose} 
           className="absolute top-5 right-5 z-50 w-10 h-10 bg-white/10 hover:bg-black/5 backdrop-blur-md rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 transition-all duration-200"
@@ -137,6 +139,7 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
           <FaTimes size={18} />
         </button>
 
+        {/* ---------------- LEFT PANEL (Branding) ---------------- */}
         <div className="hidden md:flex w-[40%] bg-gradient-to-br from-purple-600 via-pink-600 to-pink-600 p-10 flex-col justify-between relative overflow-hidden text-white">
             <div className="absolute top-[-20%] right-[-20%] w-80 h-80 bg-white/20 rounded-full blur-3xl"></div>
             <div className="absolute bottom-[-10%] left-[-10%] w-60 h-60 bg-purple-900/20 rounded-full blur-3xl"></div>
@@ -169,6 +172,7 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
             </div>
         </div>
 
+        {/* ---------------- RIGHT PANEL (Form) ---------------- */}
         <div className="w-full md:w-[60%] bg-white flex flex-col relative">
           
           {isSubmitted ? (
