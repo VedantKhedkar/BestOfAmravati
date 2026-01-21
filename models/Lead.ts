@@ -19,5 +19,5 @@ const LeadSchema = new Schema<ILead>(
 );
 
 // Fix for "has no default export" error
-const Lead = models.Lead || model<ILead>("Lead", leadSchema);
+const Lead = models.Lead || model<ILead>("Lead", LeadSchema);
 export default Lead;
