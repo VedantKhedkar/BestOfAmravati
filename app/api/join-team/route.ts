@@ -1,32 +1,19 @@
-import connectDB from '@/lib/mongodb';
-import Application from '@/models/Application';
-import { NextResponse } from 'next/server';
+import dbConnect from "@/lib/mongodb"; // Ensure this matches your file name in 'lib'
+import Booking from "@/models/Booking";
+import { NextResponse } from "next/server";
 
 export async function POST(req: Request) {
   try {
-    // 1. Establish database connection
-    await connectDB();
-    
-    // 2. Parse the incoming form data
+    await dbConnect();
     const body = await req.json();
     
-    // 3. Create the entry in MongoDB
-    const newEntry = await Application.create(body);
+    // Validate that data is arriving
+    console.log("Incoming Data:", body);
 
-    return NextResponse.json({ success: true, data: newEntry }, { status: 201 });
+    const newBooking = await Booking.create(body);
+    return NextResponse.json({ success: true, data: newBooking }, { status: 201 });
   } catch (error: any) {
-    console.error("Submission Error:", error);
+    console.error("Database Error:", error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
-  }
-}
-
-// GET route for the Dashboard to see these entries
-export async function GET() {
-  try {
-    await connectDB();
-    const data = await Application.find({}).sort({ createdAt: -1 });
-    return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json({ error: "Fetch failed" }, { status: 500 });
   }
 }

@@ -1,5 +1,5 @@
 import mongoose, { Schema, model, models } from "mongoose";
-import { IApplication } from "../types";
+import { IApplication } from "@/types";
 
 const ApplicationSchema = new Schema<IApplication>({
   name: { type: String, required: true },
@@ -11,4 +11,6 @@ const ApplicationSchema = new Schema<IApplication>({
   status: { type: String, default: "New" },
 }, { timestamps: true });
 
-export default models.Application || model<IApplication>("Application", ApplicationSchema);
+const Application = models.Application || model<IApplication>("Application", ApplicationSchema);
+
+export default Application; // Added default export

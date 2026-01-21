@@ -1,5 +1,5 @@
 import mongoose, { Schema, model, models } from "mongoose";
-import { IBooking } from "../types";
+import { IBooking } from "@/types";
 
 const BookingSchema = new Schema<IBooking>({
   businessName: { type: String, required: true },
@@ -9,4 +9,7 @@ const BookingSchema = new Schema<IBooking>({
   status: { type: String, default: "PAID" },
 }, { timestamps: true });
 
-export default models.Booking || model<IBooking>("Booking", BookingSchema);
+// Check if model exists before creating to prevent overwrite errors in development
+const Booking = models.Booking || model<IBooking>("Booking", BookingSchema);
+
+export default Booking; // This line fixes the "no default export" error
