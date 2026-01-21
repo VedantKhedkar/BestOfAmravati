@@ -450,6 +450,29 @@ Amravati, Maharashtra
     }
   };
 
+  // --- DATABASE SYNC: Save Lead to MongoDB ---
+  const saveLeadToDb = async (mobileNumber: string) => {
+    try {
+      // Connects to your Next.js API route
+      const response = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: userName,           // Collected in Stage 1
+          profession: userProfession, // Selected via Chip
+          mobile: mobileNumber,      // Captured in Stage 2
+          source: "chatbot"         // Default source
+        }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Failed to save lead");
+      console.log("Lead captured in DB:", data);
+    } catch (error) {
+      console.error("Critical Database Error:", error);
+    }
+  };
+
   const sendMessage = () => {
     if (!inputMessage.trim()) return;
 

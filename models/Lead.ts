@@ -5,7 +5,7 @@ export interface ILead {
   mobile: string;
   profession: string;
   source?: string;
-  status?: string; // Added for dashboard tracking
+  status?: string;
   createdAt?: Date;
 }
 
@@ -15,11 +15,11 @@ const LeadSchema = new Schema<ILead>(
     mobile: { type: String, required: true },
     profession: { type: String, required: true },
     source: { type: String, default: "chatbot" },
-    status: { type: String, default: "New" }, // Default status for new leads
+    status: { type: String, default: "New" },
   },
   { timestamps: true }
 );
 
-// Prevents re-compilation errors in Next.js development
+// This ensures the model is exported as a default to prevent import errors
 const Lead = models.Lead || model<ILead>("Lead", LeadSchema);
 export default Lead;
