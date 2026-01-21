@@ -15,7 +15,6 @@ import {
   FaRocket
 } from "react-icons/fa";
 
-// Defined the shape of the form data for better type safety
 interface ApplicationFormData {
   name: string;
   email: string;
@@ -47,7 +46,6 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
     portfolio: ''
   });
 
-  // Update name if userName prop changes
   useEffect(() => {
     if (userName) {
       setFormData(prev => ({ ...prev, name: userName }));
@@ -81,20 +79,40 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // --- UPDATED SUBMISSION LOGIC ---
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSubmitted(true);
-      
-      // Call the onSuccess callback passed from the parent
-      if (onSuccess) {
-        onSuccess(formData);
+    try {
+      // API call to Next.js route
+      const response = await fetch("/api/join-team", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        // Call the onSuccess callback if provided
+        if (onSuccess) {
+          onSuccess(formData);
+        }
+      } else {
+        // Handle server-side validation or connection errors
+        console.error("Submission failed:", result.error);
+        alert(result.error || "Something went wrong. Please try again.");
       }
-    }, 1500);
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Network error. Please check your connection to the server.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   if (!mounted || (!isVisible && !isOpen)) return null;
@@ -125,7 +143,6 @@ export default function ApplyForm({ isOpen, onClose, onSuccess, userName }: Appl
 
         {/* ---------------- LEFT PANEL (Branding) ---------------- */}
         <div className="hidden md:flex w-[40%] bg-gradient-to-br from-purple-600 via-pink-600 to-pink-600 p-10 flex-col justify-between relative overflow-hidden text-white">
-            
             <div className="absolute top-[-20%] right-[-20%] w-80 h-80 bg-white/20 rounded-full blur-3xl"></div>
             <div className="absolute bottom-[-10%] left-[-10%] w-60 h-60 bg-purple-900/20 rounded-full blur-3xl"></div>
             

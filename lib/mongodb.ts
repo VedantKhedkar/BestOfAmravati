@@ -6,7 +6,6 @@ if (!MONGODB_URI) {
   throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
 }
 
-// Global variable to maintain a cached connection across hot reloads in development
 let cached = (global as any).mongoose;
 
 if (!cached) {
@@ -19,17 +18,11 @@ async function dbConnect() {
   if (!cached.promise) {
     const opts = { bufferCommands: false };
     cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
-      console.log('MongoDB Connected');
+      console.log('--- MongoDB Connected ---');
       return mongoose;
     });
   }
-  
-  try {
-    cached.conn = await cached.promise;
-  } catch (e) {
-    cached.promise = null;
-    throw e;
-  }
+  cached.conn = await cached.promise;
   return cached.conn;
 }
 
