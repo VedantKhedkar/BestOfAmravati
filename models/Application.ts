@@ -11,6 +11,7 @@ const ApplicationSchema = new Schema<IApplication>({
   status: { type: String, default: "New" },
 }, { timestamps: true });
 
+// Ensure it uses the Application model, not Booking
 const Application = models.Application || model<IApplication>("Application", ApplicationSchema);
 
-export default Application; // Added default export
+export default Application;
