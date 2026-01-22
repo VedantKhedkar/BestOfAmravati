@@ -572,7 +572,7 @@ Amravati, Maharashtra
           let responseMessage = `✅ Thank You ${userName}! `;
           
           if (result.success) {
-            responseMessage += `Your details have been submitted successfully. our buisness consultant team will contact you soon.\n\n`;
+            responseMessage += `Your details have been submitted successfully.\n\n`;
             // Show success notification
             showNotification('Thank You!', 'success');
           } else {
