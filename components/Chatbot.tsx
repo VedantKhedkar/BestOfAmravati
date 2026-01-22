@@ -569,7 +569,7 @@ Amravati, Maharashtra
               ? "customer support"
               : "business consultant";
 
-          let responseMessage = `✅ Thank You ${userName}! your details has been submitted successfully our buisness consultant team will contact you soon. `;
+          let responseMessage = `✅ Thank You ${userName}! your details has been submitted successfully our buisness consultant team will contact you soon.`;
           
          
          
