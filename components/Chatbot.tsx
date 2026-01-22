@@ -16,6 +16,8 @@ import {
   Select,
   MenuItem,
   FormControl,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import SendIcon from "@mui/icons-material/Send";
@@ -276,33 +278,56 @@ interface ApplicationFormData {
   portfolio: string;
 }
 
-// Function to save lead to database
+// Enhanced Function to save lead to database with better error handling
 const saveLeadToDatabase = async (name: string, profession: string, mobile: string) => {
   try {
+    // Get current date and time
+    const now = new Date();
+    const formattedDate = now.toISOString().split('T')[0];
+    const formattedTime = now.toTimeString().split(' ')[0];
+
+    // Prepare lead data
+    const leadData = {
+      name,
+      profession,
+      mobile,
+      date: formattedDate,
+      time: formattedTime,
+      timestamp: now.toISOString(),
+      status: 'new',
+      source: 'chatbot'
+    };
+
+    console.log('📤 Sending lead data:', leadData);
+
     const response = await fetch('/api/leads', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        name,
-        profession,
-        mobile,
-      }),
+      body: JSON.stringify(leadData),
     });
 
     const data = await response.json();
 
     if (response.ok) {
       console.log('✅ Lead saved successfully:', data);
-      return { success: true, data };
+      return { success: true, data, message: 'Lead saved successfully!' };
     } else {
       console.error('❌ Failed to save lead:', data.error);
-      return { success: false, error: data.error };
+      return { 
+        success: false, 
+        error: data.error || 'Failed to save lead',
+        message: data.message || 'Failed to save your details. Please try again.'
+      };
     }
   } catch (error) {
     console.error('❌ Error saving lead:', error);
-    return { success: false, error: 'Network error' };
+    return { 
+      success: false, 
+      error: 'Network error',
+      message: 'Network error. Please check your connection and try again.'
+    };
   }
 };
 
@@ -338,10 +363,24 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
   const [clickedButtons, setClickedButtons] = useState<Set<number>>(new Set());
   const [hasAskedForMobile, setHasAskedForMobile] = useState(false);
   const [hasSubmittedMobile, setHasSubmittedMobile] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    severity: 'success' as 'success' | 'error' | 'info' | 'warning'
+  });
 
   // Form submission state
   const [isFormLoading, setIsFormLoading] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
+
+  // Show snackbar notification
+  const showNotification = (message: string, severity: 'success' | 'error' | 'info' | 'warning') => {
+    setSnackbar({
+      open: true,
+      message,
+      severity
+    });
+  };
 
   // Ask for name on initial load
   useEffect(() => {
@@ -537,9 +576,14 @@ Amravati, Maharashtra
           let responseMessage = `✅ Thank You ${userName}! `;
           
           if (result.success) {
-            responseMessage += `Your details have been saved successfully.\n\n📋 **Your Information:**\n• Name: ${userName}\n• Profession: ${userProfession}\n• Mobile: ${currentInput}\n\n`;
+            responseMessage += `Your details have been saved successfully.\n\n📋 **Your Information:**\n• Name: ${userName}\n• Profession: ${userProfession}\n• Mobile: ${currentInput}\n• Status: ✅ Saved to database\n\n`;
+            // Show success notification
+            showNotification('Lead saved successfully!', 'success');
           } else {
-            responseMessage += `Your details have been submitted.\n\n`;
+            responseMessage += `We received your details but there was an issue saving them to our system.\n\n`;
+            responseMessage += `**Note:** ${result.message}\n\n`;
+            // Show error notification
+            showNotification(result.message || 'Failed to save lead', 'error');
           }
           
           responseMessage += `Our ${teamName} team will contact you soon.`;
@@ -2474,6 +2518,28 @@ Amravati, Maharashtra
           />
         </Box>
       </Dialog>
+
+      {/* Snackbar for notifications */}
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={() => setSnackbar({ ...snackbar, open: false })}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+      >
+        <Alert
+          onClose={() => setSnackbar({ ...snackbar, open: false })}
+          severity={snackbar.severity}
+          sx={{
+            width: '100%',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
+            border: '1px solid rgba(255, 255, 255, 0.2)',
+            backdropFilter: 'blur(10px)',
+            borderRadius: '12px',
+          }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </>
   );
 }
