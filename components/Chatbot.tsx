@@ -172,7 +172,7 @@ const businessOwnerQuestions: QuickQuestion[] = [
   },
 ];
 
-// Quick questions for Content Creators - MODIFIED: Shows roles as bullet points
+// Quick questions for Content Creators - MODIFIED: Shows roles as bullet points 
 const contentCreatorQuestions: QuickQuestion[] = [
   {
     id: 1,
@@ -311,7 +311,7 @@ const saveLeadToDatabase = async (name: string, profession: string, mobile: stri
     const data = await response.json();
 
     if (response.ok) {
-      console.log('✅ Lead saved successfully:', data);
+      console.log('✅ Thank You:', data);
       return { success: true, data, message: 'Lead saved successfully!' };
     } else {
       console.error('❌ Failed to save lead:', data.error);
@@ -576,9 +576,9 @@ Amravati, Maharashtra
           let responseMessage = `✅ Thank You ${userName}! `;
           
           if (result.success) {
-            responseMessage += `Your details have been saved successfully.\n\n📋 **Your Information:**\n• Name: ${userName}\n• Profession: ${userProfession}\n• Mobile: ${currentInput}\n• Status: ✅ Saved to database\n\n`;
+            responseMessage += `Your details have been submitted successfully. our buisness consultant team will contact you soon.\n\n`;
             // Show success notification
-            showNotification('Lead saved successfully!', 'success');
+            showNotification('Thank You!', 'success');
           } else {
             responseMessage += `We received your details but there was an issue saving them to our system.\n\n`;
             responseMessage += `**Note:** ${result.message}\n\n`;
@@ -806,7 +806,7 @@ Amravati, Maharashtra
           const responses = personalizedResponses(userName, userProfession);
           const mobileMsg: Message = {
             id: messages.length + 3,
-            text: `📱 **Let's get in touch!**\n\nPlease share your mobile number.\n\n✅ Your information will be saved securely:\n• Name: ${userName}\n• Profession: ${userProfession}\n\nOur ${teamName} team will contact you soon.`,
+            text: `📱 **Let's get in touch!**\n\nPlease share your mobile number.\n\nOur ${teamName} team will contact you soon.`,
             sender: "bot",
             timestamp: new Date().toLocaleTimeString([], {
               hour: "2-digit",
