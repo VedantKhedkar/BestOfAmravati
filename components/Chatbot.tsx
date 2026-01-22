@@ -458,10 +458,6 @@ export default function Chatbot({ isOpen, onClose }: ChatbotProps) {
 • WhatsApp: 89567 27311
 • Email: contact@bestofamravati.com
 
-⏰ Availability
-• Monday to Saturday
-• 10:00 AM - 7:00 PM
-• Sunday: 11:00 AM - 5:00 PM
 
 📍 Office Address
 Behind Delhi Public School
@@ -586,7 +582,7 @@ Amravati, Maharashtra
             showNotification(result.message || 'Failed to save lead', 'error');
           }
           
-          responseMessage += `Our ${teamName} team will contact you soon.`;
+         
 
           const botMsg: Message = {
             id: messages.length + 2,
@@ -806,7 +802,7 @@ Amravati, Maharashtra
           const responses = personalizedResponses(userName, userProfession);
           const mobileMsg: Message = {
             id: messages.length + 3,
-            text: `📱 **Let's get in touch!**\n\nPlease share your mobile number.\n\nOur ${teamName} team will contact you soon.`,
+            text: `📱 **Let's get in touch!**\n\nPlease share your mobile number.Our ${teamName} team will contact you soon.`,
             sender: "bot",
             timestamp: new Date().toLocaleTimeString([], {
               hour: "2-digit",
