@@ -569,19 +569,9 @@ Amravati, Maharashtra
               ? "customer support"
               : "business consultant";
 
-          let responseMessage = `✅ Thank You ${userName}! `;
+          let responseMessage = `✅ Thank You ${userName}! your details has been submitted successfully our buisness consultant team will contact you soon. `;
           
-          if (result.success) {
-            responseMessage += `Your details have been submitted successfully.\n\n`;
-            // Show success notification
-            showNotification('Thank You!', 'success');
-          } else {
-            responseMessage += `We received your details but there was an issue saving them to our system.\n\n`;
-            responseMessage += `**Note:** ${result.message}\n\n`;
-            // Show error notification
-            showNotification(result.message || 'Failed to save lead', 'error');
-          }
-          
+         
          
 
           const botMsg: Message = {
