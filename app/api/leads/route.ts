@@ -186,3 +186,53 @@ export async function GET(request: NextRequest) {
     );
   }
 }
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    await connectToDatabase();
+    const { id } = params;
+
+    if (!id) {
+      return NextResponse.json({ error: 'Lead ID is required' }, { status: 400 });
+    }
+
+    const deletedLead = await Lead.findByIdAndDelete(id);
+
+    if (!deletedLead) {
+      return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ message: 'Lead deleted successfully' }, { status: 200 });
+  } catch (error: any) {
+    console.error('Error deleting lead:', error);
+    return NextResponse.json({ error: 'Failed to delete lead', details: error.message }, { status: 500 });
+  }
+}
+
+// --- PATCH LOGIC (For Status Updates) ---
+export async function PATCH(
+    request: NextRequest,
+    { params }: { params: { id: string } }
+  ) {
+    try {
+      await connectToDatabase();
+      const { id } = params;
+      const body = await request.json();
+  
+      const updatedLead = await Lead.findByIdAndUpdate(
+        id,
+        { status: body.status },
+        { new: true }
+      );
+  
+      if (!updatedLead) {
+        return NextResponse.json({ error: 'Lead not found' }, { status: 404 });
+      }
+  
+      return NextResponse.json(updatedLead, { status: 200 });
+    } catch (error: any) {
+      return NextResponse.json({ error: 'Update failed', details: error.message }, { status: 500 });
+    }
+  }
